@@ -39,6 +39,14 @@ var REQUEST_VERIFICATION = exports.REQUEST_VERIFICATION = function REQUEST_VERIF
   };
 };
 
+var VALIDATE_USER_TOKEN = exports.VALIDATE_USER_TOKEN = function VALIDATE_USER_TOKEN(userToken) {
+  return {
+    publicRequset: true,
+    requestMapping: "/login/sms/validate_user_token?userToken=" + userToken,
+    requestMethod: "GET"
+  };
+};
+
 var VERIFY = exports.VERIFY = function VERIFY(countryCode, smsNumber, oneTimePassword) {
   return {
     publicRequset: true,
