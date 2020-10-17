@@ -16,6 +16,12 @@ export const GET_PICKUP_QR_CODE = () => ({
   requestMethod: "GET",
 });
 
+export const GET_USER_PROFILE = () => ({
+  publicRequset: false,
+  requestMapping: "/api/user_profile/v1",
+  requestMethod: "GET",
+});
+
 export const REQUEST_VERIFICATION = (countryCode, smsNumber) => ({
   publicRequset: true,
   requestMapping: "/login/sms/request_verification",
