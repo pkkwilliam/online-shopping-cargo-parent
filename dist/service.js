@@ -27,6 +27,14 @@ var GET_PICKUP_QR_CODE = exports.GET_PICKUP_QR_CODE = function GET_PICKUP_QR_COD
   };
 };
 
+var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
+  return {
+    publicRequset: false,
+    requestMapping: "/api/user_profile/v1",
+    requestMethod: "GET"
+  };
+};
+
 var REQUEST_VERIFICATION = exports.REQUEST_VERIFICATION = function REQUEST_VERIFICATION(countryCode, smsNumber) {
   return {
     publicRequset: true,
