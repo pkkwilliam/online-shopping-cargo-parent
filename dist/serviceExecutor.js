@@ -38,6 +38,7 @@ var ServiceExecutor = function () {
                     headers: _this.generateHeader(service.publicRequset),
                     method: service.requestMethod
                   }).then(function (result) {
+                    service.onSuceed();
                     if (result.status === 204) {
                       return result;
                     } else if (result.status === 403) {
