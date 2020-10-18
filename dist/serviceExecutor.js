@@ -38,20 +38,13 @@ var ServiceExecutor = function () {
                     headers: _this.generateHeader(service.publicRequset),
                     method: service.requestMethod
                   }).then(function (result) {
-                    if (result.status < 300) {
-                      _this.saveHeaderToken(result.headers);
-                      if (service.onSuceed) {
-                        service.onSuceed();
-                      }
-                      return result.status === 204 ? result : result.json();
-                    } else if (result.status === 403) {
-                      _this.removeHeaderToken();
-                      reject(result.statusText);
+                    if (result.status === 204) {
+                      return result;
                     } else {
-                      reject(result.statusText);
+                      return result.json();
                     }
                   }).then(function (result) {
-                    return resolve(result);
+                    return result.status < 300 ? resolve(result) : reject(result);
                   }).catch(function (ex) {
                     return reject(ex);
                   });

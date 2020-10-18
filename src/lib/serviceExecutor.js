@@ -24,20 +24,15 @@ export default class ServiceExecutor {
         method: service.requestMethod,
       })
         .then((result) => {
-          if (result.status < 300) {
-            this.saveHeaderToken(result.headers);
-            if (service.onSuceed) {
-              service.onSuceed();
-            }
-            return result.status === 204 ? result : result.json();
-          } else if (result.status === 403) {
-            this.removeHeaderToken();
-            reject(result.statusText);
+          if (result.status === 204) {
+            return result;
           } else {
-            reject(result.statusText);
+            return result.json();
           }
         })
-        .then((result) => resolve(result))
+        .then((result) =>
+          result.status < 300 ? resolve(result) : reject(result)
+        )
         .catch((ex) => reject(ex));
     });
   }
