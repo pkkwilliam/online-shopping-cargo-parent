@@ -46,7 +46,7 @@ export default class ServiceExecutor {
     const userToken = headers.get("Authorization");
     if (userToken) {
       console.debug("--- save user token ---");
-      this.persistHeaderToken(userToken);
+      this.persistHeaderToken(`Bearer ${userToken}`);
     }
   }
 
@@ -59,7 +59,7 @@ export default class ServiceExecutor {
       console.debug(userToken);
       header = {
         ...header,
-        ...{ Authorization: `Bearer ${userToken}` },
+        ...{ Authorization: userToken },
       };
     }
     console.log(header);

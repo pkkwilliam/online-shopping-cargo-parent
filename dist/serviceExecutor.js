@@ -77,7 +77,7 @@ var ServiceExecutor = function () {
       var userToken = headers.get("Authorization");
       if (userToken) {
         console.debug("--- save user token ---");
-        this.persistHeaderToken(userToken);
+        this.persistHeaderToken("Bearer " + userToken);
       }
     }
   }, {
@@ -89,7 +89,7 @@ var ServiceExecutor = function () {
       if (!publicRequest) {
         var userToken = this.retrieveHeaderToken();
         console.debug(userToken);
-        header = _extends({}, header, { Authorization: "Bearer " + userToken });
+        header = _extends({}, header, { Authorization: userToken });
       }
       console.log(header);
       return header;
