@@ -26,9 +26,11 @@ export default class ServiceExecutor {
         .then((result) => {
           if (result.status === 204) {
             return result;
-          } else {
-            return result.json();
+          } else if (result.status === 403) {
+            this.removeHeaderToken();
+            window.location = "/";
           }
+          return result.json();
         })
         .then((result) =>
           result.status < 300 ? resolve(result) : reject(result)
