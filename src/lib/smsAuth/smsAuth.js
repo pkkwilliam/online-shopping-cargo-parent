@@ -79,7 +79,12 @@ export default class SmsAuth extends ApplicationComponent {
         });
     } else if (oneTimePassword) {
       this.serviceExecutor.execute(
-        VERIFY(countrySelected.code, smsNumber, oneTimePassword)
+        VERIFY(
+          countrySelected.code,
+          smsNumber,
+          oneTimePassword,
+          this.props.onSuceed
+        )
       );
     }
   };

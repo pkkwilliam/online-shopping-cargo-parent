@@ -40,6 +40,9 @@ var ServiceExecutor = function () {
                   }).then(function (result) {
                     if (result.status < 300) {
                       _this.saveHeaderToken(result.headers);
+                      if (service.onSuceed) {
+                        service.onSuceed();
+                      }
                       return result.status === 204 ? result : result.json();
                     } else if (result.status === 403) {
                       _this.removeHeaderToken();
@@ -75,7 +78,6 @@ var ServiceExecutor = function () {
       if (userToken) {
         console.debug("--- save user token ---");
         this.persistHeaderToken(userToken);
-        window.location.reload();
       }
     }
   }, {

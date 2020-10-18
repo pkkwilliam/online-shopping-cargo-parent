@@ -98,7 +98,7 @@ var SmsAuth = function (_ApplicationComponent) {
                   });
                 });
               } else if (oneTimePassword) {
-                _this.serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword));
+                _this.serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed));
               }
 
             case 4:

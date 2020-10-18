@@ -26,6 +26,9 @@ export default class ServiceExecutor {
         .then((result) => {
           if (result.status < 300) {
             this.saveHeaderToken(result.headers);
+            if (service.onSuceed) {
+              service.onSuceed();
+            }
             return result.status === 204 ? result : result.json();
           } else if (result.status === 403) {
             this.removeHeaderToken();
@@ -44,7 +47,6 @@ export default class ServiceExecutor {
     if (userToken) {
       console.debug("--- save user token ---");
       this.persistHeaderToken(userToken);
-      window.location.reload();
     }
   }
 
