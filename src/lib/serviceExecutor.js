@@ -3,17 +3,20 @@ export default class ServiceExecutor {
   persistHeaderToken;
   removeHeaderToken;
   retrieveHeaderToken;
+  onError;
 
   constructor(
     baseUrl,
     persistHeaderToken,
     removeHeaderToken,
-    retrieveHeaderToken
+    retrieveHeaderToken,
+    onError
   ) {
     this.baseUrl = baseUrl;
     this.persistHeaderToken = persistHeaderToken;
     this.removeHeaderToken = removeHeaderToken;
     this.retrieveHeaderToken = retrieveHeaderToken;
+    this.onError = onError;
   }
 
   async execute(service) {
@@ -33,11 +36,18 @@ export default class ServiceExecutor {
             this.removeHeaderToken();
             window.location = "/";
           }
-          return result.json();
+          return result.json().catch((ex) => {
+            return result;
+          });
         })
-        .then((result) =>
-          result.status < 300 ? resolve(result) : reject(result)
-        )
+        .then((result) => {
+          if (result.status < 300) {
+            return resolve(result);
+          } else {
+            this.onError(result.message ? result.message : "出錯了!!!");
+            return reject(result);
+          }
+        })
         .catch((ex) => reject(ex));
     });
   }

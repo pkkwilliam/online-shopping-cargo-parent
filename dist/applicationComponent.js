@@ -42,7 +42,9 @@ var ApplicationComponent = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this._serviceExecutor = new _serviceExecutor2.default(_this._applicationContext.serviceUrl, _this.storage.saveUserToken, _this.storage.removeUserToken, _this.storage.getUserToken), _temp), _possibleConstructorReturn(_this, _ret);
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onError = function () {
+      console.log("no override method found for on service request onError");
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ApplicationComponent, [{
@@ -53,6 +55,9 @@ var ApplicationComponent = function (_Component) {
   }, {
     key: "serviceExecutor",
     get: function get() {
+      if (!this._serviceExecutor) {
+        this._serviceExecutor = new _serviceExecutor2.default(this._applicationContext.serviceUrl, this.storage.saveUserToken, this.storage.removeUserToken, this.storage.getUserToken);
+      }
       return this._serviceExecutor;
     }
   }, {

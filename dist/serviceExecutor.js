@@ -13,13 +13,14 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ServiceExecutor = function () {
-  function ServiceExecutor(baseUrl, persistHeaderToken, removeHeaderToken, retrieveHeaderToken) {
+  function ServiceExecutor(baseUrl, persistHeaderToken, removeHeaderToken, retrieveHeaderToken, onError) {
     _classCallCheck(this, ServiceExecutor);
 
     this.baseUrl = baseUrl;
     this.persistHeaderToken = persistHeaderToken;
     this.removeHeaderToken = removeHeaderToken;
     this.retrieveHeaderToken = retrieveHeaderToken;
+    this.onError = onError;
   }
 
   _createClass(ServiceExecutor, [{
@@ -47,9 +48,16 @@ var ServiceExecutor = function () {
                       _this.removeHeaderToken();
                       window.location = "/";
                     }
-                    return result.json();
+                    return result.json().catch(function (ex) {
+                      return result;
+                    });
                   }).then(function (result) {
-                    return result.status < 300 ? resolve(result) : reject(result);
+                    if (result.status < 300) {
+                      return resolve(result);
+                    } else {
+                      _this.onError(result.message ? result.message : "出錯了!!!");
+                      return reject(result);
+                    }
                   }).catch(function (ex) {
                     return reject(ex);
                   });
