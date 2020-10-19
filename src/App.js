@@ -9,11 +9,21 @@ import { GET_USER_PROFILE } from "./lib/service";
 import { Provider } from "./context/provider";
 
 export default class App extends ApplicationComponent {
+  state = { show: true };
+
   render() {
     return (
       <Provider>
-        <CMToast />
+        <SmsAuth mock />
+        <CMToast show={this.state.show} onClose={this.onCloseToast} />
       </Provider>
     );
   }
+
+  onCloseToast = () => {
+    console.log("onclose");
+    this.setState({
+      show: false,
+    });
+  };
 }

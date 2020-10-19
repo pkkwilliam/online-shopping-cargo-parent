@@ -17,9 +17,18 @@ export default class SmsAuth extends ApplicationComponent {
   state = {
     codeSent: false,
     countrySelected: COUNTRY_CODE_LIST[0],
-    smsNumber: "",
+    smsNumber: "63530392",
     oneTimePassword: "",
   };
+
+  componentDidMount() {
+    const { mock } = this.props;
+    if (mock) {
+      this.setState({
+        codeSent: true,
+      });
+    }
+  }
 
   render() {
     const { codeSent, countrySelected } = this.state;

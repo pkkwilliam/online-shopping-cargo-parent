@@ -55,7 +55,7 @@ var SmsAuth = function (_ApplicationComponent) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuth.__proto__ || Object.getPrototypeOf(SmsAuth)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
       codeSent: false,
       countrySelected: COUNTRY_CODE_LIST[0],
-      smsNumber: "",
+      smsNumber: "63530392",
       oneTimePassword: ""
     }, _this.onChangeCountryCode = function (countryUpdate) {
       COUNTRY_CODE_LIST.forEach(function (country) {
@@ -111,6 +111,17 @@ var SmsAuth = function (_ApplicationComponent) {
   }
 
   _createClass(SmsAuth, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var mock = this.props.mock;
+
+      if (mock) {
+        this.setState({
+          codeSent: true
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _state = this.state,
