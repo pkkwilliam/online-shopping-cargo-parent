@@ -58,7 +58,7 @@ var CMToast = function (_Component) {
             autohide: true,
             onClose: onClose,
             show: show,
-            delay: delay ? delay : 500
+            delay: delay ? delay : 6000
           },
           _react2.default.createElement(
             _Toast2.default.Header,

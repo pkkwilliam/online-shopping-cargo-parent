@@ -16,7 +16,7 @@ export default class CMToast extends Component {
           autohide
           onClose={onClose}
           show={show}
-          delay={delay ? delay : 500}
+          delay={delay ? delay : 6000}
         >
           <Toast.Header>
             <strong className="mr-auto">{header}</strong>

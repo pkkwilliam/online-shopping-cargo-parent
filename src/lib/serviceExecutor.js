@@ -32,22 +32,22 @@ export default class ServiceExecutor {
             service.onSuceed();
           }
           if (result.status === 204) {
-            return result;
+            return resolve();
           } else if (result.status === 403) {
             this.removeHeaderToken();
-            window.location = "/";
+            // window.location = "/";
           }
-          return result.json().catch((ex) => {
-            return result;
-          });
-        })
-        .then((result) => {
-          if (result.status < 300) {
-            return resolve(result);
-          } else {
-            this.onError(result.message ? result.message : "出錯了!!!");
-            return reject(result);
-          }
+          result
+            .json()
+            .then((transformedJson) => {
+              if (result.status < 300) {
+                return resolve(transformedJson);
+              } else {
+                this.onError(transformedJson);
+                return reject(transformedJson);
+              }
+            })
+            .catch((ex) => result);
         })
         .catch((ex) => reject(ex));
     });

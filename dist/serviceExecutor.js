@@ -44,21 +44,21 @@ var ServiceExecutor = function () {
                       service.onSuceed();
                     }
                     if (result.status === 204) {
-                      return result;
+                      return resolve();
                     } else if (result.status === 403) {
                       _this.removeHeaderToken();
-                      window.location = "/";
+                      // window.location = "/";
                     }
-                    return result.json().catch(function (ex) {
+                    result.json().then(function (transformedJson) {
+                      if (result.status < 300) {
+                        return resolve(transformedJson);
+                      } else {
+                        _this.onError(transformedJson);
+                        return reject(transformedJson);
+                      }
+                    }).catch(function (ex) {
                       return result;
                     });
-                  }).then(function (result) {
-                    if (result.status < 300) {
-                      return resolve(result);
-                    } else {
-                      _this.onError(result.message ? result.message : "出錯了!!!");
-                      return reject(result);
-                    }
                   }).catch(function (ex) {
                     return reject(ex);
                   });

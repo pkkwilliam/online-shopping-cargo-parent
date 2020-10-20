@@ -11,6 +11,12 @@ import { Provider } from "./context/provider";
 export default class App extends ApplicationComponent {
   state = { show: true };
 
+  componentDidMount() {
+    this.serviceExecutor
+      .execute(GET_USER_PROFILE())
+      .then((result) => console.log(result));
+  }
+
   render() {
     return (
       <Provider>
