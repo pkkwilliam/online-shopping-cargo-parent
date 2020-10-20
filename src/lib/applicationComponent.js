@@ -18,7 +18,8 @@ export default class ApplicationComponent extends Component {
         this._applicationContext.serviceUrl,
         this.storage.saveUserToken,
         this.storage.removeUserToken,
-        this.storage.getUserToken
+        this.storage.getUserToken,
+        this.onError
       );
     }
     return this._serviceExecutor;
@@ -28,7 +29,7 @@ export default class ApplicationComponent extends Component {
     return this._storage;
   }
 
-  onError = () => {
-    console.log("no override method found for on service request onError");
+  onError = (result) => {
+    console.log(result.message);
   };
 }
