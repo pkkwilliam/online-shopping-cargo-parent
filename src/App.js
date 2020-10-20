@@ -9,15 +9,18 @@ import { GET_USER_PROFILE } from "./lib/service";
 import { Provider } from "./context/provider";
 
 export default class App extends ApplicationComponent {
-  state = { show: true };
+  state = { show: true, profile: undefined };
 
   componentDidMount() {
-    this.serviceExecutor
-      .execute(GET_USER_PROFILE())
-      .then((result) => console.log(result));
+    this.serviceExecutor.execute(GET_USER_PROFILE()).then((result) => {
+      this.setState({
+        profile: result,
+      });
+    });
   }
 
   render() {
+    console.log(this.state.profile);
     return (
       <Provider>
         <SmsAuth mock />

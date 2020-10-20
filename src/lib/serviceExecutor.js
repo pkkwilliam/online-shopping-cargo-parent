@@ -35,17 +35,12 @@ export default class ServiceExecutor {
             return resolve();
           } else if (result.status === 403) {
             this.removeHeaderToken();
-            // window.location = "/";
+            window.location = "/";
           }
-          result
+          return result
             .json()
-            .then((transformedJson) => {
-              if (result.status < 300) {
-                return resolve(transformedJson);
-              } else {
-                this.onError(transformedJson);
-                return reject(transformedJson);
-              }
+            .then((json) => {
+              return result.status < 300 ? resolve(json) : reject(json);
             })
             .catch((ex) => result);
         })

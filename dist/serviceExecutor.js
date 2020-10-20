@@ -47,15 +47,10 @@ var ServiceExecutor = function () {
                       return resolve();
                     } else if (result.status === 403) {
                       _this.removeHeaderToken();
-                      // window.location = "/";
+                      window.location = "/";
                     }
-                    result.json().then(function (transformedJson) {
-                      if (result.status < 300) {
-                        return resolve(transformedJson);
-                      } else {
-                        _this.onError(transformedJson);
-                        return reject(transformedJson);
-                      }
+                    return result.json().then(function (json) {
+                      return result.status < 300 ? resolve(json) : reject(json);
                     }).catch(function (ex) {
                       return result;
                     });
