@@ -50,7 +50,12 @@ var ServiceExecutor = function () {
                       window.location = "/";
                     }
                     return result.json().then(function (json) {
-                      return result.status < 300 ? resolve(json) : reject(json);
+                      if (result.status < 300) {
+                        return resolve(json);
+                      } else {
+                        _this.onError(json);
+                        return reject(json);
+                      }
                     }).catch(function (ex) {
                       return result;
                     });

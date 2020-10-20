@@ -40,7 +40,12 @@ export default class ServiceExecutor {
           return result
             .json()
             .then((json) => {
-              return result.status < 300 ? resolve(json) : reject(json);
+              if (result.status < 300) {
+                return resolve(json);
+              } else {
+                this.onError(json);
+                return reject(json);
+              }
             })
             .catch((ex) => result);
         })
