@@ -27,6 +27,7 @@ export default class ServiceExecutor {
         method: service.requestMethod,
       })
         .then((result) => {
+          this.saveHeaderToken(result.headers);
           if (service.onSuceed) {
             service.onSuceed();
           }

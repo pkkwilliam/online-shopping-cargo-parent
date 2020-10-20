@@ -39,6 +39,7 @@ var ServiceExecutor = function () {
                     headers: _this.generateHeader(service.publicRequset),
                     method: service.requestMethod
                   }).then(function (result) {
+                    _this.saveHeaderToken(result.headers);
                     if (service.onSuceed) {
                       service.onSuceed();
                     }
