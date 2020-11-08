@@ -56,7 +56,7 @@ var ApplicationComponent = function (_Component) {
     key: "serviceExecutor",
     get: function get() {
       if (!this._serviceExecutor) {
-        this._serviceExecutor = new _serviceExecutor2.default(this._applicationContext.serviceUrl, this.storage.saveUserToken, this.storage.removeUserToken, this.storage.getUserToken, this.onError);
+        this._serviceExecutor = new _serviceExecutor2.default(this.applicationContext.serviceUrl, this.storage.saveUserToken, this.storage.removeUserToken, this.storage.getUserToken, this.onError);
       }
       return this._serviceExecutor;
     }

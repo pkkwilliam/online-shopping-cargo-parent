@@ -15,7 +15,7 @@ export default class ApplicationComponent extends Component {
   get serviceExecutor() {
     if (!this._serviceExecutor) {
       this._serviceExecutor = new ServiceExecutor(
-        this._applicationContext.serviceUrl,
+        this.applicationContext.serviceUrl,
         this.storage.saveUserToken,
         this.storage.removeUserToken,
         this.storage.getUserToken,
