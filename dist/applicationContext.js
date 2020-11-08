@@ -21,7 +21,7 @@ var ApplicationContext = function () {
   }, {
     key: "serviceUrl",
     get: function get() {
-      return this.mock ? "http://localhost:8081" : "http://localhost:8081";
+      return this.mock ? "http://localhost:8081" : "https://picktb.com/api";
     }
   }]);
 
