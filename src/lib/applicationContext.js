@@ -1,6 +1,6 @@
 export default class ApplicationContext {
   get mock() {
-    return true;
+    return false;
   }
 
   get serviceUrl() {

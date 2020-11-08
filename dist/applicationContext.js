@@ -16,7 +16,7 @@ var ApplicationContext = function () {
   _createClass(ApplicationContext, [{
     key: "mock",
     get: function get() {
-      return true;
+      return false;
     }
   }, {
     key: "serviceUrl",
