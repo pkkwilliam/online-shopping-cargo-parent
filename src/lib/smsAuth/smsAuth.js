@@ -69,6 +69,9 @@ export default class SmsAuth extends ApplicationComponent {
   };
 
   onClickSubmit = async () => {
+    const serviceExecutor = this.props.serviceExecutor
+      ? this.props.serviceExecutor
+      : this.serviceExecutor;
     const {
       codeSent,
       countrySelected,
@@ -79,7 +82,7 @@ export default class SmsAuth extends ApplicationComponent {
       return null;
     }
     if (!codeSent) {
-      this.serviceExecutor
+      serviceExecutor
         .execute(REQUEST_VERIFICATION(countrySelected.code, smsNumber))
         .then((result) => {
           this.setState({
@@ -87,7 +90,7 @@ export default class SmsAuth extends ApplicationComponent {
           });
         });
     } else if (oneTimePassword) {
-      this.serviceExecutor.execute(
+      serviceExecutor.execute(
         VERIFY(
           countrySelected.code,
           smsNumber,

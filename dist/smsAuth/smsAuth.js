@@ -75,33 +75,34 @@ var SmsAuth = function (_ApplicationComponent) {
         smsNumber: smsNumber
       });
     }, _this.onClickSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var _this$state, codeSent, countrySelected, oneTimePassword, smsNumber;
+      var serviceExecutor, _this$state, codeSent, countrySelected, oneTimePassword, smsNumber;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              serviceExecutor = _this.props.serviceExecutor ? _this.props.serviceExecutor : _this.serviceExecutor;
               _this$state = _this.state, codeSent = _this$state.codeSent, countrySelected = _this$state.countrySelected, oneTimePassword = _this$state.oneTimePassword, smsNumber = _this$state.smsNumber;
 
               if (smsNumber) {
-                _context.next = 3;
+                _context.next = 4;
                 break;
               }
 
               return _context.abrupt("return", null);
 
-            case 3:
+            case 4:
               if (!codeSent) {
-                _this.serviceExecutor.execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).then(function (result) {
+                serviceExecutor.execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).then(function (result) {
                   _this.setState({
                     codeSent: true
                   });
                 });
               } else if (oneTimePassword) {
-                _this.serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed));
+                serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed));
               }
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
