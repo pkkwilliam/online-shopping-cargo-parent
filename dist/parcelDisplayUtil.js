@@ -64,12 +64,12 @@ var ParcelDisplayUtil = function () {
 
   }, {
     key: "sortParcels",
-    value: function sortParcels(parcelResponse) {
+    value: function sortParcels(parcels) {
       var firstLevel = [];
       var secondLevel = [];
       var thirdLevel = [];
       var result = [];
-      parcelResponse.parcels.forEach(function (parcel) {
+      parcels.forEach(function (parcel) {
         var trackingHistories = parcel.trackingHistories;
 
         var parcelStatus = trackingHistories[trackingHistories.length - 1].parcelStatus;

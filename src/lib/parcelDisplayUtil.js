@@ -50,12 +50,12 @@ export default class ParcelDisplayUtil {
   }
 
   // TODO PLEASE REWORD ON THIS ONCE WE HAVE SOME TIME!!!
-  sortParcels(parcelResponse) {
+  sortParcels(parcels) {
     const firstLevel = [];
     const secondLevel = [];
     const thirdLevel = [];
     const result = [];
-    parcelResponse.parcels.forEach((parcel) => {
+    parcels.forEach((parcel) => {
       const { trackingHistories } = parcel;
       const parcelStatus =
         trackingHistories[trackingHistories.length - 1].parcelStatus;
