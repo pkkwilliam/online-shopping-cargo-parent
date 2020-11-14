@@ -22,7 +22,7 @@ export default class SmsAuthView extends Component {
       onClickSubmit,
     } = this.props;
     return (
-      <InputGroup className="mb-3" size="sm">
+      <InputGroup size="sm">
         <DropdownButton
           as={InputGroup.Prepend}
           variant="outline-secondary"

@@ -11,14 +11,6 @@ import { Provider } from "./context/provider";
 export default class App extends ApplicationComponent {
   state = { show: true, profile: undefined };
 
-  componentDidMount() {
-    this.serviceExecutor.execute(GET_USER_PROFILE()).then((result) => {
-      this.setState({
-        profile: result,
-      });
-    });
-  }
-
   render() {
     console.log(this.state.profile);
     return (

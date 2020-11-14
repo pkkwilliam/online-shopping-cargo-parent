@@ -62,7 +62,7 @@ var SmsAuthView = function (_Component) {
 
       return _react2.default.createElement(
         _InputGroup2.default,
-        { className: "mb-3", size: "sm" },
+        { size: "sm" },
         _react2.default.createElement(
           _DropdownButton2.default,
           {
