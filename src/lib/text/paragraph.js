@@ -6,6 +6,7 @@ export default function P(props) {
       style={{
         fontSize: 14,
         margin: 0,
+        ...props.style,
       }}
     >
       {props.children}
