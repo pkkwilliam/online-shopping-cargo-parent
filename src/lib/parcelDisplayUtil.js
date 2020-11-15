@@ -1,15 +1,17 @@
 // parcel status
 const DELIVERED = { key: "DELIVERED", label: "已送達" };
-const EXCEPTION = { key: "EXCEPTION", label: "聯繫客服" };
+const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
 const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
-const PICKED_UP = { key: "PICKED_UP", label: "已自提" };
-const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可自提" };
+const PICKED_UP = { key: "PICKED_UP", label: "已提" };
+const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
+const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
 const PARCEL_STATUS = [
   DELIVERED,
   EXCEPTION,
   IN_TRANSIT,
   PICKED_UP,
   READY_TO_PICKUP,
+  WAREHOUSE_RECEIVED,
 ];
 
 // parcel location
@@ -35,15 +37,17 @@ export default class ParcelDisplayUtil {
   getParcelStatusBageAndLabel(parcelStatus) {
     switch (parcelStatus) {
       case DELIVERED.key:
-        return { badge: "primary", label: "送達" };
+        return { badge: "primary", label: DELIVERED.label };
       case EXCEPTION.key:
-        return { badge: "danger", label: "請致電客服" };
+        return { badge: "danger", label: EXCEPTION.label };
       case IN_TRANSIT.key:
-        return { badge: "warning", label: "運輸中" };
+        return { badge: "warning", label: IN_TRANSIT.label };
       case PICKED_UP.key:
-        return { badge: "primary", label: "已提" };
+        return { badge: "primary", label: PICKED_UP.label };
       case READY_TO_PICKUP.key:
-        return { badge: "success", label: "可提" };
+        return { badge: "success", label: READY_TO_PICKUP.label };
+      case WAREHOUSE_RECEIVED.key:
+        return { badge: "secondary", label: WAREHOUSE_RECEIVED.label };
       default:
         return { badge: "danger", label: "未知" };
     }
