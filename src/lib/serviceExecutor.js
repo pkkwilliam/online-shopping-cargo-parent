@@ -49,7 +49,7 @@ export default class ServiceExecutor {
             })
             .catch((ex) => result);
         })
-        .catch((ex) => reject(ex));
+        .catch((ex) => this.onError(ex));
     });
   }
 

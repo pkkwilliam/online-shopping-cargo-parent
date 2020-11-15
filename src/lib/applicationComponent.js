@@ -30,6 +30,6 @@ export default class ApplicationComponent extends Component {
   }
 
   onError = (result) => {
-    console.log(result.message);
+    console.log("ERROR! MISSING OVERRIDE");
   };
 }

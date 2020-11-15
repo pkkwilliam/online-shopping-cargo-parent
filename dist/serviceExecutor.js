@@ -60,7 +60,7 @@ var ServiceExecutor = function () {
                       return result;
                     });
                   }).catch(function (ex) {
-                    return reject(ex);
+                    return _this.onError(ex);
                   });
                 }));
 

@@ -4,6 +4,7 @@ import DropdownButton from "react-bootstrap/esm/DropdownButton";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/esm/Dropdown";
+import Spinner from "react-bootstrap/esm/Spinner";
 
 export default class SmsAuthView extends Component {
   render() {
@@ -19,7 +20,6 @@ export default class SmsAuthView extends Component {
       countrySelected,
       dropDownCountryCodeList,
       onChangeCountryCode,
-      onClickSubmit,
     } = this.props;
     return (
       <InputGroup size="sm">
@@ -34,11 +34,23 @@ export default class SmsAuthView extends Component {
         </DropdownButton>
         <this.Form />
         <InputGroup.Append>
-          <Button onClick={onClickSubmit} variant="outline-secondary">
-            驗證
-          </Button>
+          <this.SubmitButton {...this.props} />
         </InputGroup.Append>
       </InputGroup>
+    );
+  };
+
+  SubmitButton = ({ codeSent, codeRequested, onClickSubmit }) => {
+    let buttonMessage = "發送驗證碼";
+    if (codeRequested) {
+      buttonMessage = <Spinner animation="border" size="sm" variant="light" />;
+    } else if (codeSent) {
+      buttonMessage = "驗證";
+    }
+    return (
+      <Button onClick={onClickSubmit} variant="primary">
+        {buttonMessage}
+      </Button>
     );
   };
 

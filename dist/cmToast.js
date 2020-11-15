@@ -37,7 +37,7 @@ var CMToast = function (_Component) {
     key: "render",
     value: function render() {
       var _props = this.props,
-          body = _props.body,
+          children = _props.children,
           delay = _props.delay,
           header = _props.header,
           onClose = _props.onClose,
@@ -49,7 +49,8 @@ var CMToast = function (_Component) {
         {
           style: _extends({
             position: "absolute",
-            bottom: 20
+            bottom: 5,
+            left: 5
           }, style)
         },
         _react2.default.createElement(
@@ -72,7 +73,7 @@ var CMToast = function (_Component) {
           _react2.default.createElement(
             _Toast2.default.Body,
             null,
-            body
+            children
           )
         )
       );

@@ -30,6 +30,10 @@ var _Dropdown = require("react-bootstrap/esm/Dropdown");
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
+var _Spinner = require("react-bootstrap/esm/Spinner");
+
+var _Spinner2 = _interopRequireDefault(_Spinner);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,8 +61,7 @@ var SmsAuthView = function (_Component) {
       var _this$props = _this.props,
           countrySelected = _this$props.countrySelected,
           dropDownCountryCodeList = _this$props.dropDownCountryCodeList,
-          onChangeCountryCode = _this$props.onChangeCountryCode,
-          onClickSubmit = _this$props.onClickSubmit;
+          onChangeCountryCode = _this$props.onChangeCountryCode;
 
       return _react2.default.createElement(
         _InputGroup2.default,
@@ -80,12 +83,24 @@ var SmsAuthView = function (_Component) {
         _react2.default.createElement(
           _InputGroup2.default.Append,
           null,
-          _react2.default.createElement(
-            _Button2.default,
-            { onClick: onClickSubmit, variant: "outline-secondary" },
-            "\u9A57\u8B49"
-          )
+          _react2.default.createElement(_this2.SubmitButton, _this.props)
         )
+      );
+    }, _this.SubmitButton = function (_ref2) {
+      var codeSent = _ref2.codeSent,
+          codeRequested = _ref2.codeRequested,
+          onClickSubmit = _ref2.onClickSubmit;
+
+      var buttonMessage = "發送驗證碼";
+      if (codeRequested) {
+        buttonMessage = _react2.default.createElement(_Spinner2.default, { animation: "border", size: "sm", variant: "light" });
+      } else if (codeSent) {
+        buttonMessage = "驗證";
+      }
+      return _react2.default.createElement(
+        _Button2.default,
+        { onClick: onClickSubmit, variant: "primary" },
+        buttonMessage
       );
     }, _this.Form = function () {
       return _this.props.codeSent ? _react2.default.createElement(_this2.VerifyForm, null) : _react2.default.createElement(_this2.RequestVerificationForm, null);

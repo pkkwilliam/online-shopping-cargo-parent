@@ -43,7 +43,7 @@ var ApplicationComponent = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onError = function (result) {
-      console.log(result.message);
+      console.log("ERROR! MISSING OVERRIDE");
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 

@@ -15,7 +15,9 @@ const COUNTRY_CODE_LIST = [
 
 export default class SmsAuth extends ApplicationComponent {
   state = {
+    codeRequested: false,
     codeSent: false,
+    codeSentCountDown: 0,
     countrySelected: COUNTRY_CODE_LIST[0],
     smsNumber: "63530392",
     oneTimePassword: "",
@@ -31,10 +33,11 @@ export default class SmsAuth extends ApplicationComponent {
   }
 
   render() {
-    const { codeSent, countrySelected } = this.state;
+    const { codeSent, codeSentCountDown, countrySelected } = this.state;
     return (
       <SmsAuthView
         codeSent={codeSent}
+        codeSentCountDown={codeSentCountDown}
         countrySelected={countrySelected}
         dropDownCountryCodeList={COUNTRY_CODE_LIST}
         onChangeCountryCode={this.onChangeCountryCode}
@@ -69,6 +72,10 @@ export default class SmsAuth extends ApplicationComponent {
   };
 
   onClickSubmit = async () => {
+    const onError = this.props.onError ? this.props.onError : this.onError;
+    this.setState({
+      codeRequested: true,
+    });
     const serviceExecutor = this.props.serviceExecutor
       ? this.props.serviceExecutor
       : this.serviceExecutor;
@@ -88,16 +95,19 @@ export default class SmsAuth extends ApplicationComponent {
           this.setState({
             codeSent: true,
           });
-        });
+        })
+        .catch((ex) => onError(ex));
     } else if (oneTimePassword) {
-      serviceExecutor.execute(
-        VERIFY(
-          countrySelected.code,
-          smsNumber,
-          oneTimePassword,
-          this.props.onSuceed
+      serviceExecutor
+        .execute(
+          VERIFY(
+            countrySelected.code,
+            smsNumber,
+            oneTimePassword,
+            this.props.onSuceed
+          )
         )
-      );
+        .catch((ex) => onError(ex));
     }
   };
 }

@@ -53,7 +53,9 @@ var SmsAuth = function (_ApplicationComponent) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuth.__proto__ || Object.getPrototypeOf(SmsAuth)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      codeRequested: false,
       codeSent: false,
+      codeSentCountDown: 0,
       countrySelected: COUNTRY_CODE_LIST[0],
       smsNumber: "63530392",
       oneTimePassword: ""
@@ -75,34 +77,43 @@ var SmsAuth = function (_ApplicationComponent) {
         smsNumber: smsNumber
       });
     }, _this.onClickSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var serviceExecutor, _this$state, codeSent, countrySelected, oneTimePassword, smsNumber;
+      var onError, serviceExecutor, _this$state, codeSent, countrySelected, oneTimePassword, smsNumber;
 
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
+              onError = _this.props.onError ? _this.props.onError : _this.onError;
+
+              _this.setState({
+                codeRequested: true
+              });
               serviceExecutor = _this.props.serviceExecutor ? _this.props.serviceExecutor : _this.serviceExecutor;
               _this$state = _this.state, codeSent = _this$state.codeSent, countrySelected = _this$state.countrySelected, oneTimePassword = _this$state.oneTimePassword, smsNumber = _this$state.smsNumber;
 
               if (smsNumber) {
-                _context.next = 4;
+                _context.next = 6;
                 break;
               }
 
               return _context.abrupt("return", null);
 
-            case 4:
+            case 6:
               if (!codeSent) {
                 serviceExecutor.execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).then(function (result) {
                   _this.setState({
                     codeSent: true
                   });
+                }).catch(function (ex) {
+                  return onError(ex);
                 });
               } else if (oneTimePassword) {
-                serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed));
+                serviceExecutor.execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed)).catch(function (ex) {
+                  return onError(ex);
+                });
               }
 
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -127,10 +138,12 @@ var SmsAuth = function (_ApplicationComponent) {
     value: function render() {
       var _state = this.state,
           codeSent = _state.codeSent,
+          codeSentCountDown = _state.codeSentCountDown,
           countrySelected = _state.countrySelected;
 
       return _react2.default.createElement(_smsAuth2.default, {
         codeSent: codeSent,
+        codeSentCountDown: codeSentCountDown,
         countrySelected: countrySelected,
         dropDownCountryCodeList: COUNTRY_CODE_LIST,
         onChangeCountryCode: this.onChangeCountryCode,

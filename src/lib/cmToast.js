@@ -3,12 +3,13 @@ import Toast from "react-bootstrap/esm/Toast";
 
 export default class CMToast extends Component {
   render() {
-    const { body, delay, header, onClose, show, style } = this.props;
+    const { children, delay, header, onClose, show, style } = this.props;
     return (
       <div
         style={{
           position: "absolute",
-          bottom: 20,
+          bottom: 5,
+          left: 5,
           ...style,
         }}
       >
@@ -21,7 +22,7 @@ export default class CMToast extends Component {
           <Toast.Header>
             <strong className="mr-auto">{header}</strong>
           </Toast.Header>
-          <Toast.Body>{body}</Toast.Body>
+          <Toast.Body>{children}</Toast.Body>
         </Toast>
       </div>
     );
