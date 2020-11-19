@@ -1,11 +1,11 @@
 // parcel status
-const DELIVERED = { key: "DELIVERED", label: "已送達" };
-const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
-const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
-const PICKED_UP = { key: "PICKED_UP", label: "已提" };
-const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
-const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
-const PARCEL_STATUS = [
+export const DELIVERED = { key: "DELIVERED", label: "已送達" };
+export const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
+export const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
+export const PICKED_UP = { key: "PICKED_UP", label: "已提" };
+export const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
+export const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
+export const PARCEL_STATUS = [
   DELIVERED,
   EXCEPTION,
   IN_TRANSIT,
@@ -15,10 +15,10 @@ const PARCEL_STATUS = [
 ];
 
 // parcel location
-const SHOP = { key: "SHOP", label: "自提點" };
-const WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
-const VEHICLE = { key: "VEHICLE", label: "轉運車" };
-const PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
+export const SHOP = { key: "SHOP", label: "自提點" };
+export const WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
+export const VEHICLE = { key: "VEHICLE", label: "轉運車" };
+export const PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
 
 export default class ParcelDisplayUtil {
   getParcelLocation(parcelLocation) {
@@ -47,7 +47,7 @@ export default class ParcelDisplayUtil {
       case READY_TO_PICKUP.key:
         return { badge: "success", label: READY_TO_PICKUP.label };
       case WAREHOUSE_RECEIVED.key:
-        return { badge: "secondary", label: WAREHOUSE_RECEIVED.label };
+        return { badge: "info", label: WAREHOUSE_RECEIVED.label };
       default:
         return { badge: "danger", label: "未知" };
     }

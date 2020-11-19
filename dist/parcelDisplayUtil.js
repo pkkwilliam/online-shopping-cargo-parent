@@ -9,19 +9,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // parcel status
-var DELIVERED = { key: "DELIVERED", label: "已送達" };
-var EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
-var IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
-var PICKED_UP = { key: "PICKED_UP", label: "已提" };
-var READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
-var WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
-var PARCEL_STATUS = [DELIVERED, EXCEPTION, IN_TRANSIT, PICKED_UP, READY_TO_PICKUP, WAREHOUSE_RECEIVED];
+var DELIVERED = exports.DELIVERED = { key: "DELIVERED", label: "已送達" };
+var EXCEPTION = exports.EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
+var IN_TRANSIT = exports.IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
+var PICKED_UP = exports.PICKED_UP = { key: "PICKED_UP", label: "已提" };
+var READY_TO_PICKUP = exports.READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
+var WAREHOUSE_RECEIVED = exports.WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
+var PARCEL_STATUS = exports.PARCEL_STATUS = [DELIVERED, EXCEPTION, IN_TRANSIT, PICKED_UP, READY_TO_PICKUP, WAREHOUSE_RECEIVED];
 
 // parcel location
-var SHOP = { key: "SHOP", label: "自提點" };
-var WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
-var VEHICLE = { key: "VEHICLE", label: "轉運車" };
-var PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
+var SHOP = exports.SHOP = { key: "SHOP", label: "自提點" };
+var WAREHOUSE = exports.WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
+var VEHICLE = exports.VEHICLE = { key: "VEHICLE", label: "轉運車" };
+var PARCEL_LOCATIONS = exports.PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
 
 var ParcelDisplayUtil = function () {
   function ParcelDisplayUtil() {
@@ -57,7 +57,7 @@ var ParcelDisplayUtil = function () {
         case READY_TO_PICKUP.key:
           return { badge: "success", label: READY_TO_PICKUP.label };
         case WAREHOUSE_RECEIVED.key:
-          return { badge: "secondary", label: WAREHOUSE_RECEIVED.label };
+          return { badge: "info", label: WAREHOUSE_RECEIVED.label };
         default:
           return { badge: "danger", label: "未知" };
       }
