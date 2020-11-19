@@ -60,14 +60,16 @@ export default class ParcelDisplayUtil {
     const thirdLevel = [];
     const result = [];
     parcels.forEach((parcel) => {
-      const { trackingHistories } = parcel;
-      const parcelStatus =
-        trackingHistories[trackingHistories.length - 1].parcelStatus;
+      const parcelStatus = parcel.parcelStatus;
       if (parcelStatus === READY_TO_PICKUP.key) {
+        console.log(parcel.displayId);
         firstLevel.push(parcel);
       } else if (parcelStatus === EXCEPTION.key) {
         secondLevel.push(parcel);
-      } else if (parcelStatus === IN_TRANSIT.key) {
+      } else if (
+        parcelStatus === IN_TRANSIT.key ||
+        parcelStatus === WAREHOUSE_RECEIVED.key
+      ) {
         thirdLevel.push(parcel);
       } else {
         result.push(parcel);
