@@ -75,7 +75,6 @@ var ParcelDisplayUtil = function () {
       parcels.forEach(function (parcel) {
         var parcelStatus = parcel.parcelStatus;
         if (parcelStatus === READY_TO_PICKUP.key) {
-          console.log(parcel.displayId);
           firstLevel.push(parcel);
         } else if (parcelStatus === EXCEPTION.key) {
           secondLevel.push(parcel);

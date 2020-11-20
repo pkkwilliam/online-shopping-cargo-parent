@@ -42,8 +42,19 @@ var ApplicationComponent = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onError = function (result) {
-      console.log("ERROR! MISSING OVERRIDE");
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onCloseError = function () {
+      _this.setState({
+        modal: {}
+      });
+    }, _this.onError = function (exeception) {
+      console.debug("default on error, show modal");
+      _this.setState({
+        modal: {
+          body: "\u975E\u5E38\u62B1\u6B49\uFF0C\u8ACB\u7A0D\u5019\u91CD\u8A66 \u5FAE\u4FE1\u5BA2\u670D: PickTB \u539F\u56E0:" + exeception,
+          header: "AWS 伺服器出錯",
+          show: true
+        }
+      });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 

@@ -29,7 +29,20 @@ export default class ApplicationComponent extends Component {
     return this._storage;
   }
 
-  onError = (result) => {
-    console.log("ERROR! MISSING OVERRIDE");
+  onCloseError = () => {
+    this.setState({
+      modal: {},
+    });
+  };
+
+  onError = (exeception) => {
+    console.debug("default on error, show modal");
+    this.setState({
+      modal: {
+        body: `非常抱歉，請稍候重試 微信客服: PickTB 原因:${exeception}`,
+        header: "AWS 伺服器出錯",
+        show: true,
+      },
+    });
   };
 }
