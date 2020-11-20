@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import ApplicationModal from "./applicationModal";
 
+const ApplicationModal = React.lazy(() => import("./applicationModal"));
 export default class ApplicationComponentView extends Component {
   Wrapper = ({ children, modal, onCloseModal }) => {
     return (
