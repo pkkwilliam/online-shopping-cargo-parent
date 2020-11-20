@@ -37,9 +37,10 @@ var ApplicationComponentView = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponentView.__proto__ || Object.getPrototypeOf(ApplicationComponentView)).call.apply(_ref, [this].concat(args))), _this), _this.Wrapper = function (_ref2) {
-      var children = _ref2.children,
-          modal = _ref2.modal,
-          onCloseModal = _ref2.onCloseModal;
+      var children = _ref2.children;
+      var _this$props = _this.props,
+          modal = _this$props.modal,
+          onCloseModal = _this$props.onCloseModal;
 
       return _react2.default.createElement(
         _react.Fragment,
