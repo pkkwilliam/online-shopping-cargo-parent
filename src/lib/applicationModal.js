@@ -10,7 +10,7 @@ export default function ApplicationModal(props) {
         <Modal.Title id="contained-modal-title-vcenter">{header}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>{body}</p>
+        <p style={{ whiteSpace: "pre-line" }}>{body}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={onClose}>關閉</Button>

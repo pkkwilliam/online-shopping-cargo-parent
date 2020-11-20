@@ -42,7 +42,7 @@ function ApplicationModal(props) {
       null,
       _react2.default.createElement(
         "p",
-        null,
+        { style: { whiteSpace: "pre-line" } },
         body
       )
     ),
