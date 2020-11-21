@@ -26,7 +26,8 @@ var ApplicationComponentView = function (_Component) {
   _inherits(ApplicationComponentView, _Component);
 
   function ApplicationComponentView() {
-    var _ref;
+    var _ref,
+        _this2 = this;
 
     var _temp, _this, _ret;
 
@@ -38,16 +39,19 @@ var ApplicationComponentView = function (_Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponentView.__proto__ || Object.getPrototypeOf(ApplicationComponentView)).call.apply(_ref, [this].concat(args))), _this), _this.Wrapper = function (_ref2) {
       var children = _ref2.children;
-      var _this$props = _this.props,
-          modal = _this$props.modal,
-          onCloseModal = _this$props.onCloseModal;
 
       return _react2.default.createElement(
         _react.Fragment,
         null,
-        _react2.default.createElement(ApplicationModal, _extends({ onClose: onCloseModal }, modal)),
+        _react2.default.createElement(_this2.Modal, null),
         children
       );
+    }, _this.Modal = function () {
+      var _this$props = _this.props,
+          modal = _this$props.modal,
+          onCloseModal = _this$props.onCloseModal;
+
+      return _react2.default.createElement(ApplicationModal, _extends({ onClose: onCloseModal }, modal));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
