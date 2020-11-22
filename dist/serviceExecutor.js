@@ -54,10 +54,9 @@ var ServiceExecutor = function () {
                         return resolve(json);
                       } else {
                         _this.onError(json);
-                        return reject(json);
                       }
                     }).catch(function (ex) {
-                      return result;
+                      return _this.onError(ex);
                     });
                   }).catch(function (ex) {
                     return _this.onError(ex);

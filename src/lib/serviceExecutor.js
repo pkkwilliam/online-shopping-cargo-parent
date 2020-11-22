@@ -44,10 +44,9 @@ export default class ServiceExecutor {
                 return resolve(json);
               } else {
                 this.onError(json);
-                return reject(json);
               }
             })
-            .catch((ex) => result);
+            .catch((ex) => this.onError(ex));
         })
         .catch((ex) => this.onError(ex));
     });
