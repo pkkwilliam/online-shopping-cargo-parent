@@ -72,7 +72,6 @@ export default class ServiceExecutor {
         ...{ Authorization: userToken },
       };
     }
-    console.log(header);
     return header;
   }
 }
