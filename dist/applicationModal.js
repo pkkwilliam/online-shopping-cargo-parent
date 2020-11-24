@@ -21,6 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function ApplicationModal(props) {
   var body = props.body,
+      children = props.children,
       header = props.header,
       onClose = props.onClose,
       show = props.show;
@@ -44,7 +45,8 @@ function ApplicationModal(props) {
         "p",
         { style: { whiteSpace: "pre-line" } },
         body
-      )
+      ),
+      children
     ),
     _react2.default.createElement(
       _Modal2.default.Footer,

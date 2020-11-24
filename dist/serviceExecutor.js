@@ -97,7 +97,6 @@ var ServiceExecutor = function () {
         console.debug(userToken);
         header = _extends({}, header, { Authorization: userToken });
       }
-      console.log(header);
       return header;
     }
   }]);
