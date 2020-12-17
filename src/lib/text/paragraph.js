@@ -8,6 +8,7 @@ export default function P(props) {
         margin: 0,
         ...props.style,
       }}
+      {...props}
     >
       {props.children}
     </p>
