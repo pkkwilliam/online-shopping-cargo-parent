@@ -1,86 +1,124 @@
 import React, { Component } from "react";
 import FormControl from "react-bootstrap/esm/FormControl";
-import DropdownButton from "react-bootstrap/esm/DropdownButton";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/esm/Dropdown";
-import Spinner from "react-bootstrap/esm/Spinner";
+import LineBreak from "../lineBreak";
 
 export default class SmsAuthView extends Component {
   render() {
     return (
       <div>
-        <this.NumberInput />
+        <table style={{ width: "100%" }}>
+          <tr>
+            <td>
+              <this.CountryCodeDropDown />
+            </td>
+            <td>
+              <this.PhoneNumberTextField />
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="3">
+              <LineBreak />
+            </td>
+          </tr>
+          <tr>
+            <td>驗證碼</td>
+            <td>
+              <this.VerificationCodeTextField />
+            </td>
+          </tr>
+          <tr>
+            <td colSpan="3">
+              <this.VerifyButton />
+            </td>
+          </tr>
+        </table>
       </div>
     );
   }
 
-  NumberInput = () => {
+  CountryCodeDropDown = () => {
     const {
       countrySelected,
       dropDownCountryCodeList,
       onChangeCountryCode,
     } = this.props;
     return (
-      <InputGroup size="sm">
-        <DropdownButton
-          as={InputGroup.Prepend}
-          variant="outline-secondary"
-          title={`${countrySelected.chineseName} +${countrySelected.code}`}
-          id="input-group-dropdown-1"
-          onSelect={(countryCode) => onChangeCountryCode(countryCode)}
+      <Dropdown onSelect={(countryCode) => onChangeCountryCode(countryCode)}>
+        <Dropdown.Toggle
+          id="dropdown-custom-components"
+          variant=""
+          style={{ padding: 0 }}
         >
+          {`+${countrySelected.code}`}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
           {this.generateDropDownList(dropDownCountryCodeList)}
-        </DropdownButton>
-        <this.Form />
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
+  PhoneNumberTextField = () => {
+    return (
+      <FormControl
+        onChange={(number) => this.props.onChangeSmsNumber(number.target.value)}
+        placeholder={"手機號"}
+        style={styles.inputContainer}
+      />
+    );
+  };
+
+  RequestVerificationButton = () => {
+    const {
+      codeRequested,
+      codeResendCountDown,
+      onClickRequestVerfiication,
+      smsNumber,
+    } = this.props;
+    const allowRequestVerifcationCode =
+      smsNumber.length >= 8 && codeResendCountDown == 0;
+    return (
+      <Button
+        variant="link"
+        disabled={!allowRequestVerifcationCode}
+        onClick={onClickRequestVerfiication}
+      >
+        {!codeRequested ? "獲取驗證碼" : ` 重新獲取${codeResendCountDown}`}
+      </Button>
+    );
+  };
+
+  VerificationCodeTextField = () => {
+    return (
+      <InputGroup>
+        <FormControl
+          onChange={(number) =>
+            this.props.onChangeOneTimePassword(number.target.value)
+          }
+          placeholder="請輸入驗證碼"
+          style={styles.inputContainer}
+        />
         <InputGroup.Append>
-          <this.SubmitButton {...this.props} />
+          <this.RequestVerificationButton />
         </InputGroup.Append>
       </InputGroup>
     );
   };
 
-  SubmitButton = ({ codeSent, codeRequested, onClickSubmit }) => {
-    let buttonMessage = "發送驗證碼";
-    if (codeRequested) {
-      buttonMessage = <Spinner animation="border" size="sm" variant="light" />;
-    } else if (codeSent) {
-      buttonMessage = "驗證";
-    }
+  VerifyButton = () => {
+    const { codeRequested, onClickVerify } = this.props;
     return (
-      <Button onClick={onClickSubmit} variant="primary">
-        {buttonMessage}
+      <Button
+        block
+        disabled={!codeRequested}
+        onClick={onClickVerify}
+        style={{ marginTop: 5 }}
+      >
+        驗證
       </Button>
-    );
-  };
-
-  Form = () => {
-    return this.props.codeSent ? (
-      <this.VerifyForm />
-    ) : (
-      <this.RequestVerificationForm />
-    );
-  };
-
-  RequestVerificationForm = () => {
-    return (
-      <FormControl
-        onChange={(number) => this.props.onChangeSmsNumber(number.target.value)}
-        placeholder={"@號碼"}
-        aria-describedby="basic-addon1"
-      />
-    );
-  };
-
-  VerifyForm = () => {
-    return (
-      <FormControl
-        onChange={(number) =>
-          this.props.onChangeOneTimePassword(number.target.value)
-        }
-        placeholder={"驗證碼"}
-        aria-describedby="basic-addon1"
-      />
     );
   };
 
@@ -92,3 +130,9 @@ export default class SmsAuthView extends Component {
     ));
   }
 }
+
+const styles = {
+  inputContainer: {
+    border: 0,
+  },
+};
