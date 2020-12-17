@@ -14,10 +14,6 @@ var _FormControl = require("react-bootstrap/esm/FormControl");
 
 var _FormControl2 = _interopRequireDefault(_FormControl);
 
-var _DropdownButton = require("react-bootstrap/esm/DropdownButton");
-
-var _DropdownButton2 = _interopRequireDefault(_DropdownButton);
-
 var _InputGroup = require("react-bootstrap/InputGroup");
 
 var _InputGroup2 = _interopRequireDefault(_InputGroup);
@@ -30,9 +26,9 @@ var _Dropdown = require("react-bootstrap/esm/Dropdown");
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
-var _Spinner = require("react-bootstrap/esm/Spinner");
+var _lineBreak = require("../lineBreak");
 
-var _Spinner2 = _interopRequireDefault(_Spinner);
+var _lineBreak2 = _interopRequireDefault(_lineBreak);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -57,69 +53,89 @@ var SmsAuthView = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuthView.__proto__ || Object.getPrototypeOf(SmsAuthView)).call.apply(_ref, [this].concat(args))), _this), _this.NumberInput = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuthView.__proto__ || Object.getPrototypeOf(SmsAuthView)).call.apply(_ref, [this].concat(args))), _this), _this.CountryCodeDropDown = function () {
       var _this$props = _this.props,
           countrySelected = _this$props.countrySelected,
           dropDownCountryCodeList = _this$props.dropDownCountryCodeList,
           onChangeCountryCode = _this$props.onChangeCountryCode;
 
       return _react2.default.createElement(
-        _InputGroup2.default,
-        { size: "sm" },
+        _Dropdown2.default,
+        { onSelect: function onSelect(countryCode) {
+            return onChangeCountryCode(countryCode);
+          } },
         _react2.default.createElement(
-          _DropdownButton2.default,
+          _Dropdown2.default.Toggle,
           {
-            as: _InputGroup2.default.Prepend,
-            variant: "outline-secondary",
-            title: countrySelected.chineseName + " +" + countrySelected.code,
-            id: "input-group-dropdown-1",
-            onSelect: function onSelect(countryCode) {
-              return onChangeCountryCode(countryCode);
-            }
+            id: "dropdown-custom-components",
+            variant: "",
+            style: { padding: 0 }
           },
-          _this.generateDropDownList(dropDownCountryCodeList)
+          "+" + countrySelected.code
         ),
-        _react2.default.createElement(_this2.Form, null),
         _react2.default.createElement(
-          _InputGroup2.default.Append,
+          _Dropdown2.default.Menu,
           null,
-          _react2.default.createElement(_this2.SubmitButton, _this.props)
+          _this.generateDropDownList(dropDownCountryCodeList)
         )
       );
-    }, _this.SubmitButton = function (_ref2) {
-      var codeSent = _ref2.codeSent,
-          codeRequested = _ref2.codeRequested,
-          onClickSubmit = _ref2.onClickSubmit;
-
-      var buttonMessage = "發送驗證碼";
-      if (codeRequested) {
-        buttonMessage = _react2.default.createElement(_Spinner2.default, { animation: "border", size: "sm", variant: "light" });
-      } else if (codeSent) {
-        buttonMessage = "驗證";
-      }
-      return _react2.default.createElement(
-        _Button2.default,
-        { onClick: onClickSubmit, variant: "primary" },
-        buttonMessage
-      );
-    }, _this.Form = function () {
-      return _this.props.codeSent ? _react2.default.createElement(_this2.VerifyForm, null) : _react2.default.createElement(_this2.RequestVerificationForm, null);
-    }, _this.RequestVerificationForm = function () {
+    }, _this.PhoneNumberTextField = function () {
       return _react2.default.createElement(_FormControl2.default, {
         onChange: function onChange(number) {
           return _this.props.onChangeSmsNumber(number.target.value);
         },
-        placeholder: "@號碼",
-        "aria-describedby": "basic-addon1"
+        placeholder: "手機號",
+        style: styles.inputContainer
       });
-    }, _this.VerifyForm = function () {
-      return _react2.default.createElement(_FormControl2.default, {
-        onChange: function onChange(number) {
-          return _this.props.onChangeOneTimePassword(number.target.value);
+    }, _this.RequestVerificationButton = function () {
+      var _this$props2 = _this.props,
+          codeRequested = _this$props2.codeRequested,
+          codeResendCountDown = _this$props2.codeResendCountDown,
+          onClickRequestVerfiication = _this$props2.onClickRequestVerfiication,
+          smsNumber = _this$props2.smsNumber;
+
+      var allowRequestVerifcationCode = smsNumber.length >= 8 && codeResendCountDown == 0;
+      return _react2.default.createElement(
+        _Button2.default,
+        {
+          variant: "link",
+          disabled: !allowRequestVerifcationCode,
+          onClick: onClickRequestVerfiication
         },
-        placeholder: "驗證碼",
-        "aria-describedby": "basic-addon1"
-      });
+        !codeRequested ? "獲取驗證碼" : " \u91CD\u65B0\u7372\u53D6" + codeResendCountDown
+      );
+    }, _this.VerificationCodeTextField = function () {
+      return _react2.default.createElement(
+        _InputGroup2.default,
+        null,
+        _react2.default.createElement(_FormControl2.default, {
+          onChange: function onChange(number) {
+            return _this.props.onChangeOneTimePassword(number.target.value);
+          },
+          placeholder: "\u8ACB\u8F38\u5165\u9A57\u8B49\u78BC",
+          style: styles.inputContainer
+        }),
+        _react2.default.createElement(
+          _InputGroup2.default.Append,
+          null,
+          _react2.default.createElement(_this2.RequestVerificationButton, null)
+        )
+      );
+    }, _this.VerifyButton = function () {
+      var _this$props3 = _this.props,
+          codeRequested = _this$props3.codeRequested,
+          onClickVerify = _this$props3.onClickVerify;
+
+      return _react2.default.createElement(
+        _Button2.default,
+        {
+          block: true,
+          disabled: !codeRequested,
+          onClick: onClickVerify,
+          style: { marginTop: 5 }
+        },
+        "\u9A57\u8B49"
+      );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -129,7 +145,56 @@ var SmsAuthView = function (_Component) {
       return _react2.default.createElement(
         "div",
         null,
-        _react2.default.createElement(this.NumberInput, null)
+        _react2.default.createElement(
+          "table",
+          { style: { width: "100%" } },
+          _react2.default.createElement(
+            "tr",
+            null,
+            _react2.default.createElement(
+              "td",
+              null,
+              _react2.default.createElement(this.CountryCodeDropDown, null)
+            ),
+            _react2.default.createElement(
+              "td",
+              null,
+              _react2.default.createElement(this.PhoneNumberTextField, null)
+            )
+          ),
+          _react2.default.createElement(
+            "tr",
+            null,
+            _react2.default.createElement(
+              "td",
+              { colSpan: "3" },
+              _react2.default.createElement(_lineBreak2.default, null)
+            )
+          ),
+          _react2.default.createElement(
+            "tr",
+            null,
+            _react2.default.createElement(
+              "td",
+              null,
+              "\u9A57\u8B49\u78BC"
+            ),
+            _react2.default.createElement(
+              "td",
+              null,
+              _react2.default.createElement(this.VerificationCodeTextField, null)
+            )
+          ),
+          _react2.default.createElement(
+            "tr",
+            null,
+            _react2.default.createElement(
+              "td",
+              { colSpan: "3" },
+              _react2.default.createElement(this.VerifyButton, null)
+            )
+          )
+        )
       );
     }
   }, {
@@ -151,3 +216,10 @@ var SmsAuthView = function (_Component) {
 }(_react.Component);
 
 exports.default = SmsAuthView;
+
+
+var styles = {
+  inputContainer: {
+    border: 0
+  }
+};
