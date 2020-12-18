@@ -20,7 +20,7 @@ export default class SmsAuth extends ApplicationComponent {
     codeRequested: false,
     codeResendCountDown: 0,
     countrySelected: COUNTRY_CODE_LIST[0],
-    smsNumber: "",
+    smsNumber: "63530392",
     oneTimePassword: "",
   };
 
@@ -104,11 +104,16 @@ export default class SmsAuth extends ApplicationComponent {
     this.setState({
       codeRequested: true,
     });
-    this.codeResendCountDown();
     const { countrySelected, smsNumber } = this.state;
     this.getServiceExecutor()
       .execute(REQUEST_VERIFICATION(countrySelected.code, smsNumber))
-      .catch((ex) => this.getOnError(ex));
+      .then(() => this.codeResendCountDown())
+      .catch((ex) => {
+        this.setState({
+          codeRequested: false,
+        });
+        this.getOnError(ex);
+      });
   };
 
   onClickVerify = () => {
