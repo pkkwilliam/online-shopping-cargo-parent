@@ -55,7 +55,7 @@ var SmsAuth = function (_ApplicationComponent) {
       codeRequested: false,
       codeResendCountDown: 0,
       countrySelected: COUNTRY_CODE_LIST[0],
-      smsNumber: "",
+      smsNumber: "63530392",
       oneTimePassword: ""
     }, _this.onChangeCountryCode = function (countryUpdate) {
       COUNTRY_CODE_LIST.forEach(function (country) {
@@ -78,13 +78,17 @@ var SmsAuth = function (_ApplicationComponent) {
       _this.setState({
         codeRequested: true
       });
-      _this.codeResendCountDown();
       var _this$state = _this.state,
           countrySelected = _this$state.countrySelected,
           smsNumber = _this$state.smsNumber;
 
-      _this.getServiceExecutor().execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).catch(function (ex) {
-        return _this.getOnError(ex);
+      _this.getServiceExecutor().execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).then(function () {
+        return _this.codeResendCountDown();
+      }).catch(function (ex) {
+        _this.setState({
+          codeRequested: false
+        });
+        _this.getOnError(ex);
       });
     }, _this.onClickVerify = function () {
       var _this$state2 = _this.state,

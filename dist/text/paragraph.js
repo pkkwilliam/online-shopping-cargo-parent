@@ -17,12 +17,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function P(props) {
   return _react2.default.createElement(
     "p",
-    _extends({
+    _extends({}, props, {
       style: _extends({
         fontSize: 14,
         margin: 0
       }, props.style)
-    }, props),
+    }),
     props.children
   );
 }
