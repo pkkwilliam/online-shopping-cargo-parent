@@ -55,8 +55,8 @@ var SmsAuth = function (_ApplicationComponent) {
       codeRequested: false,
       codeResendCountDown: 0,
       countrySelected: COUNTRY_CODE_LIST[0],
-      smsNumber: "63530392",
-      oneTimePassword: ""
+      password: "",
+      smsNumber: "63530392"
     }, _this.onChangeCountryCode = function (countryUpdate) {
       COUNTRY_CODE_LIST.forEach(function (country) {
         if (country.name === countryUpdate) {
@@ -66,9 +66,9 @@ var SmsAuth = function (_ApplicationComponent) {
           // JS/TS not supported? break;
         }
       });
-    }, _this.onChangeOneTimePassword = function (oneTimePassword) {
+    }, _this.onChangePassword = function (password) {
       _this.setState({
-        oneTimePassword: oneTimePassword
+        password: password
       });
     }, _this.onChangeSmsNumber = function (smsNumber) {
       _this.setState({
@@ -91,12 +91,8 @@ var SmsAuth = function (_ApplicationComponent) {
         _this.getOnError(ex);
       });
     }, _this.onClickVerify = function () {
-      var _this$state2 = _this.state,
-          countrySelected = _this$state2.countrySelected,
-          oneTimePassword = _this$state2.oneTimePassword,
-          smsNumber = _this$state2.smsNumber;
-
-      _this.getServiceExecutor().execute((0, _service.VERIFY)(countrySelected.code, smsNumber, oneTimePassword, _this.props.onSuceed)).catch(function (ex) {
+      var requestBody = _this.props.passwordLogin ? _this.getPasswordLoginRequestBody() : _this.getSmsLoginRequestBody();
+      _this.getServiceExecutor().execute((0, _service.VERIFY)(requestBody, _this.props.onSuceed)).catch(function (ex) {
         return _this.getOnError(ex);
       });
     }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -112,6 +108,11 @@ var SmsAuth = function (_ApplicationComponent) {
           codeRequested: true
         });
       }
+      if (this.props.passwordLogin) {
+        this.setState({
+          codeRequested: true
+        });
+      }
     }
   }, {
     key: "render",
@@ -121,6 +122,7 @@ var SmsAuth = function (_ApplicationComponent) {
           codeResendCountDown = _state.codeResendCountDown,
           countrySelected = _state.countrySelected,
           smsNumber = _state.smsNumber;
+      var passwordLogin = this.props.passwordLogin;
 
       return _react2.default.createElement(_smsAuth2.default, {
         codeRequested: codeRequested,
@@ -128,10 +130,11 @@ var SmsAuth = function (_ApplicationComponent) {
         countrySelected: countrySelected,
         dropDownCountryCodeList: COUNTRY_CODE_LIST,
         onChangeCountryCode: this.onChangeCountryCode,
-        onChangeOneTimePassword: this.onChangeOneTimePassword,
+        onChangePassword: this.onChangePassword,
         onChangeSmsNumber: this.onChangeSmsNumber,
         onClickRequestVerfiication: this.onClickRequestVerfiication,
         onClickVerify: this.onClickVerify,
+        passwordLogin: passwordLogin,
         smsNumber: smsNumber
       });
     }
@@ -158,6 +161,36 @@ var SmsAuth = function (_ApplicationComponent) {
           });
         }
       }, 1000);
+    }
+  }, {
+    key: "getPasswordLoginRequestBody",
+    value: function getPasswordLoginRequestBody() {
+      var _state2 = this.state,
+          countrySelected = _state2.countrySelected,
+          password = _state2.password,
+          smsNumber = _state2.smsNumber;
+
+      return {
+        countryCode: countrySelected.code,
+        password: password,
+        passwordLogin: true,
+        smsNumber: smsNumber
+      };
+    }
+  }, {
+    key: "getSmsLoginRequestBody",
+    value: function getSmsLoginRequestBody() {
+      var _state3 = this.state,
+          countrySelected = _state3.countrySelected,
+          password = _state3.password,
+          smsNumber = _state3.smsNumber;
+
+      return {
+        countryCode: countrySelected.code,
+        oneTimePassword: password,
+        passwordLogin: false,
+        smsNumber: smsNumber
+      };
     }
   }, {
     key: "getOnError",

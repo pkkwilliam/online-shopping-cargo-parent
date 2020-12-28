@@ -20,13 +20,18 @@ export default class SmsAuth extends ApplicationComponent {
     codeRequested: false,
     codeResendCountDown: 0,
     countrySelected: COUNTRY_CODE_LIST[0],
+    password: "",
     smsNumber: "63530392",
-    oneTimePassword: "",
   };
 
   componentDidMount() {
     const { mock } = this.props;
     if (mock) {
+      this.setState({
+        codeRequested: true,
+      });
+    }
+    if (this.props.passwordLogin) {
       this.setState({
         codeRequested: true,
       });
@@ -40,6 +45,7 @@ export default class SmsAuth extends ApplicationComponent {
       countrySelected,
       smsNumber,
     } = this.state;
+    const { passwordLogin } = this.props;
     return (
       <SmsAuthView
         codeRequested={codeRequested}
@@ -47,10 +53,11 @@ export default class SmsAuth extends ApplicationComponent {
         countrySelected={countrySelected}
         dropDownCountryCodeList={COUNTRY_CODE_LIST}
         onChangeCountryCode={this.onChangeCountryCode}
-        onChangeOneTimePassword={this.onChangeOneTimePassword}
+        onChangePassword={this.onChangePassword}
         onChangeSmsNumber={this.onChangeSmsNumber}
         onClickRequestVerfiication={this.onClickRequestVerfiication}
         onClickVerify={this.onClickVerify}
+        passwordLogin={passwordLogin}
         smsNumber={smsNumber}
       />
     );
@@ -88,9 +95,9 @@ export default class SmsAuth extends ApplicationComponent {
     });
   };
 
-  onChangeOneTimePassword = (oneTimePassword) => {
+  onChangePassword = (password) => {
     this.setState({
-      oneTimePassword,
+      password,
     });
   };
 
@@ -117,18 +124,33 @@ export default class SmsAuth extends ApplicationComponent {
   };
 
   onClickVerify = () => {
-    const { countrySelected, oneTimePassword, smsNumber } = this.state;
+    const requestBody = this.props.passwordLogin
+      ? this.getPasswordLoginRequestBody()
+      : this.getSmsLoginRequestBody();
     this.getServiceExecutor()
-      .execute(
-        VERIFY(
-          countrySelected.code,
-          smsNumber,
-          oneTimePassword,
-          this.props.onSuceed
-        )
-      )
+      .execute(VERIFY(requestBody, this.props.onSuceed))
       .catch((ex) => this.getOnError(ex));
   };
+
+  getPasswordLoginRequestBody() {
+    const { countrySelected, password, smsNumber } = this.state;
+    return {
+      countryCode: countrySelected.code,
+      password: password,
+      passwordLogin: true,
+      smsNumber,
+    };
+  }
+
+  getSmsLoginRequestBody() {
+    const { countrySelected, password, smsNumber } = this.state;
+    return {
+      countryCode: countrySelected.code,
+      oneTimePassword: password,
+      passwordLogin: false,
+      smsNumber,
+    };
+  }
 
   getOnError() {
     return this.props.onError ? this.props.onError : this.onError;

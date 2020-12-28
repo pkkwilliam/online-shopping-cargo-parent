@@ -24,7 +24,7 @@ export default class SmsAuthView extends Component {
             </td>
           </tr>
           <tr>
-            <td>驗證碼</td>
+            <td>{this.props.passwordLogin ? "密碼" : "驗證碼"}</td>
             <td>
               <this.VerificationCodeTextField />
             </td>
@@ -92,18 +92,23 @@ export default class SmsAuthView extends Component {
   };
 
   VerificationCodeTextField = () => {
+    const { passwordLogin } = this.props;
+    const RequestVerificationButton = passwordLogin ? null : (
+      <InputGroup.Append>
+        <this.RequestVerificationButton />
+      </InputGroup.Append>
+    );
     return (
       <InputGroup>
         <FormControl
+          type={passwordLogin ? "password" : "text"}
           onChange={(number) =>
-            this.props.onChangeOneTimePassword(number.target.value)
+            this.props.onChangePassword(number.target.value)
           }
-          placeholder="請輸入驗證碼"
+          placeholder={`請輸入${passwordLogin ? "密碼" : "驗證碼"}`}
           style={styles.inputContainer}
         />
-        <InputGroup.Append>
-          <this.RequestVerificationButton />
-        </InputGroup.Append>
+        {RequestVerificationButton}
       </InputGroup>
     );
   };

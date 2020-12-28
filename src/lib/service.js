@@ -52,19 +52,10 @@ export const VALIDATE_USER_TOKEN = (userToken, onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const VERIFY = (
-  countryCode,
-  smsNumber,
-  oneTimePassword,
-  onSuceed = null
-) => ({
+export const VERIFY = (request, onSuceed = null) => ({
   publicRequset: true,
   onSuceed,
   requestMapping: SMS_LOGIN_SERVICE + "/verify",
   requestMethod: "POST",
-  body: JSON.stringify({
-    countryCode,
-    smsNumber,
-    oneTimePassword,
-  }),
+  body: JSON.stringify(request),
 });

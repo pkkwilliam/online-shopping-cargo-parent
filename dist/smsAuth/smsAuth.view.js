@@ -105,21 +105,25 @@ var SmsAuthView = function (_Component) {
         !codeRequested ? "獲取驗證碼" : " \u91CD\u65B0\u7372\u53D6" + codeResendCountDown
       );
     }, _this.VerificationCodeTextField = function () {
+      var passwordLogin = _this.props.passwordLogin;
+
+      var RequestVerificationButton = passwordLogin ? null : _react2.default.createElement(
+        _InputGroup2.default.Append,
+        null,
+        _react2.default.createElement(_this2.RequestVerificationButton, null)
+      );
       return _react2.default.createElement(
         _InputGroup2.default,
         null,
         _react2.default.createElement(_FormControl2.default, {
+          type: passwordLogin ? "password" : "text",
           onChange: function onChange(number) {
-            return _this.props.onChangeOneTimePassword(number.target.value);
+            return _this.props.onChangePassword(number.target.value);
           },
-          placeholder: "\u8ACB\u8F38\u5165\u9A57\u8B49\u78BC",
+          placeholder: "\u8ACB\u8F38\u5165" + (passwordLogin ? "密碼" : "驗證碼"),
           style: styles.inputContainer
         }),
-        _react2.default.createElement(
-          _InputGroup2.default.Append,
-          null,
-          _react2.default.createElement(_this2.RequestVerificationButton, null)
-        )
+        RequestVerificationButton
       );
     }, _this.VerifyButton = function () {
       var _this$props3 = _this.props,
@@ -177,7 +181,7 @@ var SmsAuthView = function (_Component) {
             _react2.default.createElement(
               "td",
               null,
-              "\u9A57\u8B49\u78BC"
+              this.props.passwordLogin ? "密碼" : "驗證碼"
             ),
             _react2.default.createElement(
               "td",

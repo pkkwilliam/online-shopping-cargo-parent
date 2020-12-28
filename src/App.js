@@ -13,16 +13,9 @@ export default class App extends ApplicationComponent {
     return (
       <Provider>
         <div style={{ margin: 20 }}>
-          <SmsAuth />
+          <SmsAuth mock passwordLogin />
         </div>
       </Provider>
     );
   }
-
-  onCloseToast = () => {
-    console.log("onclose");
-    this.setState({
-      show: false,
-    });
-  };
 }

@@ -71,17 +71,13 @@ var VALIDATE_USER_TOKEN = exports.VALIDATE_USER_TOKEN = function VALIDATE_USER_T
   };
 };
 
-var VERIFY = exports.VERIFY = function VERIFY(countryCode, smsNumber, oneTimePassword) {
-  var onSuceed = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+var VERIFY = exports.VERIFY = function VERIFY(request) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: true,
     onSuceed: onSuceed,
     requestMapping: SMS_LOGIN_SERVICE + "/verify",
     requestMethod: "POST",
-    body: JSON.stringify({
-      countryCode: countryCode,
-      smsNumber: smsNumber,
-      oneTimePassword: oneTimePassword
-    })
+    body: JSON.stringify(request)
   };
 };
