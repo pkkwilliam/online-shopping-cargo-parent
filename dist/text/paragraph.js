@@ -20,7 +20,8 @@ function P(props) {
     _extends({}, props, {
       style: _extends({
         fontSize: 14,
-        margin: 0
+        margin: 0,
+        whiteSpace: "pre-line"
       }, props.style)
     }),
     props.children
