@@ -7,6 +7,7 @@ export default function P(props) {
       style={{
         fontSize: 14,
         margin: 0,
+        whiteSpace: "pre-line",
         ...props.style,
       }}
     >
