@@ -56,7 +56,7 @@ var SmsAuth = function (_ApplicationComponent) {
       codeResendCountDown: 0,
       countrySelected: COUNTRY_CODE_LIST[0],
       password: "",
-      smsNumber: "63530392"
+      smsNumber: ""
     }, _this.onChangeCountryCode = function (countryUpdate) {
       COUNTRY_CODE_LIST.forEach(function (country) {
         if (country.name === countryUpdate) {
