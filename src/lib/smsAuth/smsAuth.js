@@ -21,7 +21,7 @@ export default class SmsAuth extends ApplicationComponent {
     codeResendCountDown: 0,
     countrySelected: COUNTRY_CODE_LIST[0],
     password: "",
-    smsNumber: "63530392",
+    smsNumber: "",
   };
 
   componentDidMount() {
