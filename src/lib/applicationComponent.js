@@ -30,10 +30,14 @@ export default class ApplicationComponent extends Component {
   }
 
   onCloseError = () => {
+    this.onCloseModal();
+  };
+
+  onCloseModal() {
     this.setState({
       modal: {},
     });
-  };
+  }
 
   onError = (exeception) => {
     console.debug("default on error, show modal");
@@ -45,8 +49,12 @@ export default class ApplicationComponent extends Component {
   };
 
   setError = (modal) => {
+    this.setModal(modal);
+  };
+
+  setModal(modal) {
     this.setState({
       modal,
     });
-  };
+  }
 }

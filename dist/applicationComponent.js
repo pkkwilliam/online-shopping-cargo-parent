@@ -43,9 +43,7 @@ var ApplicationComponent = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onCloseError = function () {
-      _this.setState({
-        modal: {}
-      });
+      _this.onCloseModal();
     }, _this.onError = function (exeception) {
       console.debug("default on error, show modal");
       _this.setError({
@@ -54,13 +52,25 @@ var ApplicationComponent = function (_Component) {
         show: true
       });
     }, _this.setError = function (modal) {
-      _this.setState({
-        modal: modal
-      });
+      _this.setModal(modal);
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(ApplicationComponent, [{
+    key: "onCloseModal",
+    value: function onCloseModal() {
+      this.setState({
+        modal: {}
+      });
+    }
+  }, {
+    key: "setModal",
+    value: function setModal(modal) {
+      this.setState({
+        modal: modal
+      });
+    }
+  }, {
     key: "applicationContext",
     get: function get() {
       return this._applicationContext;
