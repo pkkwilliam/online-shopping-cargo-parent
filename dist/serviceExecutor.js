@@ -54,12 +54,15 @@ var ServiceExecutor = function () {
                         return resolve(json);
                       } else {
                         _this.onError(json);
+                        return reject("failed");
                       }
                     }).catch(function (ex) {
-                      return _this.onError(ex);
+                      _this.onError(ex);
+                      return reject("failed to parse JSON");
                     });
                   }).catch(function (ex) {
-                    return _this.onError(ex);
+                    _this.onError(ex);
+                    return reject(ex);
                   });
                 }));
 

@@ -44,11 +44,18 @@ export default class ServiceExecutor {
                 return resolve(json);
               } else {
                 this.onError(json);
+                return reject("failed");
               }
             })
-            .catch((ex) => this.onError(ex));
+            .catch((ex) => {
+              this.onError(ex);
+              return reject("failed to parse JSON");
+            });
         })
-        .catch((ex) => this.onError(ex));
+        .catch((ex) => {
+          this.onError(ex);
+          return reject(ex);
+        });
     });
   }
 
