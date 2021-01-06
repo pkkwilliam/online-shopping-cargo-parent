@@ -47,17 +47,17 @@ var ParcelDisplayUtil = function () {
     value: function getParcelStatusBageAndLabel(parcelStatus) {
       switch (parcelStatus) {
         case DELIVERED.key:
-          return { badge: "primary", label: DELIVERED.label };
+          return { badge: "secondary", label: DELIVERED.label };
         case EXCEPTION.key:
           return { badge: "danger", label: EXCEPTION.label };
         case IN_TRANSIT.key:
           return { badge: "warning", label: IN_TRANSIT.label };
         case PICKED_UP.key:
-          return { badge: "primary", label: PICKED_UP.label };
+          return { badge: "secondary", label: PICKED_UP.label };
         case READY_TO_PICKUP.key:
           return { badge: "success", label: READY_TO_PICKUP.label };
         case WAREHOUSE_RECEIVED.key:
-          return { badge: "info", label: WAREHOUSE_RECEIVED.label };
+          return { badge: "primary", label: WAREHOUSE_RECEIVED.label };
         default:
           return { badge: "danger", label: "未知" };
       }
