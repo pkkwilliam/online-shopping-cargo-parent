@@ -8,6 +8,11 @@ export default class ApplicationComponent extends Component {
   _storage = new Storage();
   _serviceExecutor;
 
+  state = {
+    modal: { body: "", header: "", show: false },
+    toast: { body: "", show: false },
+  };
+
   get applicationContext() {
     return this._applicationContext;
   }
@@ -29,15 +34,29 @@ export default class ApplicationComponent extends Component {
     return this._storage;
   }
 
-  onCloseError = () => {
-    this.onCloseModal();
-  };
-
-  onCloseModal() {
+  closeModal() {
     this.setState({
       modal: {},
     });
   }
+
+  closeToast() {
+    this.setState({
+      toast: {},
+    });
+  }
+
+  onCloseError = () => {
+    this.onCloseModal();
+  };
+
+  onCloseModal = () => {
+    this.closeModal();
+  };
+
+  onCloseToast = () => {
+    this.closeToast();
+  };
 
   onError = (exeception) => {
     console.debug("default on error, show modal");
@@ -55,6 +74,12 @@ export default class ApplicationComponent extends Component {
   setModal(modal) {
     this.setState({
       modal,
+    });
+  }
+
+  setToast(toast) {
+    this.setState({
+      toast,
     });
   }
 }

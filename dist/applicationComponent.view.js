@@ -21,13 +21,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ApplicationModal = _react2.default.lazy(function () {
   return import("./applicationModal");
 });
+var ApplicationToast = _react2.default.lazy(function () {
+  return import("./applicationToast");
+});
 
 var ApplicationComponentView = function (_Component) {
   _inherits(ApplicationComponentView, _Component);
 
   function ApplicationComponentView() {
-    var _ref,
-        _this2 = this;
+    var _ref;
 
     var _temp, _this, _ret;
 
@@ -39,19 +41,19 @@ var ApplicationComponentView = function (_Component) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponentView.__proto__ || Object.getPrototypeOf(ApplicationComponentView)).call.apply(_ref, [this].concat(args))), _this), _this.Wrapper = function (_ref2) {
       var children = _ref2.children;
+      var _this$props = _this.props,
+          modal = _this$props.modal,
+          onCloseModal = _this$props.onCloseModal,
+          onCloseToast = _this$props.onCloseToast,
+          toast = _this$props.toast;
 
       return _react2.default.createElement(
         _react.Fragment,
         null,
-        _react2.default.createElement(_this2.Modal, null),
+        _react2.default.createElement(Modal, { onCloseModal: onCloseModal, modal: modal }),
+        _react2.default.createElement(Toast, { onCloseToast: onCloseToast, toast: toast }),
         children
       );
-    }, _this.Modal = function () {
-      var _this$props = _this.props,
-          modal = _this$props.modal,
-          onCloseModal = _this$props.onCloseModal;
-
-      return _react2.default.createElement(ApplicationModal, _extends({ onClose: onCloseModal }, modal));
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
@@ -59,3 +61,18 @@ var ApplicationComponentView = function (_Component) {
 }(_react.Component);
 
 exports.default = ApplicationComponentView;
+
+
+function Modal(_ref3) {
+  var modal = _ref3.modal,
+      onCloseModal = _ref3.onCloseModal;
+
+  return _react2.default.createElement(ApplicationModal, _extends({ onClose: onCloseModal }, modal));
+}
+
+function Toast(_ref4) {
+  var toast = _ref4.toast,
+      onCloseToast = _ref4.onCloseToast;
+
+  return _react2.default.createElement(ApplicationToast, _extends({ onClose: onCloseToast }, toast));
+}

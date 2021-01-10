@@ -4,7 +4,7 @@ export const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
 export const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
 export const PICKED_UP = { key: "PICKED_UP", label: "已提" };
 export const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
-export const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "倉庫" };
+export const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "入庫" };
 export const PARCEL_STATUS = [
   DELIVERED,
   EXCEPTION,
@@ -47,7 +47,7 @@ export default class ParcelDisplayUtil {
       case READY_TO_PICKUP.key:
         return { badge: "success", label: READY_TO_PICKUP.label };
       case WAREHOUSE_RECEIVED.key:
-        return { badge: "primary", label: WAREHOUSE_RECEIVED.label };
+        return { badge: "warning", label: WAREHOUSE_RECEIVED.label };
       default:
         return { badge: "danger", label: "未知" };
     }

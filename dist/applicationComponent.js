@@ -42,8 +42,15 @@ var ApplicationComponent = function (_Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.onCloseError = function () {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.state = {
+      modal: { body: "", header: "", show: false },
+      toast: { body: "", show: false }
+    }, _this.onCloseError = function () {
       _this.onCloseModal();
+    }, _this.onCloseModal = function () {
+      _this.closeModal();
+    }, _this.onCloseToast = function () {
+      _this.closeToast();
     }, _this.onError = function (exeception) {
       console.debug("default on error, show modal");
       _this.setError({
@@ -57,10 +64,17 @@ var ApplicationComponent = function (_Component) {
   }
 
   _createClass(ApplicationComponent, [{
-    key: "onCloseModal",
-    value: function onCloseModal() {
+    key: "closeModal",
+    value: function closeModal() {
       this.setState({
         modal: {}
+      });
+    }
+  }, {
+    key: "closeToast",
+    value: function closeToast() {
+      this.setState({
+        toast: {}
       });
     }
   }, {
@@ -68,6 +82,13 @@ var ApplicationComponent = function (_Component) {
     value: function setModal(modal) {
       this.setState({
         modal: modal
+      });
+    }
+  }, {
+    key: "setToast",
+    value: function setToast(toast) {
+      this.setState({
+        toast: toast
       });
     }
   }, {
