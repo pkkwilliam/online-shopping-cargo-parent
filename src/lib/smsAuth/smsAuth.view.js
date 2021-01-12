@@ -4,6 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import LineBreak from "../lineBreak";
+import ApplicationButton from "../applicationButton";
 
 export default class SmsAuthView extends Component {
   render() {
@@ -85,6 +86,10 @@ export default class SmsAuthView extends Component {
         variant="link"
         disabled={!allowRequestVerifcationCode}
         onClick={onClickRequestVerfiication}
+        style={{
+          boxShadow: "none",
+          color: allowRequestVerifcationCode ? "#FC7803" : "",
+        }}
       >
         {!codeRequested ? "獲取驗證碼" : ` 重新獲取${codeResendCountDown}`}
       </Button>
@@ -116,14 +121,14 @@ export default class SmsAuthView extends Component {
   VerifyButton = () => {
     const { codeRequested, onClickVerify } = this.props;
     return (
-      <Button
+      <ApplicationButton
         block
         disabled={!codeRequested}
         onClick={onClickVerify}
         style={{ marginTop: 5 }}
       >
         驗證
-      </Button>
+      </ApplicationButton>
     );
   };
 
@@ -139,5 +144,6 @@ export default class SmsAuthView extends Component {
 const styles = {
   inputContainer: {
     border: 0,
+    boxShadow: "none",
   },
 };

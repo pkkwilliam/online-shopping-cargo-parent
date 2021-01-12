@@ -30,6 +30,10 @@ var _lineBreak = require("../lineBreak");
 
 var _lineBreak2 = _interopRequireDefault(_lineBreak);
 
+var _applicationButton = require("../applicationButton");
+
+var _applicationButton2 = _interopRequireDefault(_applicationButton);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -100,7 +104,11 @@ var SmsAuthView = function (_Component) {
         {
           variant: "link",
           disabled: !allowRequestVerifcationCode,
-          onClick: onClickRequestVerfiication
+          onClick: onClickRequestVerfiication,
+          style: {
+            boxShadow: "none",
+            color: allowRequestVerifcationCode ? "#FC7803" : ""
+          }
         },
         !codeRequested ? "獲取驗證碼" : " \u91CD\u65B0\u7372\u53D6" + codeResendCountDown
       );
@@ -131,7 +139,7 @@ var SmsAuthView = function (_Component) {
           onClickVerify = _this$props3.onClickVerify;
 
       return _react2.default.createElement(
-        _Button2.default,
+        _applicationButton2.default,
         {
           block: true,
           disabled: !codeRequested,
@@ -224,6 +232,7 @@ exports.default = SmsAuthView;
 
 var styles = {
   inputContainer: {
-    border: 0
+    border: 0,
+    boxShadow: "none"
   }
 };
