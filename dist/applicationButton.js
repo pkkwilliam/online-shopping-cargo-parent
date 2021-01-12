@@ -25,6 +25,7 @@ function ApplicationButton(props) {
       children = props.children,
       disabled = props.disabled,
       onClick = props.onClick,
+      size = props.size,
       style = props.style,
       variant = props.variant;
   var _styleSchema$color = _styleSchema.styleSchema.color,
@@ -41,6 +42,7 @@ function ApplicationButton(props) {
       style: _extends({
         background: block ? primaryMedium : primaryGradient,
         borderColor: primaryLight,
+        borderRadius: 30,
         boxShadow: "none"
       }, style),
       variant: variant

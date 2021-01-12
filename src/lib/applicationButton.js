@@ -3,7 +3,7 @@ import Button from "react-bootstrap/esm/Button";
 import { styleSchema } from "./styleSchema";
 
 export default function ApplicationButton(props) {
-  const { block, children, disabled, onClick, style, variant } = props;
+  const { block, children, disabled, onClick, size, style, variant } = props;
   const { primaryGradient, primaryMedium, primaryLight } = styleSchema.color;
   return (
     <Button
@@ -13,6 +13,7 @@ export default function ApplicationButton(props) {
       style={{
         background: block ? primaryMedium : primaryGradient,
         borderColor: primaryLight,
+        borderRadius: 30,
         boxShadow: "none",
         ...style,
       }}
