@@ -3,16 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var PRIMARY_DARK = "rgba(252,91,1,1)";
-var PRIMARY_LIGHT = "rgba(252,150,3,1)";
+var PRIMARY_DARK = "#FC5D01";
+var PRIMARY_LIGHT = "#FC9403";
 
 var styleSchema = exports.styleSchema = {
   color: {
     background: "#f6f6f6",
     black: "#000000",
     primaryGradient: "linear-gradient(90deg, " + PRIMARY_LIGHT + ") 0%, " + PRIMARY_DARK + " 100%)",
-    primaryDark: "#FF914D",
-    primaryLight: "#FFA46C",
+    primaryDark: PRIMARY_DARK,
+    primaryLight: PRIMARY_LIGHT,
+    primaryMedium: "#FC7803",
     secondaryDark: "#7D7D7D",
     secondaryLight: "#f6f6f6",
     white: "#FFFFFF"
