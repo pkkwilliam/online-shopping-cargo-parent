@@ -25,7 +25,6 @@ function ApplicationButton(props) {
       children = props.children,
       disabled = props.disabled,
       onClick = props.onClick,
-      size = props.size,
       style = props.style,
       variant = props.variant;
   var _styleSchema$color = _styleSchema.styleSchema.color,
@@ -35,7 +34,7 @@ function ApplicationButton(props) {
 
   return _react2.default.createElement(
     _Button2.default,
-    {
+    _extends({}, props, {
       block: block,
       disabled: disabled,
       onClick: onClick,
@@ -46,7 +45,7 @@ function ApplicationButton(props) {
         boxShadow: "none"
       }, style),
       variant: variant
-    },
+    }),
     children
   );
 }

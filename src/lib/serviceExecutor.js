@@ -20,16 +20,27 @@ export default class ServiceExecutor {
   }
 
   async execute(service) {
+    const {
+      body,
+      externalRequest,
+      onSuceed,
+      publicRequset,
+      requestMapping,
+      requestMethod,
+    } = service;
+    const requestUrl = externalRequest
+      ? requestMapping
+      : this.baseUrl + requestMapping;
     return new Promise((resolve, reject) => {
-      fetch(this.baseUrl + service.requestMapping, {
-        body: service.body,
-        headers: this.generateHeader(service.publicRequset),
-        method: service.requestMethod,
+      fetch(requestUrl, {
+        body: body,
+        headers: externalRequest ? {} : this.generateHeader(publicRequset),
+        method: requestMethod,
       })
         .then((result) => {
           this.saveHeaderToken(result.headers);
-          if (service.onSuceed) {
-            service.onSuceed();
+          if (onSuceed) {
+            onSuceed();
           }
           if (result.status === 204) {
             return resolve();

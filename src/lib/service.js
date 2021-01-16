@@ -1,6 +1,15 @@
+const GITHUB_CONTENT_URL =
+  "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
+
+export const GET_GITHUB_JSON_CONTENT = (url) => ({
+  externalRequest: true,
+  publicRequset: true,
+  requestMapping: `${GITHUB_CONTENT_URL}${url}`,
+  requestMethod: "GET",
+});
 
 export const GET_PARCELS = (onSuceed = null) => ({
   publicRequset: false,

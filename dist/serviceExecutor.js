@@ -29,19 +29,22 @@ var ServiceExecutor = function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(service) {
         var _this = this;
 
+        var body, externalRequest, onSuceed, publicRequset, requestMapping, requestMethod, requestUrl;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                body = service.body, externalRequest = service.externalRequest, onSuceed = service.onSuceed, publicRequset = service.publicRequset, requestMapping = service.requestMapping, requestMethod = service.requestMethod;
+                requestUrl = externalRequest ? requestMapping : this.baseUrl + requestMapping;
                 return _context.abrupt("return", new Promise(function (resolve, reject) {
-                  fetch(_this.baseUrl + service.requestMapping, {
-                    body: service.body,
-                    headers: _this.generateHeader(service.publicRequset),
-                    method: service.requestMethod
+                  fetch(requestUrl, {
+                    body: body,
+                    headers: externalRequest ? {} : _this.generateHeader(publicRequset),
+                    method: requestMethod
                   }).then(function (result) {
                     _this.saveHeaderToken(result.headers);
-                    if (service.onSuceed) {
-                      service.onSuceed();
+                    if (onSuceed) {
+                      onSuceed();
                     }
                     if (result.status === 204) {
                       return resolve();
@@ -66,7 +69,7 @@ var ServiceExecutor = function () {
                   });
                 }));
 
-              case 1:
+              case 3:
               case "end":
                 return _context.stop();
             }

@@ -80,7 +80,7 @@ export default class SmsAuthView extends Component {
       smsNumber,
     } = this.props;
     const allowRequestVerifcationCode =
-      smsNumber.length >= 8 && codeResendCountDown == 0;
+      smsNumber.length >= 8 && codeResendCountDown === 0;
     return (
       <Button
         variant="link"
@@ -125,7 +125,7 @@ export default class SmsAuthView extends Component {
         block
         disabled={!codeRequested}
         onClick={onClickVerify}
-        style={{ marginTop: 5 }}
+        style={{ marginTop: 10 }}
       >
         驗證
       </ApplicationButton>

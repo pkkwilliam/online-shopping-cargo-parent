@@ -98,7 +98,7 @@ var SmsAuthView = function (_Component) {
           onClickRequestVerfiication = _this$props2.onClickRequestVerfiication,
           smsNumber = _this$props2.smsNumber;
 
-      var allowRequestVerifcationCode = smsNumber.length >= 8 && codeResendCountDown == 0;
+      var allowRequestVerifcationCode = smsNumber.length >= 8 && codeResendCountDown === 0;
       return _react2.default.createElement(
         _Button2.default,
         {
@@ -144,7 +144,7 @@ var SmsAuthView = function (_Component) {
           block: true,
           disabled: !codeRequested,
           onClick: onClickVerify,
-          style: { marginTop: 5 }
+          style: { marginTop: 10 }
         },
         "\u9A57\u8B49"
       );

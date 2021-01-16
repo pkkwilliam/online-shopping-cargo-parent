@@ -3,9 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var GITHUB_CONTENT_URL = "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
+
+var GET_GITHUB_JSON_CONTENT = exports.GET_GITHUB_JSON_CONTENT = function GET_GITHUB_JSON_CONTENT(url) {
+  return {
+    externalRequest: true,
+    publicRequset: true,
+    requestMapping: "" + GITHUB_CONTENT_URL + url,
+    requestMethod: "GET"
+  };
+};
 
 var GET_PARCELS = exports.GET_PARCELS = function GET_PARCELS() {
   var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;

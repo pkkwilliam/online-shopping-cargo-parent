@@ -3,10 +3,11 @@ import Button from "react-bootstrap/esm/Button";
 import { styleSchema } from "./styleSchema";
 
 export default function ApplicationButton(props) {
-  const { block, children, disabled, onClick, size, style, variant } = props;
+  const { block, children, disabled, onClick, style, variant } = props;
   const { primaryGradient, primaryMedium, primaryLight } = styleSchema.color;
   return (
     <Button
+      {...props}
       block={block}
       disabled={disabled}
       onClick={onClick}
