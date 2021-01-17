@@ -1,4 +1,4 @@
-const GITHUB_CONTENT_URL =
+export const GITHUB_CONTENT_URL =
   "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";

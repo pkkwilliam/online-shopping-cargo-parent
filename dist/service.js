@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var GITHUB_CONTENT_URL = "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
+var GITHUB_CONTENT_URL = exports.GITHUB_CONTENT_URL = "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
