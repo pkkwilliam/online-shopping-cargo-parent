@@ -20,6 +20,8 @@ export default class SmsAuth extends ApplicationComponent {
     codeRequested: false,
     codeResendCountDown: 0,
     countrySelected: COUNTRY_CODE_LIST[0],
+    loadingRequestVerifiyCode: false,
+    loadingVerify: false,
     password: "",
     smsNumber: "",
   };
@@ -43,6 +45,8 @@ export default class SmsAuth extends ApplicationComponent {
       codeRequested,
       codeResendCountDown,
       countrySelected,
+      loadingRequestVerifiyCode,
+      loadingVerify,
       smsNumber,
     } = this.state;
     const { passwordLogin } = this.props;
@@ -52,6 +56,8 @@ export default class SmsAuth extends ApplicationComponent {
         codeResendCountDown={codeResendCountDown}
         countrySelected={countrySelected}
         dropDownCountryCodeList={COUNTRY_CODE_LIST}
+        loadingRequestVerifiyCode={loadingRequestVerifiyCode}
+        loadingVerify={loadingVerify}
         onChangeCountryCode={this.onChangeCountryCode}
         onChangePassword={this.onChangePassword}
         onChangeSmsNumber={this.onChangeSmsNumber}
@@ -110,26 +116,39 @@ export default class SmsAuth extends ApplicationComponent {
   onClickRequestVerfiication = () => {
     this.setState({
       codeRequested: true,
+      loadingRequestVerifiyCode: true,
     });
     const { countrySelected, smsNumber } = this.state;
+
     this.getServiceExecutor()
       .execute(REQUEST_VERIFICATION(countrySelected.code, smsNumber))
-      .then(() => this.codeResendCountDown())
+      .then(() => {
+        this.codeResendCountDown();
+        this.setState({
+          loadingRequestVerifiyCode: false,
+        });
+      })
       .catch((ex) => {
         this.setState({
           codeRequested: false,
+          loadingRequestVerifiyCode: false,
         });
         this.getOnError(ex);
       });
   };
 
   onClickVerify = () => {
+    this.setState({ loadingVerify: true });
     const requestBody = this.props.passwordLogin
       ? this.getPasswordLoginRequestBody()
       : this.getSmsLoginRequestBody();
     this.getServiceExecutor()
       .execute(VERIFY(requestBody, this.props.onSuceed))
-      .catch((ex) => this.getOnError(ex));
+      .then(() => this.setState({ loadingVerify: false }))
+      .catch((ex) => {
+        this.getOnError(ex);
+        this.setState({ loadingVerify: false });
+      });
   };
 
   getPasswordLoginRequestBody() {

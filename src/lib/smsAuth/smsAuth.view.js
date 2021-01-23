@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import FormControl from "react-bootstrap/esm/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/esm/Button";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import LineBreak from "../lineBreak";
 import ApplicationButton from "../applicationButton";
+import ApplicationSpinner from "../applicationSpinner";
+import ApplicationTextButton from "../applicationTextButton";
+import View from "../view";
+import { Fragment } from "react";
 
 export default class SmsAuthView extends Component {
   render() {
@@ -76,23 +79,37 @@ export default class SmsAuthView extends Component {
     const {
       codeRequested,
       codeResendCountDown,
+      loadingRequestVerifiyCode,
       onClickRequestVerfiication,
       smsNumber,
     } = this.props;
     const allowRequestVerifcationCode =
       smsNumber.length >= 8 && codeResendCountDown === 0;
+    let text = "獲取驗證碼";
+    if (loadingRequestVerifiyCode) {
+      text = (
+        <Fragment>
+          正在獲取
+          <ApplicationSpinner style={{ marginLeft: 2 }} />
+        </Fragment>
+      );
+    } else if (codeRequested) {
+      text = `重新獲取${codeResendCountDown}`;
+    }
     return (
-      <Button
-        variant="link"
-        disabled={!allowRequestVerifcationCode}
-        onClick={onClickRequestVerfiication}
-        style={{
-          boxShadow: "none",
-          color: allowRequestVerifcationCode ? "#FC7803" : "",
-        }}
-      >
-        {!codeRequested ? "獲取驗證碼" : ` 重新獲取${codeResendCountDown}`}
-      </Button>
+      <div>
+        <ApplicationTextButton
+          variant="link"
+          disabled={!allowRequestVerifcationCode}
+          onClick={onClickRequestVerfiication}
+          style={{
+            boxShadow: "none",
+            color: allowRequestVerifcationCode ? "#FC7803" : "",
+          }}
+        >
+          {text}
+        </ApplicationTextButton>
+      </div>
     );
   };
 
@@ -119,7 +136,7 @@ export default class SmsAuthView extends Component {
   };
 
   VerifyButton = () => {
-    const { codeRequested, onClickVerify } = this.props;
+    const { codeRequested, onClickVerify, loadingVerify } = this.props;
     return (
       <ApplicationButton
         block
@@ -127,7 +144,12 @@ export default class SmsAuthView extends Component {
         onClick={onClickVerify}
         style={{ marginTop: 10 }}
       >
-        驗證
+        <View style={{ alignItems: "center", justifyContent: "center" }}>
+          驗證
+          {loadingVerify ? (
+            <ApplicationSpinner style={{ position: "absolute", right: 150 }} />
+          ) : null}
+        </View>
       </ApplicationButton>
     );
   };

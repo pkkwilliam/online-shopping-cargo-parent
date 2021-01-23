@@ -18,10 +18,6 @@ var _InputGroup = require("react-bootstrap/InputGroup");
 
 var _InputGroup2 = _interopRequireDefault(_InputGroup);
 
-var _Button = require("react-bootstrap/esm/Button");
-
-var _Button2 = _interopRequireDefault(_Button);
-
 var _Dropdown = require("react-bootstrap/esm/Dropdown");
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
@@ -33,6 +29,18 @@ var _lineBreak2 = _interopRequireDefault(_lineBreak);
 var _applicationButton = require("../applicationButton");
 
 var _applicationButton2 = _interopRequireDefault(_applicationButton);
+
+var _applicationSpinner = require("../applicationSpinner");
+
+var _applicationSpinner2 = _interopRequireDefault(_applicationSpinner);
+
+var _applicationTextButton = require("../applicationTextButton");
+
+var _applicationTextButton2 = _interopRequireDefault(_applicationTextButton);
+
+var _view = require("../view");
+
+var _view2 = _interopRequireDefault(_view);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -95,22 +103,38 @@ var SmsAuthView = function (_Component) {
       var _this$props2 = _this.props,
           codeRequested = _this$props2.codeRequested,
           codeResendCountDown = _this$props2.codeResendCountDown,
+          loadingRequestVerifiyCode = _this$props2.loadingRequestVerifiyCode,
           onClickRequestVerfiication = _this$props2.onClickRequestVerfiication,
           smsNumber = _this$props2.smsNumber;
 
       var allowRequestVerifcationCode = smsNumber.length >= 8 && codeResendCountDown === 0;
+      var text = "獲取驗證碼";
+      if (loadingRequestVerifiyCode) {
+        text = _react2.default.createElement(
+          _react.Fragment,
+          null,
+          "\u6B63\u5728\u7372\u53D6",
+          _react2.default.createElement(_applicationSpinner2.default, { style: { marginLeft: 2 } })
+        );
+      } else if (codeRequested) {
+        text = "\u91CD\u65B0\u7372\u53D6" + codeResendCountDown;
+      }
       return _react2.default.createElement(
-        _Button2.default,
-        {
-          variant: "link",
-          disabled: !allowRequestVerifcationCode,
-          onClick: onClickRequestVerfiication,
-          style: {
-            boxShadow: "none",
-            color: allowRequestVerifcationCode ? "#FC7803" : ""
-          }
-        },
-        !codeRequested ? "獲取驗證碼" : " \u91CD\u65B0\u7372\u53D6" + codeResendCountDown
+        "div",
+        null,
+        _react2.default.createElement(
+          _applicationTextButton2.default,
+          {
+            variant: "link",
+            disabled: !allowRequestVerifcationCode,
+            onClick: onClickRequestVerfiication,
+            style: {
+              boxShadow: "none",
+              color: allowRequestVerifcationCode ? "#FC7803" : ""
+            }
+          },
+          text
+        )
       );
     }, _this.VerificationCodeTextField = function () {
       var passwordLogin = _this.props.passwordLogin;
@@ -136,7 +160,8 @@ var SmsAuthView = function (_Component) {
     }, _this.VerifyButton = function () {
       var _this$props3 = _this.props,
           codeRequested = _this$props3.codeRequested,
-          onClickVerify = _this$props3.onClickVerify;
+          onClickVerify = _this$props3.onClickVerify,
+          loadingVerify = _this$props3.loadingVerify;
 
       return _react2.default.createElement(
         _applicationButton2.default,
@@ -146,7 +171,12 @@ var SmsAuthView = function (_Component) {
           onClick: onClickVerify,
           style: { marginTop: 10 }
         },
-        "\u9A57\u8B49"
+        _react2.default.createElement(
+          _view2.default,
+          { style: { alignItems: "center", justifyContent: "center" } },
+          "\u9A57\u8B49",
+          loadingVerify ? _react2.default.createElement(_applicationSpinner2.default, { style: { position: "absolute", right: 150 } }) : null
+        )
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }

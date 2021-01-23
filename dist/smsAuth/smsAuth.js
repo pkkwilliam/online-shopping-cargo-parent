@@ -55,6 +55,8 @@ var SmsAuth = function (_ApplicationComponent) {
       codeRequested: false,
       codeResendCountDown: 0,
       countrySelected: COUNTRY_CODE_LIST[0],
+      loadingRequestVerifiyCode: false,
+      loadingVerify: false,
       password: "",
       smsNumber: ""
     }, _this.onChangeCountryCode = function (countryUpdate) {
@@ -76,24 +78,34 @@ var SmsAuth = function (_ApplicationComponent) {
       });
     }, _this.onClickRequestVerfiication = function () {
       _this.setState({
-        codeRequested: true
+        codeRequested: true,
+        loadingRequestVerifiyCode: true
       });
       var _this$state = _this.state,
           countrySelected = _this$state.countrySelected,
           smsNumber = _this$state.smsNumber;
 
+
       _this.getServiceExecutor().execute((0, _service.REQUEST_VERIFICATION)(countrySelected.code, smsNumber)).then(function () {
-        return _this.codeResendCountDown();
+        _this.codeResendCountDown();
+        _this.setState({
+          loadingRequestVerifiyCode: false
+        });
       }).catch(function (ex) {
         _this.setState({
-          codeRequested: false
+          codeRequested: false,
+          loadingRequestVerifiyCode: false
         });
         _this.getOnError(ex);
       });
     }, _this.onClickVerify = function () {
+      _this.setState({ loadingVerify: true });
       var requestBody = _this.props.passwordLogin ? _this.getPasswordLoginRequestBody() : _this.getSmsLoginRequestBody();
-      _this.getServiceExecutor().execute((0, _service.VERIFY)(requestBody, _this.props.onSuceed)).catch(function (ex) {
-        return _this.getOnError(ex);
+      _this.getServiceExecutor().execute((0, _service.VERIFY)(requestBody, _this.props.onSuceed)).then(function () {
+        return _this.setState({ loadingVerify: false });
+      }).catch(function (ex) {
+        _this.getOnError(ex);
+        _this.setState({ loadingVerify: false });
       });
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -121,6 +133,8 @@ var SmsAuth = function (_ApplicationComponent) {
           codeRequested = _state.codeRequested,
           codeResendCountDown = _state.codeResendCountDown,
           countrySelected = _state.countrySelected,
+          loadingRequestVerifiyCode = _state.loadingRequestVerifiyCode,
+          loadingVerify = _state.loadingVerify,
           smsNumber = _state.smsNumber;
       var passwordLogin = this.props.passwordLogin;
 
@@ -129,6 +143,8 @@ var SmsAuth = function (_ApplicationComponent) {
         codeResendCountDown: codeResendCountDown,
         countrySelected: countrySelected,
         dropDownCountryCodeList: COUNTRY_CODE_LIST,
+        loadingRequestVerifiyCode: loadingRequestVerifiyCode,
+        loadingVerify: loadingVerify,
         onChangeCountryCode: this.onChangeCountryCode,
         onChangePassword: this.onChangePassword,
         onChangeSmsNumber: this.onChangeSmsNumber,
