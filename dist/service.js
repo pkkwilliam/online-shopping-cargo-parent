@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 var GITHUB_CONTENT_URL = exports.GITHUB_CONTENT_URL = "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
+var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
 var GET_GITHUB_JSON_CONTENT = exports.GET_GITHUB_JSON_CONTENT = function GET_GITHUB_JSON_CONTENT(url) {
@@ -27,13 +28,21 @@ var GET_PARCELS = exports.GET_PARCELS = function GET_PARCELS() {
   };
 };
 
-var GET_PARCELS_HISTORY = exports.GET_PARCELS_HISTORY = function GET_PARCELS_HISTORY() {
-  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+var GET_PARCEL_ESTIMATE_COST = exports.GET_PARCEL_ESTIMATE_COST = function GET_PARCEL_ESTIMATE_COST(_ref) {
+  var height = _ref.height,
+      length = _ref.length,
+      weight = _ref.weight,
+      width = _ref.width;
   return {
     publicRequset: false,
-    onSuceed: onSuceed,
-    requestMapping: PARCEL_SERVICE + "/history",
-    requestMethod: "GET"
+    requestMapping: PUBLIC_PARCEL_SERVICE + "/estimate_cost",
+    requestMethod: "GET",
+    body: JSON.stringify({
+      height: height,
+      length: length,
+      weight: weight,
+      width: width
+    })
   };
 };
 
