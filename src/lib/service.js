@@ -26,14 +26,10 @@ export const GET_PARCEL_ESTIMATE_COST = ({
   width,
 }) => ({
   publicRequset: false,
-  requestMapping: PUBLIC_PARCEL_SERVICE + "/estimate_cost",
+  requestMapping:
+    PUBLIC_PARCEL_SERVICE +
+    `/estimate_cost?height=${height}&length=${length}&weight=${weight}&width=${width}`,
   requestMethod: "GET",
-  body: JSON.stringify({
-    height,
-    length,
-    weight,
-    width,
-  }),
 });
 
 export const GET_PICKUP_QR_CODE = (onSuceed = null) => ({

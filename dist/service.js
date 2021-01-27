@@ -35,14 +35,8 @@ var GET_PARCEL_ESTIMATE_COST = exports.GET_PARCEL_ESTIMATE_COST = function GET_P
       width = _ref.width;
   return {
     publicRequset: false,
-    requestMapping: PUBLIC_PARCEL_SERVICE + "/estimate_cost",
-    requestMethod: "GET",
-    body: JSON.stringify({
-      height: height,
-      length: length,
-      weight: weight,
-      width: width
-    })
+    requestMapping: PUBLIC_PARCEL_SERVICE + ("/estimate_cost?height=" + height + "&length=" + length + "&weight=" + weight + "&width=" + width),
+    requestMethod: "GET"
   };
 };
 
