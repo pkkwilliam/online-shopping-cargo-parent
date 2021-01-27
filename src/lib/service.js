@@ -2,6 +2,7 @@ export const GITHUB_CONTENT_URL =
   "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
 const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";
+const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
 export const GET_GITHUB_JSON_CONTENT = (url) => ({
@@ -18,11 +19,21 @@ export const GET_PARCELS = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const GET_PARCELS_HISTORY = (onSuceed = null) => ({
+export const GET_PARCEL_ESTIMATE_COST = ({
+  height,
+  length,
+  weight,
+  width,
+}) => ({
   publicRequset: false,
-  onSuceed,
-  requestMapping: PARCEL_SERVICE + "/history",
+  requestMapping: PUBLIC_PARCEL_SERVICE + "/estimate_cost",
   requestMethod: "GET",
+  body: JSON.stringify({
+    height,
+    length,
+    weight,
+    width,
+  }),
 });
 
 export const GET_PICKUP_QR_CODE = (onSuceed = null) => ({
