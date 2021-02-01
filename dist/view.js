@@ -17,7 +17,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function View(props) {
   return _react2.default.createElement(
     "div",
-    _extends({ style: _extends({ display: "flex" }, props.style) }, props),
+    _extends({}, props, { style: _extends({ display: "flex" }, props.style) }),
     props.children
   );
 }
