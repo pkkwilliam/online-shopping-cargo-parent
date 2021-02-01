@@ -4,6 +4,7 @@ const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
+const THIRD_PERSON_SERVICE = "/api/v1/third_person";
 
 export const GET_GITHUB_JSON_CONTENT = (url) => ({
   externalRequest: true,
@@ -74,4 +75,42 @@ export const VERIFY = (request, onSuceed = null) => ({
   requestMapping: SMS_LOGIN_SERVICE + "/verify",
   requestMethod: "POST",
   body: JSON.stringify(request),
+});
+
+// third person
+export const GET_THIRD_PERSONS = () => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: THIRD_PERSON_SERVICE,
+  requestMethod: "GET",
+});
+
+export const GET_THIRD_PERSONS_ALLOWED_BY = () => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: THIRD_PERSON_SERVICE + "/allowed_by",
+  requestMethod: "GET",
+});
+
+export const GET_THIRD_PERSONS_PICKUP_CODE = () => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: THIRD_PERSON_SERVICE + "/pickup_code",
+  requestMethod: "GET",
+});
+
+export const ADD_THIRD_PERSON = ({ countryCode, smsNumber }) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping:
+    THIRD_PERSON_SERVICE + `?countryCode=${countryCode}&smsNumber=${smsNumber}`,
+  requestMethod: "POST",
+});
+
+export const REMOVE_THIRD_PERSON = ({ countryCode, smsNumber }) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping:
+    THIRD_PERSON_SERVICE + `?countryCode=${countryCode}&smsNumber=${smsNumber}`,
+  requestMethod: "DELETE",
 });

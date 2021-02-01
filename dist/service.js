@@ -8,6 +8,7 @@ var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
+var THIRD_PERSON_SERVICE = "/api/v1/third_person";
 
 var GET_GITHUB_JSON_CONTENT = exports.GET_GITHUB_JSON_CONTENT = function GET_GITHUB_JSON_CONTENT(url) {
   return {
@@ -92,5 +93,55 @@ var VERIFY = exports.VERIFY = function VERIFY(request) {
     requestMapping: SMS_LOGIN_SERVICE + "/verify",
     requestMethod: "POST",
     body: JSON.stringify(request)
+  };
+};
+
+// third person
+var GET_THIRD_PERSONS = exports.GET_THIRD_PERSONS = function GET_THIRD_PERSONS() {
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: THIRD_PERSON_SERVICE,
+    requestMethod: "GET"
+  };
+};
+
+var GET_THIRD_PERSONS_ALLOWED_BY = exports.GET_THIRD_PERSONS_ALLOWED_BY = function GET_THIRD_PERSONS_ALLOWED_BY() {
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: THIRD_PERSON_SERVICE + "/allowed_by",
+    requestMethod: "GET"
+  };
+};
+
+var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = function GET_THIRD_PERSONS_PICKUP_CODE() {
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: THIRD_PERSON_SERVICE + "/pickup_code",
+    requestMethod: "GET"
+  };
+};
+
+var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref2) {
+  var countryCode = _ref2.countryCode,
+      smsNumber = _ref2.smsNumber;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: THIRD_PERSON_SERVICE + ("?countryCode=" + countryCode + "&smsNumber=" + smsNumber),
+    requestMethod: "POST"
+  };
+};
+
+var REMOVE_THIRD_PERSON = exports.REMOVE_THIRD_PERSON = function REMOVE_THIRD_PERSON(_ref3) {
+  var countryCode = _ref3.countryCode,
+      smsNumber = _ref3.smsNumber;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: THIRD_PERSON_SERVICE + ("?countryCode=" + countryCode + "&smsNumber=" + smsNumber),
+    requestMethod: "DELETE"
   };
 };
