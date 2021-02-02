@@ -78,28 +78,31 @@ export const VERIFY = (request, onSuceed = null) => ({
 });
 
 // third person
-export const GET_THIRD_PERSONS = () => ({
+export const GET_THIRD_PERSONS = (onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: THIRD_PERSON_SERVICE,
   requestMethod: "GET",
 });
 
-export const GET_THIRD_PERSONS_ALLOWED_BY = () => ({
+export const GET_THIRD_PERSONS_ALLOWED_BY = (onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: THIRD_PERSON_SERVICE + "/allowed_by",
   requestMethod: "GET",
 });
 
-export const GET_THIRD_PERSONS_PICKUP_CODE = () => ({
+export const GET_THIRD_PERSONS_PICKUP_CODE = (onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: THIRD_PERSON_SERVICE + "/pickup_code",
   requestMethod: "GET",
 });
 
-export const ADD_THIRD_PERSON = ({ countryCode, smsNumber }) => ({
+export const ADD_THIRD_PERSON = (
+  { countryCode, smsNumber },
+  onSuceed = null
+) => ({
   publicRequset: false,
   onSuceed,
   requestMapping:
@@ -107,7 +110,10 @@ export const ADD_THIRD_PERSON = ({ countryCode, smsNumber }) => ({
   requestMethod: "POST",
 });
 
-export const REMOVE_THIRD_PERSON = ({ countryCode, smsNumber }) => ({
+export const REMOVE_THIRD_PERSON = (
+  { countryCode, smsNumber },
+  onSuceed = null
+) => ({
   publicRequset: false,
   onSuceed,
   requestMapping:

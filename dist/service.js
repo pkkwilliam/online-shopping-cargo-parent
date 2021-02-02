@@ -98,6 +98,7 @@ var VERIFY = exports.VERIFY = function VERIFY(request) {
 
 // third person
 var GET_THIRD_PERSONS = exports.GET_THIRD_PERSONS = function GET_THIRD_PERSONS() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
@@ -107,6 +108,7 @@ var GET_THIRD_PERSONS = exports.GET_THIRD_PERSONS = function GET_THIRD_PERSONS()
 };
 
 var GET_THIRD_PERSONS_ALLOWED_BY = exports.GET_THIRD_PERSONS_ALLOWED_BY = function GET_THIRD_PERSONS_ALLOWED_BY() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
@@ -116,6 +118,7 @@ var GET_THIRD_PERSONS_ALLOWED_BY = exports.GET_THIRD_PERSONS_ALLOWED_BY = functi
 };
 
 var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = function GET_THIRD_PERSONS_PICKUP_CODE() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
@@ -127,6 +130,7 @@ var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = func
 var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref2) {
   var countryCode = _ref2.countryCode,
       smsNumber = _ref2.smsNumber;
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
@@ -138,6 +142,7 @@ var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref
 var REMOVE_THIRD_PERSON = exports.REMOVE_THIRD_PERSON = function REMOVE_THIRD_PERSON(_ref3) {
   var countryCode = _ref3.countryCode,
       smsNumber = _ref3.smsNumber;
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
