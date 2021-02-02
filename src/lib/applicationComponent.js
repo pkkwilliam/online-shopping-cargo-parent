@@ -61,7 +61,9 @@ export default class ApplicationComponent extends Component {
   onError = (exeception) => {
     console.debug("default on error, show modal");
     this.setError({
-      body: `非常抱歉，請稍候重試\n微信客服: PickTB\n原因:${exeception}`,
+      body: `非常抱歉，請稍候重試\n微信客服: PickTB\n原因:${
+        exeception.message ? exeception.message : exeception
+      }`,
       header: "AWS 伺服器出錯 🤕🤕",
       show: true,
     });
