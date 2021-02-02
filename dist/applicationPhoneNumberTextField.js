@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.COUNTRY_CODE_LIST = undefined;
 exports.default = ApplicationPhoneNumberTextField;
 
 var _react = require("react");
@@ -19,7 +20,7 @@ var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
+var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
   name: "HONG_KONG",
   code: "852",
   chineseName: "香港",

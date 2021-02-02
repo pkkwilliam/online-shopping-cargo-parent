@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import ApplicationTextField from "./applicationTextField";
 
-const COUNTRY_CODE_LIST = [
+export const COUNTRY_CODE_LIST = [
   { name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" },
   {
     name: "HONG_KONG",
