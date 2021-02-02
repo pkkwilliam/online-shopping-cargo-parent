@@ -54,7 +54,7 @@ var ApplicationComponent = function (_Component) {
     }, _this.onError = function (exeception) {
       console.debug("default on error, show modal");
       _this.setError({
-        body: "\u975E\u5E38\u62B1\u6B49\uFF0C\u8ACB\u7A0D\u5019\u91CD\u8A66\n\u5FAE\u4FE1\u5BA2\u670D: PickTB\n\u539F\u56E0:" + (exeception.message ? exeception.message : exeception),
+        body: "\u975E\u5E38\u62B1\u6B49\uFF0C\u8ACB\u7A0D\u5019\u91CD\u8A66\n\u5FAE\u4FE1\u5BA2\u670D: PickTB\n\u539F\u56E0:" + exeception.message,
         header: "AWS 伺服器出錯 🤕🤕",
         show: true
       });
