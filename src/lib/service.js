@@ -92,10 +92,15 @@ export const GET_THIRD_PERSONS_ALLOWED_BY = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const GET_THIRD_PERSONS_PICKUP_CODE = (onSuceed = null) => ({
+export const GET_THIRD_PERSONS_PICKUP_CODE = (
+  { countryCode, smsNumber },
+  onSuceed = null
+) => ({
   publicRequset: false,
   onSuceed,
-  requestMapping: THIRD_PERSON_SERVICE + "/pickup_code",
+  requestMapping:
+    THIRD_PERSON_SERVICE +
+    `/pickup_code?countryCode=${countryCode}&smsNumber=${smsNumber}`,
   requestMethod: "GET",
 });
 
