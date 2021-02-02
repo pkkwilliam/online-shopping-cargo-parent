@@ -3,8 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.COUNTRY_CODE_LIST = undefined;
-exports.default = ApplicationPhoneNumberTextField;
+exports.default = ApplicationPhoneNumberTextFieldView;
 
 var _react = require("react");
 
@@ -14,20 +13,13 @@ var _Dropdown = require("react-bootstrap/esm/Dropdown");
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
-var _applicationTextField = require("./applicationTextField");
+var _applicationTextField = require("../applicationTextField");
 
 var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
-  name: "HONG_KONG",
-  code: "852",
-  chineseName: "香港",
-  englishName: "Hong Kong"
-}];
-
-function ApplicationPhoneNumberTextField(props) {
+function ApplicationPhoneNumberTextFieldView(props) {
   return _react2.default.createElement(
     "tr",
     null,
@@ -57,7 +49,8 @@ function generateDropDownList(list) {
 }
 
 function CountryCodeDropDown(_ref) {
-  var countrySelected = _ref.countrySelected,
+  var countryCodeList = _ref.countryCodeList,
+      countrySelected = _ref.countrySelected,
       onChangeCountryCode = _ref.onChangeCountryCode;
 
   return _react2.default.createElement(
@@ -77,7 +70,7 @@ function CountryCodeDropDown(_ref) {
     _react2.default.createElement(
       _Dropdown2.default.Menu,
       null,
-      generateDropDownList(COUNTRY_CODE_LIST)
+      generateDropDownList(countryCodeList)
     )
   );
 }

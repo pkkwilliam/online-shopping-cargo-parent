@@ -1,29 +1,17 @@
 import React from "react";
 import SmsAuthView from "./smsAuth.view";
 import { REQUEST_VERIFICATION, VERIFY } from "../service";
-import ApplicationComponent from "../applicationComponent";
+import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField/applicationPhoneNumberTextField";
 
 const CODE_RESEND_COUNTDOWN = 80;
-
-const COUNTRY_CODE_LIST = [
-  { name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" },
-  {
-    name: "HONG_KONG",
-    code: "852",
-    chineseName: "香港",
-    englishName: "Hong Kong",
-  },
-];
-
-export default class SmsAuth extends ApplicationComponent {
+export default class SmsAuth extends ApplicationPhoneNumberTextField {
   state = {
+    ...this.state,
     codeRequested: false,
     codeResendCountDown: 0,
-    countrySelected: COUNTRY_CODE_LIST[0],
     loadingRequestVerifiyCode: false,
     loadingVerify: false,
     password: "",
-    smsNumber: "",
   };
 
   componentDidMount() {
@@ -54,8 +42,8 @@ export default class SmsAuth extends ApplicationComponent {
       <SmsAuthView
         codeRequested={codeRequested}
         codeResendCountDown={codeResendCountDown}
+        countryCodeList={this.getCountryList()}
         countrySelected={countrySelected}
-        dropDownCountryCodeList={COUNTRY_CODE_LIST}
         loadingRequestVerifiyCode={loadingRequestVerifiyCode}
         loadingVerify={loadingVerify}
         onChangeCountryCode={this.onChangeCountryCode}
@@ -90,26 +78,9 @@ export default class SmsAuth extends ApplicationComponent {
     }, 1000);
   }
 
-  onChangeCountryCode = (countryUpdate) => {
-    COUNTRY_CODE_LIST.forEach((country) => {
-      if (country.name === countryUpdate) {
-        this.setState({
-          countrySelected: country,
-        });
-        // JS/TS not supported? break;
-      }
-    });
-  };
-
   onChangePassword = (password) => {
     this.setState({
       password,
-    });
-  };
-
-  onChangeSmsNumber = (smsNumber) => {
-    this.setState({
-      smsNumber,
     });
   };
 

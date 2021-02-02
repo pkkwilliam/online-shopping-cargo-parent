@@ -6,15 +6,15 @@ import ApplicationSpinner from "../applicationSpinner";
 import ApplicationTextButton from "../applicationTextButton";
 import View from "../view";
 import { Fragment } from "react";
-import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField";
 import ApplicationTextField from "../applicationTextField";
+import ApplicationPhoneNumberTextFieldView from "../applicationPhoneNumberTextField/applicationPhoneNumberTextField.view";
 
 export default class SmsAuthView extends Component {
   render() {
     return (
       <div>
         <table style={{ width: "100%" }}>
-          <ApplicationPhoneNumberTextField {...this.props} />
+          <ApplicationPhoneNumberTextFieldView {...this.props} />
           <tr>
             <td colSpan="3">
               <LineBreak />

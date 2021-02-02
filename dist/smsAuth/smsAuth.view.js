@@ -34,13 +34,13 @@ var _view = require("../view");
 
 var _view2 = _interopRequireDefault(_view);
 
-var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextField");
-
-var _applicationPhoneNumberTextField2 = _interopRequireDefault(_applicationPhoneNumberTextField);
-
 var _applicationTextField = require("../applicationTextField");
 
 var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
+
+var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextField/applicationPhoneNumberTextField.view");
+
+var _applicationPhoneNumberTextField2 = _interopRequireDefault(_applicationPhoneNumberTextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

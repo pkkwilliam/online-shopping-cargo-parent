@@ -1,18 +1,8 @@
 import React from "react";
 import Dropdown from "react-bootstrap/esm/Dropdown";
-import ApplicationTextField from "./applicationTextField";
+import ApplicationTextField from "../applicationTextField";
 
-export const COUNTRY_CODE_LIST = [
-  { name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" },
-  {
-    name: "HONG_KONG",
-    code: "852",
-    chineseName: "香港",
-    englishName: "Hong Kong",
-  },
-];
-
-export default function ApplicationPhoneNumberTextField(props) {
+export default function ApplicationPhoneNumberTextFieldView(props) {
   return (
     <tr>
       <td>
@@ -33,7 +23,11 @@ function generateDropDownList(list) {
   ));
 }
 
-function CountryCodeDropDown({ countrySelected, onChangeCountryCode }) {
+function CountryCodeDropDown({
+  countryCodeList,
+  countrySelected,
+  onChangeCountryCode,
+}) {
   return (
     <Dropdown onSelect={(countryCode) => onChangeCountryCode(countryCode)}>
       <Dropdown.Toggle
@@ -43,7 +37,7 @@ function CountryCodeDropDown({ countrySelected, onChangeCountryCode }) {
       >
         {`+${countrySelected.code}`}
       </Dropdown.Toggle>
-      <Dropdown.Menu>{generateDropDownList(COUNTRY_CODE_LIST)}</Dropdown.Menu>
+      <Dropdown.Menu>{generateDropDownList(countryCodeList)}</Dropdown.Menu>
     </Dropdown>
   );
 }

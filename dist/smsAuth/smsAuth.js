@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require("react");
@@ -16,9 +18,9 @@ var _smsAuth2 = _interopRequireDefault(_smsAuth);
 
 var _service = require("../service");
 
-var _applicationComponent = require("../applicationComponent");
+var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextField/applicationPhoneNumberTextField");
 
-var _applicationComponent2 = _interopRequireDefault(_applicationComponent);
+var _applicationPhoneNumberTextField2 = _interopRequireDefault(_applicationPhoneNumberTextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30,15 +32,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var CODE_RESEND_COUNTDOWN = 80;
 
-var COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
-  name: "HONG_KONG",
-  code: "852",
-  chineseName: "香港",
-  englishName: "Hong Kong"
-}];
-
-var SmsAuth = function (_ApplicationComponent) {
-  _inherits(SmsAuth, _ApplicationComponent);
+var SmsAuth = function (_ApplicationPhoneNumb) {
+  _inherits(SmsAuth, _ApplicationPhoneNumb);
 
   function SmsAuth() {
     var _ref;
@@ -51,30 +46,15 @@ var SmsAuth = function (_ApplicationComponent) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuth.__proto__ || Object.getPrototypeOf(SmsAuth)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuth.__proto__ || Object.getPrototypeOf(SmsAuth)).call.apply(_ref, [this].concat(args))), _this), _this.state = _extends({}, _this.state, {
       codeRequested: false,
       codeResendCountDown: 0,
-      countrySelected: COUNTRY_CODE_LIST[0],
       loadingRequestVerifiyCode: false,
       loadingVerify: false,
-      password: "",
-      smsNumber: ""
-    }, _this.onChangeCountryCode = function (countryUpdate) {
-      COUNTRY_CODE_LIST.forEach(function (country) {
-        if (country.name === countryUpdate) {
-          _this.setState({
-            countrySelected: country
-          });
-          // JS/TS not supported? break;
-        }
-      });
-    }, _this.onChangePassword = function (password) {
+      password: ""
+    }), _this.onChangePassword = function (password) {
       _this.setState({
         password: password
-      });
-    }, _this.onChangeSmsNumber = function (smsNumber) {
-      _this.setState({
-        smsNumber: smsNumber
       });
     }, _this.onClickRequestVerfiication = function () {
       _this.setState({
@@ -141,8 +121,8 @@ var SmsAuth = function (_ApplicationComponent) {
       return _react2.default.createElement(_smsAuth2.default, {
         codeRequested: codeRequested,
         codeResendCountDown: codeResendCountDown,
+        countryCodeList: this.getCountryList(),
         countrySelected: countrySelected,
-        dropDownCountryCodeList: COUNTRY_CODE_LIST,
         loadingRequestVerifiyCode: loadingRequestVerifiyCode,
         loadingVerify: loadingVerify,
         onChangeCountryCode: this.onChangeCountryCode,
@@ -221,6 +201,6 @@ var SmsAuth = function (_ApplicationComponent) {
   }]);
 
   return SmsAuth;
-}(_applicationComponent2.default);
+}(_applicationPhoneNumberTextField2.default);
 
 exports.default = SmsAuth;
