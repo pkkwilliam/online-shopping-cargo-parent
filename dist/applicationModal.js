@@ -23,6 +23,7 @@ function ApplicationModal(props) {
   var body = props.body,
       children = props.children,
       header = props.header,
+      hideDefaultCloseSection = props.hideDefaultCloseSection,
       onClose = props.onClose,
       show = props.show;
 
@@ -48,7 +49,7 @@ function ApplicationModal(props) {
       ),
       children
     ),
-    _react2.default.createElement(
+    hideDefaultCloseSection ? null : _react2.default.createElement(
       _Modal2.default.Footer,
       null,
       _react2.default.createElement(
