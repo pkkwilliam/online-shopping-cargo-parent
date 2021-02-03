@@ -86,18 +86,6 @@ export default class SmsAuth extends ApplicationComponent {
     });
   };
 
-  onChangeCountryCode = (countryUpdate) => {
-    this.setState({
-      countrySelected: countryUpdate,
-    });
-  };
-
-  onChangeSmsNumber = (smsNumber) => {
-    this.setState({
-      smsNumber,
-    });
-  };
-
   onClickRequestVerfiication = () => {
     this.setState({
       codeRequested: true,

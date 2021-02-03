@@ -2,14 +2,16 @@ import { Component } from "react";
 import ServiceExecutor from "./serviceExecutor";
 import ApplicationContext from "./applicationContext";
 import Storage from "./storage";
-
+import { COUNTRY_CODE_LIST } from "./applicationPhoneNumberTextField";
 export default class ApplicationComponent extends Component {
   _applicationContext = new ApplicationContext();
   _storage = new Storage();
   _serviceExecutor;
 
   state = {
+    countrySelected: COUNTRY_CODE_LIST[0],
     modal: { body: "", header: "", show: false },
+    smsNumber: "",
     toast: { body: "", show: false },
   };
 
@@ -49,6 +51,18 @@ export default class ApplicationComponent extends Component {
       toast: {},
     });
   }
+
+  onChangeCountryCode = (countryUpdate) => {
+    this.setState({
+      countrySelected: countryUpdate,
+    });
+  };
+
+  onChangeSmsNumber = (smsNumber) => {
+    this.setState({
+      smsNumber,
+    });
+  };
 
   onCloseError = () => {
     this.onCloseModal();

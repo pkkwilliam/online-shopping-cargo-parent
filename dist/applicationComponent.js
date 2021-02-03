@@ -20,6 +20,8 @@ var _storage = require("./storage");
 
 var _storage2 = _interopRequireDefault(_storage);
 
+var _applicationPhoneNumberTextField = require("./applicationPhoneNumberTextField");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -43,8 +45,18 @@ var ApplicationComponent = function (_Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.state = {
+      countrySelected: _applicationPhoneNumberTextField.COUNTRY_CODE_LIST[0],
       modal: { body: "", header: "", show: false },
+      smsNumber: "",
       toast: { body: "", show: false }
+    }, _this.onChangeCountryCode = function (countryUpdate) {
+      _this.setState({
+        countrySelected: countryUpdate
+      });
+    }, _this.onChangeSmsNumber = function (smsNumber) {
+      _this.setState({
+        smsNumber: smsNumber
+      });
     }, _this.onCloseError = function () {
       _this.onCloseModal();
     }, _this.onCloseModal = function () {

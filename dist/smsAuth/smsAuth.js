@@ -60,14 +60,6 @@ var SmsAuth = function (_ApplicationComponent) {
       _this.setState({
         password: password
       });
-    }, _this.onChangeCountryCode = function (countryUpdate) {
-      _this.setState({
-        countrySelected: countryUpdate
-      });
-    }, _this.onChangeSmsNumber = function (smsNumber) {
-      _this.setState({
-        smsNumber: smsNumber
-      });
     }, _this.onClickRequestVerfiication = function () {
       _this.setState({
         codeRequested: true,
