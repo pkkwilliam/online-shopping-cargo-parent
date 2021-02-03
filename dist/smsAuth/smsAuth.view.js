@@ -42,6 +42,10 @@ var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextFie
 
 var _applicationPhoneNumberTextField2 = _interopRequireDefault(_applicationPhoneNumberTextField);
 
+var _applicationComponent = require("../applicationComponent.view");
+
+var _applicationComponent2 = _interopRequireDefault(_applicationComponent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,8 +54,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var SmsAuthView = function (_Component) {
-  _inherits(SmsAuthView, _Component);
+var SmsAuthView = function (_ApplicationCompoentV) {
+  _inherits(SmsAuthView, _ApplicationCompoentV);
 
   function SmsAuthView() {
     var _ref,
@@ -150,42 +154,46 @@ var SmsAuthView = function (_Component) {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        this.Wrapper,
         null,
         _react2.default.createElement(
-          "table",
-          { style: { width: "100%" } },
-          _react2.default.createElement(_applicationPhoneNumberTextField2.default, this.props),
+          "div",
+          null,
           _react2.default.createElement(
-            "tr",
-            null,
+            "table",
+            { style: { width: "100%" } },
+            _react2.default.createElement(_applicationPhoneNumberTextField2.default, this.props),
             _react2.default.createElement(
-              "td",
-              { colSpan: "3" },
-              _react2.default.createElement(_lineBreak2.default, null)
-            )
-          ),
-          _react2.default.createElement(
-            "tr",
-            null,
-            _react2.default.createElement(
-              "td",
+              "tr",
               null,
-              this.props.passwordLogin ? "密碼" : "驗證碼"
+              _react2.default.createElement(
+                "td",
+                { colSpan: "3" },
+                _react2.default.createElement(_lineBreak2.default, null)
+              )
             ),
             _react2.default.createElement(
-              "td",
+              "tr",
               null,
-              _react2.default.createElement(this.VerificationCodeTextField, null)
-            )
-          ),
-          _react2.default.createElement(
-            "tr",
-            null,
+              _react2.default.createElement(
+                "td",
+                null,
+                this.props.passwordLogin ? "密碼" : "驗證碼"
+              ),
+              _react2.default.createElement(
+                "td",
+                null,
+                _react2.default.createElement(this.VerificationCodeTextField, null)
+              )
+            ),
             _react2.default.createElement(
-              "td",
-              { colSpan: "3" },
-              _react2.default.createElement(this.VerifyButton, null)
+              "tr",
+              null,
+              _react2.default.createElement(
+                "td",
+                { colSpan: "3" },
+                _react2.default.createElement(this.VerifyButton, null)
+              )
             )
           )
         )
@@ -194,6 +202,6 @@ var SmsAuthView = function (_Component) {
   }]);
 
   return SmsAuthView;
-}(_react.Component);
+}(_applicationComponent2.default);
 
 exports.default = SmsAuthView;

@@ -8,31 +8,34 @@ import View from "../view";
 import { Fragment } from "react";
 import ApplicationTextField from "../applicationTextField";
 import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField";
+import ApplicationCompoentView from "../applicationComponent.view";
 
-export default class SmsAuthView extends Component {
+export default class SmsAuthView extends ApplicationCompoentView {
   render() {
     return (
-      <div>
-        <table style={{ width: "100%" }}>
-          <ApplicationPhoneNumberTextField {...this.props} />
-          <tr>
-            <td colSpan="3">
-              <LineBreak />
-            </td>
-          </tr>
-          <tr>
-            <td>{this.props.passwordLogin ? "密碼" : "驗證碼"}</td>
-            <td>
-              <this.VerificationCodeTextField />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="3">
-              <this.VerifyButton />
-            </td>
-          </tr>
-        </table>
-      </div>
+      <this.Wrapper>
+        <div>
+          <table style={{ width: "100%" }}>
+            <ApplicationPhoneNumberTextField {...this.props} />
+            <tr>
+              <td colSpan="3">
+                <LineBreak />
+              </td>
+            </tr>
+            <tr>
+              <td>{this.props.passwordLogin ? "密碼" : "驗證碼"}</td>
+              <td>
+                <this.VerificationCodeTextField />
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="3">
+                <this.VerifyButton />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </this.Wrapper>
     );
   }
 

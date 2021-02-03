@@ -113,21 +113,15 @@ var SmsAuth = function (_ApplicationComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _state = this.state,
-          codeRequested = _state.codeRequested,
-          codeResendCountDown = _state.codeResendCountDown,
-          countrySelected = _state.countrySelected,
-          loadingRequestVerifiyCode = _state.loadingRequestVerifiyCode,
-          loadingVerify = _state.loadingVerify,
-          smsNumber = _state.smsNumber;
       var passwordLogin = this.props.passwordLogin;
 
-      return _react2.default.createElement(_smsAuth2.default, {
+      return _react2.default.createElement(_smsAuth2.default, _extends({
         codeRequested: codeRequested,
         codeResendCountDown: codeResendCountDown,
         countrySelected: countrySelected,
         loadingRequestVerifiyCode: loadingRequestVerifiyCode,
         loadingVerify: loadingVerify,
+        onCloseModal: this.onCloseError,
         onChangeCountryCode: this.onChangeCountryCode,
         onChangePassword: this.onChangePassword,
         onChangeSmsNumber: this.onChangeSmsNumber,
@@ -135,7 +129,7 @@ var SmsAuth = function (_ApplicationComponent) {
         onClickVerify: this.onClickVerify,
         passwordLogin: passwordLogin,
         smsNumber: smsNumber
-      });
+      }, this.state));
     }
   }, {
     key: "codeResendCountDown",
@@ -164,10 +158,10 @@ var SmsAuth = function (_ApplicationComponent) {
   }, {
     key: "getPasswordLoginRequestBody",
     value: function getPasswordLoginRequestBody() {
-      var _state2 = this.state,
-          countrySelected = _state2.countrySelected,
-          password = _state2.password,
-          smsNumber = _state2.smsNumber;
+      var _state = this.state,
+          countrySelected = _state.countrySelected,
+          password = _state.password,
+          smsNumber = _state.smsNumber;
 
       return {
         countryCode: countrySelected.code,
@@ -179,10 +173,10 @@ var SmsAuth = function (_ApplicationComponent) {
   }, {
     key: "getSmsLoginRequestBody",
     value: function getSmsLoginRequestBody() {
-      var _state3 = this.state,
-          countrySelected = _state3.countrySelected,
-          password = _state3.password,
-          smsNumber = _state3.smsNumber;
+      var _state2 = this.state,
+          countrySelected = _state2.countrySelected,
+          password = _state2.password,
+          smsNumber = _state2.smsNumber;
 
       return {
         countryCode: countrySelected.code,

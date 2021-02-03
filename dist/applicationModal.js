@@ -29,7 +29,7 @@ function ApplicationModal(props) {
 
   return _react2.default.createElement(
     _Modal2.default,
-    { animation: false, centered: true, show: show },
+    { centered: true, show: show },
     _react2.default.createElement(
       _Modal2.default.Header,
       null,

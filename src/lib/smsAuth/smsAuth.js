@@ -32,14 +32,6 @@ export default class SmsAuth extends ApplicationComponent {
   }
 
   render() {
-    const {
-      codeRequested,
-      codeResendCountDown,
-      countrySelected,
-      loadingRequestVerifiyCode,
-      loadingVerify,
-      smsNumber,
-    } = this.state;
     const { passwordLogin } = this.props;
     return (
       <SmsAuthView
@@ -48,6 +40,7 @@ export default class SmsAuth extends ApplicationComponent {
         countrySelected={countrySelected}
         loadingRequestVerifiyCode={loadingRequestVerifiyCode}
         loadingVerify={loadingVerify}
+        onCloseModal={this.onCloseError}
         onChangeCountryCode={this.onChangeCountryCode}
         onChangePassword={this.onChangePassword}
         onChangeSmsNumber={this.onChangeSmsNumber}
@@ -55,6 +48,7 @@ export default class SmsAuth extends ApplicationComponent {
         onClickVerify={this.onClickVerify}
         passwordLogin={passwordLogin}
         smsNumber={smsNumber}
+        {...this.state}
       />
     );
   }

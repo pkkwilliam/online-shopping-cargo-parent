@@ -12,7 +12,7 @@ export default function ApplicationModal(props) {
     show,
   } = props;
   return (
-    <Modal animation={false} centered show={show}>
+    <Modal centered show={show}>
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">{header}</Modal.Title>
       </Modal.Header>

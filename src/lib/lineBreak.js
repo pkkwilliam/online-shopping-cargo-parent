@@ -9,8 +9,6 @@ export default function LineBreak(props) {
         borderBottom: `1px solid ${
           color ? color : dark ? "#BFBFBF" : styleSchema.color.secondaryLight
         }`,
-        marginBottom: 10,
-        marginTop: 10,
         width: "100%",
         ...props.style,
       }}
