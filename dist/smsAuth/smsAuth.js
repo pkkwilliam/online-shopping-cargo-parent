@@ -116,19 +116,13 @@ var SmsAuth = function (_ApplicationComponent) {
       var passwordLogin = this.props.passwordLogin;
 
       return _react2.default.createElement(_smsAuth2.default, _extends({
-        codeRequested: codeRequested,
-        codeResendCountDown: codeResendCountDown,
-        countrySelected: countrySelected,
-        loadingRequestVerifiyCode: loadingRequestVerifiyCode,
-        loadingVerify: loadingVerify,
         onCloseModal: this.onCloseError,
         onChangeCountryCode: this.onChangeCountryCode,
         onChangePassword: this.onChangePassword,
         onChangeSmsNumber: this.onChangeSmsNumber,
         onClickRequestVerfiication: this.onClickRequestVerfiication,
         onClickVerify: this.onClickVerify,
-        passwordLogin: passwordLogin,
-        smsNumber: smsNumber
+        passwordLogin: passwordLogin
       }, this.state));
     }
   }, {
