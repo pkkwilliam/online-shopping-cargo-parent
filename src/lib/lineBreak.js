@@ -6,9 +6,9 @@ export default function LineBreak(props) {
   return (
     <div
       style={{
-        borderBottom: `1px solid ${
-          color ? color : styleSchema.color.secondaryLight
-        }`,
+        borderBottom: `1px solid ${color ? color : "#BFBFBF"}`,
+        marginBottom: 10,
+        marginTop: 10,
         width: "100%",
         ...props.style,
       }}

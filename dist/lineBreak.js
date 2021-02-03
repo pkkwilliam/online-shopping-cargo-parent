@@ -21,7 +21,9 @@ function LineBreak(props) {
 
   return _react2.default.createElement("div", {
     style: _extends({
-      borderBottom: "1px solid " + (color ? color : _styleSchema.styleSchema.color.secondaryLight),
+      borderBottom: "1px solid " + (color ? color : "#BFBFBF"),
+      marginBottom: 10,
+      marginTop: 10,
       width: "100%"
     }, props.style)
   });
