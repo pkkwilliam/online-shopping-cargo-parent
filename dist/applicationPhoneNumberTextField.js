@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.COUNTRY_CODE_LIST = undefined;
 exports.default = ApplicationPhoneNumberTextFieldView;
 
 var _react = require("react");
@@ -13,25 +14,43 @@ var _Dropdown = require("react-bootstrap/esm/Dropdown");
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
-var _applicationTextField = require("../applicationTextField");
+var _applicationTextField = require("./applicationTextField");
 
 var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
+  name: "HONG_KONG",
+  code: "852",
+  chineseName: "香港",
+  englishName: "Hong Kong"
+}];
+
+/**
+ * @function countrySelected, onChangeCountryCode onChangeSmsNumber
+ * @state  countrySelected: undefined, smsNumber: "",
+ */
 function ApplicationPhoneNumberTextFieldView(props) {
+  var countrySelected = props.countrySelected,
+      onChangeCountryCode = props.onChangeCountryCode,
+      onChangeSmsNumber = props.onChangeSmsNumber;
+
   return _react2.default.createElement(
     "tr",
     null,
     _react2.default.createElement(
       "td",
       null,
-      _react2.default.createElement(CountryCodeDropDown, props)
+      _react2.default.createElement(CountryCodeDropDown, {
+        countrySelected: countrySelected,
+        onChangeCountryCode: onChangeCountryCode
+      })
     ),
     _react2.default.createElement(
       "td",
       null,
-      _react2.default.createElement(PhoneNumberTextField, props)
+      _react2.default.createElement(PhoneNumberTextField, { onChangeSmsNumber: onChangeSmsNumber })
     )
   );
 }
@@ -49,15 +68,17 @@ function generateDropDownList(list) {
 }
 
 function CountryCodeDropDown(_ref) {
-  var countryCodeList = _ref.countryCodeList,
-      countrySelected = _ref.countrySelected,
+  var countrySelected = _ref.countrySelected,
       onChangeCountryCode = _ref.onChangeCountryCode;
 
   return _react2.default.createElement(
     _Dropdown2.default,
-    { onSelect: function onSelect(countryCode) {
-        return onChangeCountryCode(countryCode);
-      } },
+    {
+      defaultValue: getCountryList()[0],
+      onSelect: function onSelect(countryCode) {
+        return onChangeCountryCode(getCountryObject(countryCode));
+      }
+    },
     _react2.default.createElement(
       _Dropdown2.default.Toggle,
       {
@@ -70,7 +91,7 @@ function CountryCodeDropDown(_ref) {
     _react2.default.createElement(
       _Dropdown2.default.Menu,
       null,
-      generateDropDownList(countryCodeList)
+      generateDropDownList(getCountryList())
     )
   );
 }
@@ -84,4 +105,16 @@ function PhoneNumberTextField(_ref2) {
     },
     placeholder: "手機號"
   });
+}
+
+function getCountryList() {
+  return COUNTRY_CODE_LIST;
+}
+
+function getCountryObject(countrySelected) {
+  for (var country = 0; country < COUNTRY_CODE_LIST.length; country++) {
+    if (COUNTRY_CODE_LIST[country].name === countrySelected) {
+      return COUNTRY_CODE_LIST[country];
+    }
+  }
 }

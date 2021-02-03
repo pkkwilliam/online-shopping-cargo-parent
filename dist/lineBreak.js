@@ -17,11 +17,12 @@ var _styleSchema = require("./styleSchema");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function LineBreak(props) {
-  var color = props.color;
+  var color = props.color,
+      dark = props.dark;
 
   return _react2.default.createElement("div", {
     style: _extends({
-      borderBottom: "1px solid " + (color ? color : "#BFBFBF"),
+      borderBottom: "1px solid " + (color ? color : dark ? "#BFBFBF" : _styleSchema.styleSchema.color.secondaryLight),
       marginBottom: 10,
       marginTop: 10,
       width: "100%"

@@ -1,17 +1,20 @@
 import React from "react";
 import SmsAuthView from "./smsAuth.view";
 import { REQUEST_VERIFICATION, VERIFY } from "../service";
-import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField/applicationPhoneNumberTextField";
+import ApplicationComponent from "../applicationComponent";
+import { COUNTRY_CODE_LIST } from "../applicationPhoneNumberTextField";
 
 const CODE_RESEND_COUNTDOWN = 80;
-export default class SmsAuth extends ApplicationPhoneNumberTextField {
+export default class SmsAuth extends ApplicationComponent {
   state = {
     ...this.state,
+    countrySelected: COUNTRY_CODE_LIST[0],
     codeRequested: false,
     codeResendCountDown: 0,
     loadingRequestVerifiyCode: false,
     loadingVerify: false,
     password: "",
+    smsNumber: "",
   };
 
   componentDidMount() {
@@ -42,7 +45,6 @@ export default class SmsAuth extends ApplicationPhoneNumberTextField {
       <SmsAuthView
         codeRequested={codeRequested}
         codeResendCountDown={codeResendCountDown}
-        countryCodeList={this.getCountryList()}
         countrySelected={countrySelected}
         loadingRequestVerifiyCode={loadingRequestVerifiyCode}
         loadingVerify={loadingVerify}
@@ -81,6 +83,18 @@ export default class SmsAuth extends ApplicationPhoneNumberTextField {
   onChangePassword = (password) => {
     this.setState({
       password,
+    });
+  };
+
+  onChangeCountryCode = (countryUpdate) => {
+    this.setState({
+      countrySelected: countryUpdate,
+    });
+  };
+
+  onChangeSmsNumber = (smsNumber) => {
+    this.setState({
+      smsNumber,
     });
   };
 

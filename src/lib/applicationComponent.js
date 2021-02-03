@@ -34,6 +34,10 @@ export default class ApplicationComponent extends Component {
     return this._storage;
   }
 
+  get userToken() {
+    return this.storage.getUserToken();
+  }
+
   closeModal() {
     this.setState({
       modal: {},

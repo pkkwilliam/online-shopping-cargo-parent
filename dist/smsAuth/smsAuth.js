@@ -18,9 +18,11 @@ var _smsAuth2 = _interopRequireDefault(_smsAuth);
 
 var _service = require("../service");
 
-var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextField/applicationPhoneNumberTextField");
+var _applicationComponent = require("../applicationComponent");
 
-var _applicationPhoneNumberTextField2 = _interopRequireDefault(_applicationPhoneNumberTextField);
+var _applicationComponent2 = _interopRequireDefault(_applicationComponent);
+
+var _applicationPhoneNumberTextField = require("../applicationPhoneNumberTextField");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,8 +34,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var CODE_RESEND_COUNTDOWN = 80;
 
-var SmsAuth = function (_ApplicationPhoneNumb) {
-  _inherits(SmsAuth, _ApplicationPhoneNumb);
+var SmsAuth = function (_ApplicationComponent) {
+  _inherits(SmsAuth, _ApplicationComponent);
 
   function SmsAuth() {
     var _ref;
@@ -47,14 +49,24 @@ var SmsAuth = function (_ApplicationPhoneNumb) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SmsAuth.__proto__ || Object.getPrototypeOf(SmsAuth)).call.apply(_ref, [this].concat(args))), _this), _this.state = _extends({}, _this.state, {
+      countrySelected: _applicationPhoneNumberTextField.COUNTRY_CODE_LIST[0],
       codeRequested: false,
       codeResendCountDown: 0,
       loadingRequestVerifiyCode: false,
       loadingVerify: false,
-      password: ""
+      password: "",
+      smsNumber: ""
     }), _this.onChangePassword = function (password) {
       _this.setState({
         password: password
+      });
+    }, _this.onChangeCountryCode = function (countryUpdate) {
+      _this.setState({
+        countrySelected: countryUpdate
+      });
+    }, _this.onChangeSmsNumber = function (smsNumber) {
+      _this.setState({
+        smsNumber: smsNumber
       });
     }, _this.onClickRequestVerfiication = function () {
       _this.setState({
@@ -121,7 +133,6 @@ var SmsAuth = function (_ApplicationPhoneNumb) {
       return _react2.default.createElement(_smsAuth2.default, {
         codeRequested: codeRequested,
         codeResendCountDown: codeResendCountDown,
-        countryCodeList: this.getCountryList(),
         countrySelected: countrySelected,
         loadingRequestVerifiyCode: loadingRequestVerifiyCode,
         loadingVerify: loadingVerify,
@@ -201,6 +212,6 @@ var SmsAuth = function (_ApplicationPhoneNumb) {
   }]);
 
   return SmsAuth;
-}(_applicationPhoneNumberTextField2.default);
+}(_applicationComponent2.default);
 
 exports.default = SmsAuth;

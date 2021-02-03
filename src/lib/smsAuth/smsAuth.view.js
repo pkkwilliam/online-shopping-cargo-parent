@@ -7,14 +7,14 @@ import ApplicationTextButton from "../applicationTextButton";
 import View from "../view";
 import { Fragment } from "react";
 import ApplicationTextField from "../applicationTextField";
-import ApplicationPhoneNumberTextFieldView from "../applicationPhoneNumberTextField/applicationPhoneNumberTextField.view";
+import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField";
 
 export default class SmsAuthView extends Component {
   render() {
     return (
       <div>
         <table style={{ width: "100%" }}>
-          <ApplicationPhoneNumberTextFieldView {...this.props} />
+          <ApplicationPhoneNumberTextField {...this.props} />
           <tr>
             <td colSpan="3">
               <LineBreak />

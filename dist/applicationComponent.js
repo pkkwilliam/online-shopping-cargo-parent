@@ -109,6 +109,11 @@ var ApplicationComponent = function (_Component) {
     get: function get() {
       return this._storage;
     }
+  }, {
+    key: "userToken",
+    get: function get() {
+      return this.storage.getUserToken();
+    }
   }]);
 
   return ApplicationComponent;
