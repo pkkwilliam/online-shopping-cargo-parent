@@ -74,7 +74,22 @@ export default class ParcelDisplayUtil {
         result.push(parcel);
       }
     });
-    return [...firstLevel, ...secondLevel, ...thirdLevel, ...result];
+    return [
+      ...sortByDisplayIdDesc(firstLevel),
+      ...sortByDisplayIdDesc(secondLevel),
+      ...sortByDisplayIdDesc(thirdLevel),
+      ...sortByDisplayIdDesc(result),
+    ];
+  }
+
+  sortByDisplayIdDesc(items) {
+    return items.sort((a, b) => {
+      if (a.displayId < b.displayId) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
   }
 
   getLastParcelStatus(parcel) {
