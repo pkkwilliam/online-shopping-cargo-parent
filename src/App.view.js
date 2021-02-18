@@ -1,13 +1,6 @@
 import React from "react";
-import ApplicationComponentView from "./lib/applicationComponent.view";
-import SmsAuth from "./lib/smsAuth/smsAuth";
+import WebSocketTester from "./webSocketTester/webSocketeTester";
 
-export default class AppView extends ApplicationComponentView {
-  render() {
-    return (
-      <this.Wrapper>
-        <SmsAuth mock passwordLogin />
-      </this.Wrapper>
-    );
-  }
+export default function AppView(props) {
+  return <WebSocketTester />;
 }
