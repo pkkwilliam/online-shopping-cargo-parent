@@ -9,7 +9,7 @@ export default class App extends ApplicationComponent {
   componentDidMount() {
     this.setState({
       modal: {
-        show: false,
+        show: true,
         body: "sdfsdfdsfdsfe2423423",
       },
       toast: {
