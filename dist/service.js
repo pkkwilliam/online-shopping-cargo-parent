@@ -61,12 +61,12 @@ var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
   };
 };
 
-var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber, countryCode, smsNumber) {
-  var onSuceed = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     onSuceed: onSuceed,
     publicRequset: false,
-    requestMapping: PARCEL_SERVICE + "/match_bad_parcel?originalTrackingNumber=" + originalTrackingNumber + "&countryCode=" + countryCode + "&smsNumber=" + smsNumber,
+    requestMapping: PARCEL_SERVICE + "/match_bad_parcel?originalTrackingNumber=" + originalTrackingNumber,
     requestMethod: "PUT"
   };
 };
