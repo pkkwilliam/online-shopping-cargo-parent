@@ -16,16 +16,26 @@ var _FormControl = require("react-bootstrap/esm/FormControl");
 
 var _FormControl2 = _interopRequireDefault(_FormControl);
 
+var _view = require("./view");
+
+var _view2 = _interopRequireDefault(_view);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ApplicationTextField(props) {
-  var placeholder = props.placeholder,
+  var label = props.label,
+      placeholder = props.placeholder,
       onChange = props.onChange,
       style = props.style;
 
-  return _react2.default.createElement(_FormControl2.default, _extends({
-    placeholder: placeholder,
-    onChange: onChange,
-    style: _extends({ border: 0, boxShadow: "none" }, style)
-  }, props));
+  return _react2.default.createElement(
+    _view2.default,
+    { style: { flex: 1, alignItems: "center" } },
+    label,
+    _react2.default.createElement(_FormControl2.default, _extends({
+      placeholder: placeholder,
+      onChange: onChange,
+      style: _extends({ border: 0, boxShadow: "none" }, style)
+    }, props))
+  );
 }

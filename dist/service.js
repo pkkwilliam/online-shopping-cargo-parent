@@ -61,6 +61,16 @@ var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
   };
 };
 
+var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber, countryCode, smsNumber) {
+  var onSuceed = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+  return {
+    onSuceed: onSuceed,
+    publicRequset: false,
+    requestMapping: PARCEL_SERVICE + "/match_bad_parcel?originalTrackingNumber=" + originalTrackingNumber + "&countryCode=" + countryCode + "&smsNumber=" + smsNumber,
+    requestMethod: "PUT"
+  };
+};
+
 var REQUEST_VERIFICATION = exports.REQUEST_VERIFICATION = function REQUEST_VERIFICATION(countryCode, smsNumber) {
   var onSuceed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return {

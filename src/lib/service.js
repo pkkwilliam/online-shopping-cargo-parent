@@ -47,6 +47,18 @@ export const GET_USER_PROFILE = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
+export const MATCH_BAD_PARCEL = (
+  originalTrackingNumber,
+  countryCode,
+  smsNumber,
+  onSuceed = null
+) => ({
+  onSuceed,
+  publicRequset: false,
+  requestMapping: `${PARCEL_SERVICE}/match_bad_parcel?originalTrackingNumber=${originalTrackingNumber}&countryCode=${countryCode}&smsNumber=${smsNumber}`,
+  requestMethod: "PUT",
+});
+
 export const REQUEST_VERIFICATION = (
   countryCode,
   smsNumber,
