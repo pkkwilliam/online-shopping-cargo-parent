@@ -16,6 +16,10 @@ var _FormControl = require("react-bootstrap/esm/FormControl");
 
 var _FormControl2 = _interopRequireDefault(_FormControl);
 
+var _paragraph = require("./text/paragraph");
+
+var _paragraph2 = _interopRequireDefault(_paragraph);
+
 var _view = require("./view");
 
 var _view2 = _interopRequireDefault(_view);
@@ -31,11 +35,20 @@ function ApplicationTextField(props) {
   return _react2.default.createElement(
     _view2.default,
     { style: { flex: 1, alignItems: "center" } },
-    label,
+    label ? _react2.default.createElement(
+      _paragraph2.default,
+      { style: { fontSize: 16, fontWeight: 500 } },
+      label,
+      ":"
+    ) : null,
     _react2.default.createElement(_FormControl2.default, _extends({
       placeholder: placeholder,
       onChange: onChange,
-      style: _extends({ border: 0, boxShadow: "none" }, style)
+      style: _extends({
+        border: 0,
+        boxShadow: "none",
+        width: label ? "unset" : "100%"
+      }, style)
     }, props))
   );
 }
