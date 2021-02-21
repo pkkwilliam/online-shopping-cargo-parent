@@ -86,7 +86,7 @@ var ParcelDisplayUtil = function () {
           result.push(parcel);
         }
       });
-      return [].concat(_toConsumableArray(sortByDisplayIdDesc(firstLevel)), _toConsumableArray(sortByDisplayIdDesc(secondLevel)), _toConsumableArray(sortByDisplayIdDesc(thirdLevel)), _toConsumableArray(sortByDisplayIdDesc(result)));
+      return [].concat(_toConsumableArray(this.sortByDisplayIdDesc(firstLevel)), _toConsumableArray(this.sortByDisplayIdDesc(secondLevel)), _toConsumableArray(this.sortByDisplayIdDesc(thirdLevel)), _toConsumableArray(this.sortByDisplayIdDesc(result)));
     }
   }, {
     key: "sortByDisplayIdDesc",

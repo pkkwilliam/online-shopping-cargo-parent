@@ -75,10 +75,10 @@ export default class ParcelDisplayUtil {
       }
     });
     return [
-      ...sortByDisplayIdDesc(firstLevel),
-      ...sortByDisplayIdDesc(secondLevel),
-      ...sortByDisplayIdDesc(thirdLevel),
-      ...sortByDisplayIdDesc(result),
+      ...this.sortByDisplayIdDesc(firstLevel),
+      ...this.sortByDisplayIdDesc(secondLevel),
+      ...this.sortByDisplayIdDesc(thirdLevel),
+      ...this.sortByDisplayIdDesc(result),
     ];
   }
 
