@@ -85,9 +85,9 @@ export default class ParcelDisplayUtil {
   sortByDisplayIdDesc(items) {
     return items.sort((a, b) => {
       if (a.displayId < b.displayId) {
-        return -1;
-      } else {
         return 1;
+      } else {
+        return -1;
       }
     });
   }
