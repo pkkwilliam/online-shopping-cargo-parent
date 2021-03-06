@@ -25,14 +25,6 @@ export default class SmsAuth extends ApplicationComponent {
     }
   }
 
-  componentDidUpdate() {
-    if (this.props.passwordLogin) {
-      this.setState({
-        codeRequested: true,
-      });
-    }
-  }
-
   render() {
     const { passwordLogin } = this.props;
     return (
@@ -72,6 +64,7 @@ export default class SmsAuth extends ApplicationComponent {
 
   onChangePassword = (password) => {
     this.setState({
+      codeRequested: true,
       password,
     });
   };

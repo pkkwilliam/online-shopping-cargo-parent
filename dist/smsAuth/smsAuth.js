@@ -58,6 +58,7 @@ var SmsAuth = function (_ApplicationComponent) {
       smsNumber: ""
     }), _this.onChangePassword = function (password) {
       _this.setState({
+        codeRequested: true,
         password: password
       });
     }, _this.onClickRequestVerfiication = function () {
@@ -98,15 +99,6 @@ var SmsAuth = function (_ApplicationComponent) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.mock) {
-        this.setState({
-          codeRequested: true
-        });
-      }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      if (this.props.passwordLogin) {
         this.setState({
           codeRequested: true
         });
