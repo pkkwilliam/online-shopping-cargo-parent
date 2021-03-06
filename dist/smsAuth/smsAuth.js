@@ -97,13 +97,15 @@ var SmsAuth = function (_ApplicationComponent) {
   _createClass(SmsAuth, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var mock = this.props.mock;
-
-      if (mock) {
+      if (this.props.mock) {
         this.setState({
           codeRequested: true
         });
       }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
       if (this.props.passwordLogin) {
         this.setState({
           codeRequested: true

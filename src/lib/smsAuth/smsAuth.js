@@ -18,12 +18,14 @@ export default class SmsAuth extends ApplicationComponent {
   };
 
   componentDidMount() {
-    const { mock } = this.props;
-    if (mock) {
+    if (this.props.mock) {
       this.setState({
         codeRequested: true,
       });
     }
+  }
+
+  componentDidUpdate() {
     if (this.props.passwordLogin) {
       this.setState({
         codeRequested: true,
