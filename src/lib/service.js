@@ -40,13 +40,6 @@ export const GET_PICKUP_QR_CODE = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const GET_USER_PROFILE = (onSuceed = null) => ({
-  publicRequset: false,
-  onSuceed,
-  requestMapping: USER_PROFILE_SERVICE,
-  requestMethod: "GET",
-});
-
 export const MATCH_BAD_PARCEL = (originalTrackingNumber, onSuceed = null) => ({
   onSuceed,
   publicRequset: false,
@@ -131,4 +124,35 @@ export const REMOVE_THIRD_PERSON = (
   requestMapping:
     THIRD_PERSON_SERVICE + `?countryCode=${countryCode}&smsNumber=${smsNumber}`,
   requestMethod: "DELETE",
+});
+
+// User Profile
+export const GET_USER_PROFILE = (onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_PROFILE_SERVICE,
+  requestMethod: "GET",
+});
+
+export const CHANGE_PASSWORD = (password, onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_PROFILE_SERVICE + "/change_password",
+  requestMethod: "PUT",
+  body: JSON.stringify({
+    password,
+  }),
+});
+
+export const LINK_PUSH_NOTIFICATION_TOKEN = (
+  pushNotificationToken,
+  onSuceed = null
+) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_PROFILE_SERVICE + "/link_push_notification_token",
+  requestMethod: "PUT",
+  body: JSON.stringify({
+    pushNotificationToken,
+  }),
 });

@@ -51,16 +51,6 @@ var GET_PICKUP_QR_CODE = exports.GET_PICKUP_QR_CODE = function GET_PICKUP_QR_COD
   };
 };
 
-var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
-  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  return {
-    publicRequset: false,
-    onSuceed: onSuceed,
-    requestMapping: USER_PROFILE_SERVICE,
-    requestMethod: "GET"
-  };
-};
-
 var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
@@ -160,5 +150,42 @@ var REMOVE_THIRD_PERSON = exports.REMOVE_THIRD_PERSON = function REMOVE_THIRD_PE
     onSuceed: onSuceed,
     requestMapping: THIRD_PERSON_SERVICE + ("?countryCode=" + countryCode + "&smsNumber=" + smsNumber),
     requestMethod: "DELETE"
+  };
+};
+
+// User Profile
+var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_PROFILE_SERVICE,
+    requestMethod: "GET"
+  };
+};
+
+var CHANGE_PASSWORD = exports.CHANGE_PASSWORD = function CHANGE_PASSWORD(password) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_PROFILE_SERVICE + "/change_password",
+    requestMethod: "PUT",
+    body: JSON.stringify({
+      password: password
+    })
+  };
+};
+
+var LINK_PUSH_NOTIFICATION_TOKEN = exports.LINK_PUSH_NOTIFICATION_TOKEN = function LINK_PUSH_NOTIFICATION_TOKEN(pushNotificationToken) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_PROFILE_SERVICE + "/link_push_notification_token",
+    requestMethod: "PUT",
+    body: JSON.stringify({
+      pushNotificationToken: pushNotificationToken
+    })
   };
 };
