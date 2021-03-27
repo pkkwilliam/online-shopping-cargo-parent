@@ -3,6 +3,7 @@ export const GITHUB_CONTENT_URL =
 const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
+const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
 const THIRD_PERSON_SERVICE = "/api/v1/third_person";
 
@@ -17,6 +18,12 @@ export const GET_PARCELS = (onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: PARCEL_SERVICE,
+  requestMethod: "GET",
+});
+
+export const GET_SHOPS = (onSuceed = null) => ({
+  publicRequset: false,
+  requestMapping: PUBLIC_SHOP_SERVICE,
   requestMethod: "GET",
 });
 
