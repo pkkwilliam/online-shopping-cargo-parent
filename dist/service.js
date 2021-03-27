@@ -7,6 +7,7 @@ var GITHUB_CONTENT_URL = exports.GITHUB_CONTENT_URL = "https://raw.githubusercon
 var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
+var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
 var THIRD_PERSON_SERVICE = "/api/v1/third_person";
 
@@ -25,6 +26,15 @@ var GET_PARCELS = exports.GET_PARCELS = function GET_PARCELS() {
     publicRequset: false,
     onSuceed: onSuceed,
     requestMapping: PARCEL_SERVICE,
+    requestMethod: "GET"
+  };
+};
+
+var GET_SHOPS = exports.GET_SHOPS = function GET_SHOPS() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return {
+    publicRequset: false,
+    requestMapping: PUBLIC_SHOP_SERVICE,
     requestMethod: "GET"
   };
 };
