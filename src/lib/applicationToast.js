@@ -2,7 +2,7 @@ import React from "react";
 import View from "./view";
 import P from "./text/paragraph";
 import Toast from "react-bootstrap/esm/Toast";
-import { styleSchema } from "../../dist/styleSchema";
+import { styleSchema } from "./styleSchema";
 
 export default function ApplicationToast(props) {
   const { body, children, delay = 2000, onClose, show } = props;

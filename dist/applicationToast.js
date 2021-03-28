@@ -21,7 +21,7 @@ var _Toast = require("react-bootstrap/esm/Toast");
 
 var _Toast2 = _interopRequireDefault(_Toast);
 
-var _styleSchema = require("../../dist/styleSchema");
+var _styleSchema = require("./styleSchema");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
