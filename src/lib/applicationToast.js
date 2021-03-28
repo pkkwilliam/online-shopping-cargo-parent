@@ -2,6 +2,7 @@ import React from "react";
 import View from "./view";
 import P from "./text/paragraph";
 import Toast from "react-bootstrap/esm/Toast";
+import { styleSchema } from "../../dist/styleSchema";
 
 export default function ApplicationToast(props) {
   const { body, children, delay = 2000, onClose, show } = props;
@@ -31,21 +32,23 @@ export default function ApplicationToast(props) {
 const styles = {
   toast: {
     alignItems: "center",
-    backgroundColor: "#d3d3d3",
+    backgroundColor: styleSchema.color.primaryDark,
     borderRadius: 25,
     display: "flex",
     justifyContent: "center",
-    margin: 35,
+    marginBottom: 45,
     marginLeft: 90,
     marginRight: 90,
     paddingLeft: 25,
     paddingRight: 25,
   },
   toastContainer: {
-    position: "fixed",
-    zIndex: 2,
-    justifyContent: "center",
-    width: "100%",
     bottom: 0,
+    justifyContent: "center",
+    left: 0,
+    position: "fixed",
+    right: 0,
+    width: "100%",
+    zIndex: 999,
   },
 };

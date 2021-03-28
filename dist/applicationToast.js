@@ -21,6 +21,8 @@ var _Toast = require("react-bootstrap/esm/Toast");
 
 var _Toast2 = _interopRequireDefault(_Toast);
 
+var _styleSchema = require("../../dist/styleSchema");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ApplicationToast(props) {
@@ -66,21 +68,23 @@ function ApplicationToast(props) {
 var styles = {
   toast: {
     alignItems: "center",
-    backgroundColor: "#d3d3d3",
+    backgroundColor: _styleSchema.styleSchema.color.primaryDark,
     borderRadius: 25,
     display: "flex",
     justifyContent: "center",
-    margin: 35,
+    marginBottom: 45,
     marginLeft: 90,
     marginRight: 90,
     paddingLeft: 25,
     paddingRight: 25
   },
   toastContainer: {
-    position: "fixed",
-    zIndex: 2,
+    bottom: 0,
     justifyContent: "center",
+    left: 0,
+    position: "fixed",
+    right: 0,
     width: "100%",
-    bottom: 0
+    zIndex: 999
   }
 };
