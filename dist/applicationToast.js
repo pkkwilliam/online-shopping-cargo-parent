@@ -68,7 +68,7 @@ function ApplicationToast(props) {
 var styles = {
   toast: {
     alignItems: "center",
-    backgroundColor: _styleSchema.styleSchema.color.primaryDark,
+    backgroundColor: _styleSchema.styleSchema.color.secondaryDark,
     borderRadius: 25,
     display: "flex",
     justifyContent: "center",

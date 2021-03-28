@@ -32,7 +32,7 @@ export default function ApplicationToast(props) {
 const styles = {
   toast: {
     alignItems: "center",
-    backgroundColor: styleSchema.color.primaryDark,
+    backgroundColor: styleSchema.color.secondaryDark,
     borderRadius: 25,
     display: "flex",
     justifyContent: "center",

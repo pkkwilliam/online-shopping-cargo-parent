@@ -174,16 +174,14 @@ var GET_USER_PROFILE = exports.GET_USER_PROFILE = function GET_USER_PROFILE() {
   };
 };
 
-var CHANGE_PASSWORD = exports.CHANGE_PASSWORD = function CHANGE_PASSWORD(password) {
+var CHANGE_PASSWORD = exports.CHANGE_PASSWORD = function CHANGE_PASSWORD(updateProfileRequest) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
     requestMapping: USER_PROFILE_SERVICE + "/change_password",
     requestMethod: "PUT",
-    body: JSON.stringify({
-      password: password
-    })
+    body: JSON.stringify(updateProfileRequest)
   };
 };
 

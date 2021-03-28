@@ -141,14 +141,12 @@ export const GET_USER_PROFILE = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const CHANGE_PASSWORD = (password, onSuceed = null) => ({
+export const CHANGE_PASSWORD = (updateProfileRequest, onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: USER_PROFILE_SERVICE + "/change_password",
   requestMethod: "PUT",
-  body: JSON.stringify({
-    password,
-  }),
+  body: JSON.stringify(updateProfileRequest),
 });
 
 export const LINK_PUSH_NOTIFICATION_TOKEN = (
