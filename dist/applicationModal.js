@@ -22,6 +22,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function ApplicationModal(props) {
   var body = props.body,
       children = props.children,
+      closeButtonText = props.closeButtonText,
       header = props.header,
       hideDefaultCloseSection = props.hideDefaultCloseSection,
       onClose = props.onClose,
@@ -55,7 +56,7 @@ function ApplicationModal(props) {
       _react2.default.createElement(
         _Button2.default,
         { onClick: onClose },
-        "\u95DC\u9589"
+        closeButtonText ? closeButtonText : "關閉"
       )
     )
   );

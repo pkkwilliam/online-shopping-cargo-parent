@@ -197,3 +197,14 @@ var LINK_PUSH_NOTIFICATION_TOKEN = exports.LINK_PUSH_NOTIFICATION_TOKEN = functi
     })
   };
 };
+
+var SETUP_PASSWORD = exports.SETUP_PASSWORD = function SETUP_PASSWORD(updateProfileRequest) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_PROFILE_SERVICE + "/setup_password",
+    requestMethod: "PUT",
+    body: JSON.stringify(updateProfileRequest)
+  };
+};

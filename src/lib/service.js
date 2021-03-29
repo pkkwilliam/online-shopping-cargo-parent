@@ -161,3 +161,11 @@ export const LINK_PUSH_NOTIFICATION_TOKEN = (
     pushNotificationToken,
   }),
 });
+
+export const SETUP_PASSWORD = (updateProfileRequest, onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_PROFILE_SERVICE + "/setup_password",
+  requestMethod: "PUT",
+  body: JSON.stringify(updateProfileRequest),
+});

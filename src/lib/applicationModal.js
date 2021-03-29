@@ -6,6 +6,7 @@ export default function ApplicationModal(props) {
   const {
     body,
     children,
+    closeButtonText,
     header,
     hideDefaultCloseSection,
     onClose,
@@ -22,7 +23,9 @@ export default function ApplicationModal(props) {
       </Modal.Body>
       {hideDefaultCloseSection ? null : (
         <Modal.Footer>
-          <Button onClick={onClose}>關閉</Button>
+          <Button onClick={onClose}>
+            {closeButtonText ? closeButtonText : "關閉"}
+          </Button>
         </Modal.Footer>
       )}
     </Modal>
