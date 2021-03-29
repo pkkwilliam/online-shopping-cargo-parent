@@ -162,10 +162,13 @@ export const LINK_PUSH_NOTIFICATION_TOKEN = (
   }),
 });
 
-export const SETUP_PASSWORD = (updateProfileRequest, onSuceed = null) => ({
+export const REGISTER_USER_FOR_MISSING_PASSWORD = (
+  updateProfileRequest,
+  onSuceed = null
+) => ({
   publicRequset: false,
   onSuceed,
-  requestMapping: USER_PROFILE_SERVICE + "/setup_password",
-  requestMethod: "PUT",
+  requestMapping: USER_PROFILE_SERVICE + "/register_user_for_missing_password",
+  requestMethod: "POST",
   body: JSON.stringify(updateProfileRequest),
 });

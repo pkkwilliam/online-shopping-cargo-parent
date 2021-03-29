@@ -198,13 +198,13 @@ var LINK_PUSH_NOTIFICATION_TOKEN = exports.LINK_PUSH_NOTIFICATION_TOKEN = functi
   };
 };
 
-var SETUP_PASSWORD = exports.SETUP_PASSWORD = function SETUP_PASSWORD(updateProfileRequest) {
+var REGISTER_USER_FOR_MISSING_PASSWORD = exports.REGISTER_USER_FOR_MISSING_PASSWORD = function REGISTER_USER_FOR_MISSING_PASSWORD(updateProfileRequest) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
     onSuceed: onSuceed,
-    requestMapping: USER_PROFILE_SERVICE + "/setup_password",
-    requestMethod: "PUT",
+    requestMapping: USER_PROFILE_SERVICE + "/register_user_for_missing_password",
+    requestMethod: "POST",
     body: JSON.stringify(updateProfileRequest)
   };
 };

@@ -50,7 +50,8 @@ var ServiceExecutor = function () {
                       return resolve();
                     } else if (result.status === 403) {
                       _this.removeHeaderToken();
-                      window.location = "/";
+                      // window.location = "/";
+                      _this.onError();
                     }
                     return result.json().then(function (json) {
                       if (result.status < 300) {

@@ -46,7 +46,8 @@ export default class ServiceExecutor {
             return resolve();
           } else if (result.status === 403) {
             this.removeHeaderToken();
-            window.location = "/";
+            // window.location = "/";
+            this.onError();
           }
           return result
             .json()
