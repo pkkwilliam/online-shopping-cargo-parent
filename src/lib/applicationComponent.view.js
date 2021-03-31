@@ -17,7 +17,7 @@ function Toast({ toast, onCloseToast }) {
 }
 
 export default function ApplicationComponentView(props) {
-  const { children, modal, onCloseModal, onCloseToast, toast } = this.props;
+  const { children, modal, onCloseModal, onCloseToast, toast } = props;
   return (
     <Fragment>
       <Modal onCloseModal={onCloseModal} modal={modal} />

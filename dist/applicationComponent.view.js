@@ -41,12 +41,11 @@ function Toast(_ref2) {
 }
 
 function ApplicationComponentView(props) {
-  var _props = this.props,
-      children = _props.children,
-      modal = _props.modal,
-      onCloseModal = _props.onCloseModal,
-      onCloseToast = _props.onCloseToast,
-      toast = _props.toast;
+  var children = props.children,
+      modal = props.modal,
+      onCloseModal = props.onCloseModal,
+      onCloseToast = props.onCloseToast,
+      toast = props.toast;
 
   return _react2.default.createElement(
     _react.Fragment,
