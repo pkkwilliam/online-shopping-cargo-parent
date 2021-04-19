@@ -21,6 +21,11 @@ var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
+  name: "CHINA",
+  code: "86",
+  chineseName: "中國大陸",
+  englishName: "China"
+}, {
   name: "HONG_KONG",
   code: "852",
   chineseName: "香港",
