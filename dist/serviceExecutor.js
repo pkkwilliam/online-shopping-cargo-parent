@@ -98,7 +98,7 @@ var ServiceExecutor = function () {
     key: "generateHeader",
     value: function generateHeader(publicRequest, customerHeaders, notJsonRequest) {
       var header = _extends({}, customerHeaders);
-      if (notJsonRequest) {
+      if (!notJsonRequest) {
         header = _extends({}, header, {
           "Content-Type": "application/json"
         });

@@ -87,7 +87,7 @@ export default class ServiceExecutor {
     let header = {
       ...customerHeaders,
     };
-    if (notJsonRequest) {
+    if (!notJsonRequest) {
       header = {
         ...header,
         "Content-Type": "application/json",
