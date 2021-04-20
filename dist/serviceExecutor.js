@@ -29,18 +29,18 @@ var ServiceExecutor = function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(service) {
         var _this = this;
 
-        var body, externalRequest, onSuceed, publicRequset, requestMapping, requestMethod, _service$customHeader, customHeaders, _service$removeConten, removeContentType, requestUrl;
+        var body, externalRequest, onSuceed, publicRequset, requestMapping, requestMethod, _service$customHeader, customHeaders, _service$notJsonReque, notJsonRequest, requestUrl;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                body = service.body, externalRequest = service.externalRequest, onSuceed = service.onSuceed, publicRequset = service.publicRequset, requestMapping = service.requestMapping, requestMethod = service.requestMethod, _service$customHeader = service.customHeaders, customHeaders = _service$customHeader === undefined ? {} : _service$customHeader, _service$removeConten = service.removeContentType, removeContentType = _service$removeConten === undefined ? false : _service$removeConten;
+                body = service.body, externalRequest = service.externalRequest, onSuceed = service.onSuceed, publicRequset = service.publicRequset, requestMapping = service.requestMapping, requestMethod = service.requestMethod, _service$customHeader = service.customHeaders, customHeaders = _service$customHeader === undefined ? {} : _service$customHeader, _service$notJsonReque = service.notJsonRequest, notJsonRequest = _service$notJsonReque === undefined ? false : _service$notJsonReque;
                 requestUrl = externalRequest ? requestMapping : this.baseUrl + requestMapping;
                 return _context.abrupt("return", new Promise(function (resolve, reject) {
                   fetch(requestUrl, {
                     body: body,
-                    headers: externalRequest ? {} : _this.generateHeader(publicRequset, customHeaders, removeContentType),
+                    headers: externalRequest ? {} : _this.generateHeader(publicRequset, customHeaders, notJsonRequest),
                     method: requestMethod
                   }).then(function (result) {
                     _this.saveHeaderToken(result.headers);
@@ -96,9 +96,9 @@ var ServiceExecutor = function () {
     }
   }, {
     key: "generateHeader",
-    value: function generateHeader(publicRequest, customerHeaders, jsonRequest) {
+    value: function generateHeader(publicRequest, customerHeaders, notJsonRequest) {
       var header = _extends({}, customerHeaders);
-      if (jsonRequest) {
+      if (notJsonRequest) {
         header = _extends({}, header, {
           "Content-Type": "application/json"
         });

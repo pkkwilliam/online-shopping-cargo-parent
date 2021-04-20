@@ -28,7 +28,7 @@ export default class ServiceExecutor {
       requestMapping,
       requestMethod,
       customHeaders = {},
-      removeContentType = false,
+      notJsonRequest = false,
     } = service;
     const requestUrl = externalRequest
       ? requestMapping
@@ -38,11 +38,7 @@ export default class ServiceExecutor {
         body: body,
         headers: externalRequest
           ? {}
-          : this.generateHeader(
-              publicRequset,
-              customHeaders,
-              removeContentType
-            ),
+          : this.generateHeader(publicRequset, customHeaders, notJsonRequest),
         method: requestMethod,
       })
         .then((result) => {
@@ -87,11 +83,11 @@ export default class ServiceExecutor {
     }
   }
 
-  generateHeader(publicRequest, customerHeaders, jsonRequest) {
+  generateHeader(publicRequest, customerHeaders, notJsonRequest) {
     let header = {
       ...customerHeaders,
     };
-    if (jsonRequest) {
+    if (notJsonRequest) {
       header = {
         ...header,
         "Content-Type": "application/json",
