@@ -27,6 +27,7 @@ export default class ServiceExecutor {
       publicRequset,
       requestMapping,
       requestMethod,
+      customHeaders = {},
     } = service;
     const requestUrl = externalRequest
       ? requestMapping
@@ -34,7 +35,9 @@ export default class ServiceExecutor {
     return new Promise((resolve, reject) => {
       fetch(requestUrl, {
         body: body,
-        headers: externalRequest ? {} : this.generateHeader(publicRequset),
+        headers: externalRequest
+          ? {}
+          : this.generateHeader(publicRequset, customHeaders),
         method: requestMethod,
       })
         .then((result) => {
@@ -79,9 +82,10 @@ export default class ServiceExecutor {
     }
   }
 
-  generateHeader(publicRequest) {
+  generateHeader(publicRequest, customerHeaders) {
     var header = {
       "Content-Type": "application/json",
+      ...customerHeaders,
     };
     if (!publicRequest) {
       const userToken = this.retrieveHeaderToken();
