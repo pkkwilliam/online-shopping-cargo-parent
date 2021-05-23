@@ -30,7 +30,8 @@ function ApplicationTextField(props) {
   var label = props.label,
       placeholder = props.placeholder,
       onChange = props.onChange,
-      style = props.style;
+      style = props.style,
+      value = props.value;
 
   return _react2.default.createElement(
     _view2.default,
@@ -48,7 +49,8 @@ function ApplicationTextField(props) {
         border: 0,
         boxShadow: "none",
         width: label ? "unset" : "100%"
-      }, style)
+      }, style),
+      value: value
     }, props))
   );
 }

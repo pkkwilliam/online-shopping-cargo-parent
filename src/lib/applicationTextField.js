@@ -4,7 +4,7 @@ import P from "./text/paragraph";
 import View from "./view";
 
 export default function ApplicationTextField(props) {
-  const { label, placeholder, onChange, style } = props;
+  const { label, placeholder, onChange, style, value } = props;
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
       {label ? <P style={{ fontSize: 16, fontWeight: 500 }}>{label}:</P> : null}
@@ -17,6 +17,7 @@ export default function ApplicationTextField(props) {
           width: label ? "unset" : "100%",
           ...style,
         }}
+        value={value}
         {...props}
       />
     </View>

@@ -23,7 +23,8 @@ export const COUNTRY_CODE_LIST = [
  * @state  countrySelected: undefined, smsNumber: "",
  */
 export default function ApplicationPhoneNumberTextFieldView(props) {
-  const { countrySelected, onChangeCountryCode, onChangeSmsNumber } = props;
+  const { countrySelected, onChangeCountryCode, onChangeSmsNumber, smsNumber } =
+    props;
   return (
     <tr style={{ display: "flex" }}>
       <td style={{ alignItems: "center", display: "flex" }}>
@@ -33,7 +34,10 @@ export default function ApplicationPhoneNumberTextFieldView(props) {
         />
       </td>
       <td>
-        <PhoneNumberTextField onChangeSmsNumber={onChangeSmsNumber} />
+        <PhoneNumberTextField
+          onChangeSmsNumber={onChangeSmsNumber}
+          smsNumber={smsNumber}
+        />
       </td>
     </tr>
   );
@@ -67,11 +71,12 @@ export function CountryCodeDropDown({ countrySelected, onChangeCountryCode }) {
   );
 }
 
-function PhoneNumberTextField({ onChangeSmsNumber }) {
+function PhoneNumberTextField({ onChangeSmsNumber, smsNumber }) {
   return (
     <ApplicationTextField
       onChange={(number) => onChangeSmsNumber(number.target.value)}
       placeholder={"手機號"}
+      value={smsNumber}
     />
   );
 }

@@ -40,7 +40,8 @@ var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853
 function ApplicationPhoneNumberTextFieldView(props) {
   var countrySelected = props.countrySelected,
       onChangeCountryCode = props.onChangeCountryCode,
-      onChangeSmsNumber = props.onChangeSmsNumber;
+      onChangeSmsNumber = props.onChangeSmsNumber,
+      smsNumber = props.smsNumber;
 
   return _react2.default.createElement(
     "tr",
@@ -56,7 +57,10 @@ function ApplicationPhoneNumberTextFieldView(props) {
     _react2.default.createElement(
       "td",
       null,
-      _react2.default.createElement(PhoneNumberTextField, { onChangeSmsNumber: onChangeSmsNumber })
+      _react2.default.createElement(PhoneNumberTextField, {
+        onChangeSmsNumber: onChangeSmsNumber,
+        smsNumber: smsNumber
+      })
     )
   );
 }
@@ -103,13 +107,15 @@ function CountryCodeDropDown(_ref) {
 }
 
 function PhoneNumberTextField(_ref2) {
-  var onChangeSmsNumber = _ref2.onChangeSmsNumber;
+  var onChangeSmsNumber = _ref2.onChangeSmsNumber,
+      smsNumber = _ref2.smsNumber;
 
   return _react2.default.createElement(_applicationTextField2.default, {
     onChange: function onChange(number) {
       return onChangeSmsNumber(number.target.value);
     },
-    placeholder: "手機號"
+    placeholder: "手機號",
+    value: smsNumber
   });
 }
 
