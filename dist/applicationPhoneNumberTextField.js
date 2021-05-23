@@ -44,10 +44,10 @@ function ApplicationPhoneNumberTextFieldView(props) {
 
   return _react2.default.createElement(
     "tr",
-    null,
+    { style: { display: "flex" } },
     _react2.default.createElement(
       "td",
-      null,
+      { style: { alignItems: "center", display: "flex" } },
       _react2.default.createElement(CountryCodeDropDown, {
         countrySelected: countrySelected,
         onChangeCountryCode: onChangeCountryCode

@@ -25,8 +25,8 @@ export const COUNTRY_CODE_LIST = [
 export default function ApplicationPhoneNumberTextFieldView(props) {
   const { countrySelected, onChangeCountryCode, onChangeSmsNumber } = props;
   return (
-    <tr>
-      <td>
+    <tr style={{ display: "flex" }}>
+      <td style={{ alignItems: "center", display: "flex" }}>
         <CountryCodeDropDown
           countrySelected={countrySelected}
           onChangeCountryCode={onChangeCountryCode}
