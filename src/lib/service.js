@@ -21,7 +21,7 @@ export const CREATE_ADDRESS = (address, onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
   requestMapping: USER_ADDRESS_SERVICE,
-  requestMethod: "PUT",
+  requestMethod: "POST",
 });
 
 export const DELETE_ADDRESS = (address, onSuceed = null) => ({
