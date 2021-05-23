@@ -16,15 +16,32 @@ var _Button = require("react-bootstrap/esm/Button");
 
 var _Button2 = _interopRequireDefault(_Button);
 
+var _styleSchema = require("./styleSchema");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ApplicationTextButton(props) {
   var children = props.children,
+      _props$type = props.type,
+      type = _props$type === undefined ? "primary" : _props$type,
       style = props.style;
 
+  var colorStyle = getColorStyle(type);
   return _react2.default.createElement(
     _Button2.default,
-    _extends({ style: _extends({ boxShadow: "none" }, style), variant: "link" }, props),
+    _extends({
+      style: _extends({ boxShadow: "none" }, colorStyle, style),
+      variant: "link"
+    }, props),
     children
   );
+}
+
+function getColorStyle(type) {
+  switch (type) {
+    case "danger":
+      return { color: _styleSchema.styleSchema.color.DANGER };
+    default:
+      return {};
+  }
 }

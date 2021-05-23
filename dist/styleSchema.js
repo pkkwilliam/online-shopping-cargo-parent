@@ -5,11 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 var PRIMARY_DARK = "#FC5D01";
 var PRIMARY_LIGHT = "#FC9403";
+var DANGER = "#D9534F";
 
 var styleSchema = exports.styleSchema = {
   color: {
     background: "#f6f6f6",
     black: "#000000",
+    danger: DANGER,
     primaryGradient: "linear-gradient(90deg, rgba(252,150,3,1) 0%, rgba(252,91,1,1) 100%)",
     primaryDark: PRIMARY_DARK,
     primaryLight: PRIMARY_LIGHT,
