@@ -47,7 +47,7 @@ function generateDropDownList(list) {
   ));
 }
 
-function CountryCodeDropDown({ countrySelected, onChangeCountryCode }) {
+export function CountryCodeDropDown({ countrySelected, onChangeCountryCode }) {
   return (
     <Dropdown
       defaultValue={getCountryList()[0]}
