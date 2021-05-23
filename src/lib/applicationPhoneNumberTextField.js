@@ -81,10 +81,24 @@ function PhoneNumberTextField({ onChangeSmsNumber, smsNumber }) {
   );
 }
 
+function countriesIterate(condition) {
+  for (let country = 0; country < COUNTRY_CODE_LIST.length; country++) {
+    if (condition(COUNTRY_CODE_LIST[country])) {
+      return COUNTRY_CODE_LIST[country];
+    }
+  }
+}
+
 function getCountryList() {
   return COUNTRY_CODE_LIST;
 }
 
+export function getCountryObjectByCode(countryCode) {
+  const condition = (country) => country.code === countryCode;
+  return countriesIterate(condition);
+}
+
+// TODO this can be remove. Create a condition and pass as parameter to countriesIterate()
 function getCountryObject(countrySelected) {
   for (let country = 0; country < COUNTRY_CODE_LIST.length; country++) {
     if (COUNTRY_CODE_LIST[country].name === countrySelected) {

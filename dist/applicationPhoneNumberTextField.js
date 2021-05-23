@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.COUNTRY_CODE_LIST = undefined;
 exports.default = ApplicationPhoneNumberTextFieldView;
 exports.CountryCodeDropDown = CountryCodeDropDown;
+exports.getCountryObjectByCode = getCountryObjectByCode;
 
 var _react = require("react");
 
@@ -119,10 +120,26 @@ function PhoneNumberTextField(_ref2) {
   });
 }
 
+function countriesIterate(condition) {
+  for (var country = 0; country < COUNTRY_CODE_LIST.length; country++) {
+    if (condition(COUNTRY_CODE_LIST[country])) {
+      return COUNTRY_CODE_LIST[country];
+    }
+  }
+}
+
 function getCountryList() {
   return COUNTRY_CODE_LIST;
 }
 
+function getCountryObjectByCode(countryCode) {
+  var condition = function condition(country) {
+    return country.code === countryCode;
+  };
+  return countriesIterate(condition);
+}
+
+// TODO this can be remove. Create a condition and pass as parameter to countriesIterate()
 function getCountryObject(countrySelected) {
   for (var country = 0; country < COUNTRY_CODE_LIST.length; country++) {
     if (COUNTRY_CODE_LIST[country].name === countrySelected) {
