@@ -30,7 +30,7 @@ var CREATE_ADDRESS = exports.CREATE_ADDRESS = function CREATE_ADDRESS(address) {
     publicRequset: false,
     onSuceed: onSuceed,
     requestMapping: USER_ADDRESS_SERVICE,
-    requestMethod: "PUT"
+    requestMethod: "POST"
   };
 };
 
