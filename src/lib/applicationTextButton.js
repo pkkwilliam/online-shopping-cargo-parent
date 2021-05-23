@@ -7,9 +7,9 @@ export default function ApplicationTextButton(props) {
   const colorStyle = getColorStyle(type);
   return (
     <Button
+      {...props}
       style={{ boxShadow: "none", ...colorStyle, ...style }}
       variant="link"
-      {...props}
     >
       {children}
     </Button>

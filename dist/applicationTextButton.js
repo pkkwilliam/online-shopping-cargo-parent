@@ -29,10 +29,10 @@ function ApplicationTextButton(props) {
   var colorStyle = getColorStyle(type);
   return _react2.default.createElement(
     _Button2.default,
-    _extends({
+    _extends({}, props, {
       style: _extends({ boxShadow: "none" }, colorStyle, style),
       variant: "link"
-    }, props),
+    }),
     children
   );
 }
