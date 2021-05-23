@@ -40,7 +40,7 @@ function ApplicationTextButton(props) {
 function getColorStyle(type) {
   switch (type) {
     case "danger":
-      return { color: _styleSchema.styleSchema.color.DANGER };
+      return { color: _styleSchema.styleSchema.color.danger };
     default:
       return {};
   }

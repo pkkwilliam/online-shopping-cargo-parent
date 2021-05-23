@@ -19,7 +19,7 @@ export default function ApplicationTextButton(props) {
 function getColorStyle(type) {
   switch (type) {
     case "danger":
-      return { color: styleSchema.color.DANGER };
+      return { color: styleSchema.color.danger };
     default:
       return {};
   }
