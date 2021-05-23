@@ -72,7 +72,7 @@ var styles = {
     borderRadius: 25,
     display: "flex",
     justifyContent: "center",
-    marginBottom: 45,
+    marginBottom: 90,
     marginLeft: 90,
     marginRight: 90,
     paddingLeft: 25,
