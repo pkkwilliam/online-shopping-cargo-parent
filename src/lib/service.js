@@ -4,8 +4,41 @@ const SMS_LOGIN_SERVICE = "/login/sms";
 const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
-const USER_PROFILE_SERVICE = "/api/v1/user_profile";
 const THIRD_PERSON_SERVICE = "/api/v1/third_person";
+const USER_ADDRESS_SERVICE = "/user/v1/address";
+const USER_PROFILE_SERVICE = "/api/v1/user_profile";
+
+// Address
+export const GET_ALL_ADDRESS_BY_USER = (onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_ADDRESS_SERVICE + "/all",
+  requestMethod: "GET",
+});
+
+export const CREATE_ADDRESS = (address, onSuceed = null) => ({
+  body: JSON.stringify(address),
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_ADDRESS_SERVICE,
+  requestMethod: "PUT",
+});
+
+export const DELETE_ADDRESS = (address, onSuceed = null) => ({
+  body: JSON.stringify(address),
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_ADDRESS_SERVICE,
+  requestMethod: "DELETE",
+});
+
+export const UPDATE_ADDRESS = (address, onSuceed = null) => ({
+  body: JSON.stringify(address),
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_ADDRESS_SERVICE,
+  requestMethod: "PUT",
+});
 
 export const GET_GITHUB_JSON_CONTENT = (url) => ({
   externalRequest: true,

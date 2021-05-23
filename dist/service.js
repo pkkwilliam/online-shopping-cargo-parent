@@ -8,8 +8,53 @@ var SMS_LOGIN_SERVICE = "/login/sms";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
-var USER_PROFILE_SERVICE = "/api/v1/user_profile";
 var THIRD_PERSON_SERVICE = "/api/v1/third_person";
+var USER_ADDRESS_SERVICE = "/user/v1/address";
+var USER_PROFILE_SERVICE = "/api/v1/user_profile";
+
+// Address
+var GET_ALL_ADDRESS_BY_USER = exports.GET_ALL_ADDRESS_BY_USER = function GET_ALL_ADDRESS_BY_USER() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_ADDRESS_SERVICE + "/all",
+    requestMethod: "GET"
+  };
+};
+
+var CREATE_ADDRESS = exports.CREATE_ADDRESS = function CREATE_ADDRESS(address) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(address),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_ADDRESS_SERVICE,
+    requestMethod: "PUT"
+  };
+};
+
+var DELETE_ADDRESS = exports.DELETE_ADDRESS = function DELETE_ADDRESS(address) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(address),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_ADDRESS_SERVICE,
+    requestMethod: "DELETE"
+  };
+};
+
+var UPDATE_ADDRESS = exports.UPDATE_ADDRESS = function UPDATE_ADDRESS(address) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(address),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_ADDRESS_SERVICE,
+    requestMethod: "PUT"
+  };
+};
 
 var GET_GITHUB_JSON_CONTENT = exports.GET_GITHUB_JSON_CONTENT = function GET_GITHUB_JSON_CONTENT(url) {
   return {
