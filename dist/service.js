@@ -9,7 +9,7 @@ var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 var THIRD_PERSON_SERVICE = "/api/v1/third_person";
-var USER_ADDRESS_SERVICE = "/user/v1/address";
+var USER_ADDRESS_SERVICE = "/user/address/v1";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
 // Address

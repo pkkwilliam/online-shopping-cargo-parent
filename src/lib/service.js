@@ -5,7 +5,7 @@ const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 const THIRD_PERSON_SERVICE = "/api/v1/third_person";
-const USER_ADDRESS_SERVICE = "/user/v1/address";
+const USER_ADDRESS_SERVICE = "/user/address/v1";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
 // Address
