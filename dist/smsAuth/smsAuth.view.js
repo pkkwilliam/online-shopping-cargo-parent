@@ -46,6 +46,14 @@ var _applicationComponent = require("../applicationComponent.view");
 
 var _applicationComponent2 = _interopRequireDefault(_applicationComponent);
 
+var _Row = require("react-bootstrap/esm/Row");
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _Col = require("react-bootstrap/esm/Col");
+
+var _Col2 = _interopRequireDefault(_Col);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -159,41 +167,43 @@ var SmsAuthView = function (_ApplicationCompoentV) {
         _react2.default.createElement(
           "div",
           null,
+          _react2.default.createElement(_applicationPhoneNumberTextField2.default, this.props),
           _react2.default.createElement(
-            "table",
-            { style: { width: "100%" } },
-            _react2.default.createElement(_applicationPhoneNumberTextField2.default, this.props),
+            _Row2.default,
+            null,
             _react2.default.createElement(
-              "tr",
-              null,
-              _react2.default.createElement(
-                "td",
-                { colSpan: "3" },
-                _react2.default.createElement(_lineBreak2.default, null)
-              )
+              _Col2.default,
+              { style: { marginBottom: 5, marginTop: 5 } },
+              _react2.default.createElement(_lineBreak2.default, null)
+            )
+          ),
+          _react2.default.createElement(
+            _Row2.default,
+            {
+              style: {
+                alignItems: "center",
+                display: "flex",
+                justifyContent: "center"
+              }
+            },
+            _react2.default.createElement(
+              _Col2.default,
+              { xs: 3 },
+              this.props.passwordLogin ? "密碼" : "驗證碼"
             ),
             _react2.default.createElement(
-              "tr",
+              _Col2.default,
               null,
-              _react2.default.createElement(
-                "td",
-                null,
-                this.props.passwordLogin ? "密碼" : "驗證碼"
-              ),
-              _react2.default.createElement(
-                "td",
-                null,
-                _react2.default.createElement(this.VerificationCodeTextField, null)
-              )
-            ),
+              _react2.default.createElement(this.VerificationCodeTextField, null)
+            )
+          ),
+          _react2.default.createElement(
+            _Row2.default,
+            null,
             _react2.default.createElement(
-              "tr",
+              _Col2.default,
               null,
-              _react2.default.createElement(
-                "td",
-                { colSpan: "3" },
-                _react2.default.createElement(this.VerifyButton, null)
-              )
+              _react2.default.createElement(this.VerifyButton, null)
             )
           )
         )

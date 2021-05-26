@@ -9,6 +9,7 @@ var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 var THIRD_PERSON_SERVICE = "/api/v1/third_person";
+var USER_SHIP_TO_HOME_SERVICE = "/user/shipToHome/v1";
 var USER_ADDRESS_SERVICE = "/user/address/v1";
 var USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
@@ -96,6 +97,18 @@ var GET_PARCEL_ESTIMATE_COST = exports.GET_PARCEL_ESTIMATE_COST = function GET_P
   };
 };
 
+var GET_SHIP_TO_HOME_PARCEL_ESTIMATE_COST = exports.GET_SHIP_TO_HOME_PARCEL_ESTIMATE_COST = function GET_SHIP_TO_HOME_PARCEL_ESTIMATE_COST(_ref2) {
+  var height = _ref2.height,
+      length = _ref2.length,
+      weight = _ref2.weight,
+      width = _ref2.width;
+  return {
+    publicRequset: false,
+    requestMapping: PUBLIC_PARCEL_SERVICE + ("/ship_to_home_estimate_cost?height=" + height + "&length=" + length + "&weight=" + weight + "&width=" + width),
+    requestMethod: "GET"
+  };
+};
+
 var GET_PICKUP_QR_CODE = exports.GET_PICKUP_QR_CODE = function GET_PICKUP_QR_CODE() {
   var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
   return {
@@ -151,6 +164,27 @@ var VERIFY = exports.VERIFY = function VERIFY(request) {
   };
 };
 
+// ship to home
+var GET_SHIP_TO_HOME_ALL = exports.GET_SHIP_TO_HOME_ALL = function GET_SHIP_TO_HOME_ALL() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/all",
+    requestMethod: "GET"
+  };
+};
+
+var CREATE_SHIP_TO_HOME_ORDER = exports.CREATE_SHIP_TO_HOME_ORDER = function CREATE_SHIP_TO_HOME_ORDER() {
+  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+  return {
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE,
+    requestMethod: "POST"
+  };
+};
+
 // third person
 var GET_THIRD_PERSONS = exports.GET_THIRD_PERSONS = function GET_THIRD_PERSONS() {
   var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
@@ -172,9 +206,9 @@ var GET_THIRD_PERSONS_ALLOWED_BY = exports.GET_THIRD_PERSONS_ALLOWED_BY = functi
   };
 };
 
-var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = function GET_THIRD_PERSONS_PICKUP_CODE(_ref2) {
-  var countryCode = _ref2.countryCode,
-      smsNumber = _ref2.smsNumber;
+var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = function GET_THIRD_PERSONS_PICKUP_CODE(_ref3) {
+  var countryCode = _ref3.countryCode,
+      smsNumber = _ref3.smsNumber;
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
@@ -184,9 +218,9 @@ var GET_THIRD_PERSONS_PICKUP_CODE = exports.GET_THIRD_PERSONS_PICKUP_CODE = func
   };
 };
 
-var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref3) {
-  var countryCode = _ref3.countryCode,
-      smsNumber = _ref3.smsNumber;
+var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref4) {
+  var countryCode = _ref4.countryCode,
+      smsNumber = _ref4.smsNumber;
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,
@@ -196,9 +230,9 @@ var ADD_THIRD_PERSON = exports.ADD_THIRD_PERSON = function ADD_THIRD_PERSON(_ref
   };
 };
 
-var REMOVE_THIRD_PERSON = exports.REMOVE_THIRD_PERSON = function REMOVE_THIRD_PERSON(_ref4) {
-  var countryCode = _ref4.countryCode,
-      smsNumber = _ref4.smsNumber;
+var REMOVE_THIRD_PERSON = exports.REMOVE_THIRD_PERSON = function REMOVE_THIRD_PERSON(_ref5) {
+  var countryCode = _ref5.countryCode,
+      smsNumber = _ref5.smsNumber;
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: false,

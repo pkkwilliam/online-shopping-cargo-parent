@@ -1,6 +1,8 @@
 import React from "react";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 import ApplicationTextField from "./applicationTextField";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 
 export const COUNTRY_CODE_LIST = [
   { name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" },
@@ -26,20 +28,20 @@ export default function ApplicationPhoneNumberTextFieldView(props) {
   const { countrySelected, onChangeCountryCode, onChangeSmsNumber, smsNumber } =
     props;
   return (
-    <tr style={{ display: "flex" }}>
-      <td style={{ alignItems: "center", display: "flex" }}>
+    <Row style={{ display: "flex" }}>
+      <Col xs={3} style={{ alignItems: "center", display: "flex" }}>
         <CountryCodeDropDown
           countrySelected={countrySelected}
           onChangeCountryCode={onChangeCountryCode}
         />
-      </td>
-      <td>
+      </Col>
+      <Col>
         <PhoneNumberTextField
           onChangeSmsNumber={onChangeSmsNumber}
           smsNumber={smsNumber}
         />
-      </td>
-    </tr>
+      </Col>
+    </Row>
   );
 }
 

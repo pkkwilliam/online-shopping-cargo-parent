@@ -5,6 +5,7 @@ const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 const THIRD_PERSON_SERVICE = "/api/v1/third_person";
+const USER_SHIP_TO_HOME_SERVICE = "/user/shipToHome/v1";
 const USER_ADDRESS_SERVICE = "/user/address/v1";
 const USER_PROFILE_SERVICE = "/api/v1/user_profile";
 
@@ -73,6 +74,19 @@ export const GET_PARCEL_ESTIMATE_COST = ({
   requestMethod: "GET",
 });
 
+export const GET_SHIP_TO_HOME_PARCEL_ESTIMATE_COST = ({
+  height,
+  length,
+  weight,
+  width,
+}) => ({
+  publicRequset: false,
+  requestMapping:
+    PUBLIC_PARCEL_SERVICE +
+    `/ship_to_home_estimate_cost?height=${height}&length=${length}&weight=${weight}&width=${width}`,
+  requestMethod: "GET",
+});
+
 export const GET_PICKUP_QR_CODE = (onSuceed = null) => ({
   publicRequset: false,
   onSuceed,
@@ -115,6 +129,21 @@ export const VERIFY = (request, onSuceed = null) => ({
   requestMapping: SMS_LOGIN_SERVICE + "/verify",
   requestMethod: "POST",
   body: JSON.stringify(request),
+});
+
+// ship to home
+export const GET_SHIP_TO_HOME_ALL = (onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_SHIP_TO_HOME_SERVICE + "/all",
+  requestMethod: "GET",
+});
+
+export const CREATE_SHIP_TO_HOME_ORDER = (onSuceed = null) => ({
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_SHIP_TO_HOME_SERVICE,
+  requestMethod: "POST",
 });
 
 // third person

@@ -11,7 +11,7 @@ export default class AppView extends ApplicationComponentView {
   render() {
     return (
       <this.Wrapper>
-        <SmsAuth mock passwordLogin />
+        <SmsAuth mock />
         <ApplicationTextField label="代收店號" placeHolder="1130" />
         <Register mock />
         <Form>

@@ -20,6 +20,14 @@ var _applicationTextField = require("./applicationTextField");
 
 var _applicationTextField2 = _interopRequireDefault(_applicationTextField);
 
+var _Row = require("react-bootstrap/esm/Row");
+
+var _Row2 = _interopRequireDefault(_Row);
+
+var _Col = require("react-bootstrap/esm/Col");
+
+var _Col2 = _interopRequireDefault(_Col);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var COUNTRY_CODE_LIST = exports.COUNTRY_CODE_LIST = [{ name: "MACAU", code: "853", chineseName: "澳門", englishName: "Macau" }, {
@@ -45,18 +53,18 @@ function ApplicationPhoneNumberTextFieldView(props) {
       smsNumber = props.smsNumber;
 
   return _react2.default.createElement(
-    "tr",
+    _Row2.default,
     { style: { display: "flex" } },
     _react2.default.createElement(
-      "td",
-      { style: { alignItems: "center", display: "flex" } },
+      _Col2.default,
+      { xs: 3, style: { alignItems: "center", display: "flex" } },
       _react2.default.createElement(CountryCodeDropDown, {
         countrySelected: countrySelected,
         onChangeCountryCode: onChangeCountryCode
       })
     ),
     _react2.default.createElement(
-      "td",
+      _Col2.default,
       null,
       _react2.default.createElement(PhoneNumberTextField, {
         onChangeSmsNumber: onChangeSmsNumber,

@@ -9,31 +9,37 @@ import { Fragment } from "react";
 import ApplicationTextField from "../applicationTextField";
 import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField";
 import ApplicationCompoentView from "../applicationComponent.view";
+import Row from "react-bootstrap/esm/Row";
+import Col from "react-bootstrap/esm/Col";
 
 export default class SmsAuthView extends ApplicationCompoentView {
   render() {
     return (
       <this.Wrapper>
         <div>
-          <table style={{ width: "100%" }}>
-            <ApplicationPhoneNumberTextField {...this.props} />
-            <tr>
-              <td colSpan="3">
-                <LineBreak />
-              </td>
-            </tr>
-            <tr>
-              <td>{this.props.passwordLogin ? "密碼" : "驗證碼"}</td>
-              <td>
-                <this.VerificationCodeTextField />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="3">
-                <this.VerifyButton />
-              </td>
-            </tr>
-          </table>
+          <ApplicationPhoneNumberTextField {...this.props} />
+          <Row>
+            <Col style={{ marginBottom: 5, marginTop: 5 }}>
+              <LineBreak />
+            </Col>
+          </Row>
+          <Row
+            style={{
+              alignItems: "center",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Col xs={3}>{this.props.passwordLogin ? "密碼" : "驗證碼"}</Col>
+            <Col>
+              <this.VerificationCodeTextField />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <this.VerifyButton />
+            </Col>
+          </Row>
         </div>
       </this.Wrapper>
     );
