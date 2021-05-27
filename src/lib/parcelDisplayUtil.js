@@ -1,8 +1,10 @@
 // parcel status
+export const COMBINED = { key: "COMBINED", label: "已合併" };
 export const DELIVERED = { key: "DELIVERED", label: "已送達" };
 export const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
 export const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
 export const PICKED_UP = { key: "PICKED_UP", label: "已提" };
+export const READY_FOR_COMBINE = { key: "READY_FOR_COMBINE", label: "待處理" };
 export const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
 export const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "入庫" };
 export const PARCEL_STATUS = [
@@ -36,6 +38,8 @@ export default class ParcelDisplayUtil {
 
   getParcelStatusBageAndLabel(parcelStatus) {
     switch (parcelStatus) {
+      case COMBINED.key:
+        return { badge: "success", label: COMBINED.label };
       case DELIVERED.key:
         return { badge: "secondary", label: DELIVERED.label };
       case EXCEPTION.key:
@@ -44,6 +48,8 @@ export default class ParcelDisplayUtil {
         return { badge: "warning", label: IN_TRANSIT.label };
       case PICKED_UP.key:
         return { badge: "secondary", label: PICKED_UP.label };
+      case READY_FOR_COMBINE.key:
+        return { badge: "warning", label: READY_FOR_COMBINE.label };
       case READY_TO_PICKUP.key:
         return { badge: "success", label: READY_TO_PICKUP.label };
       case WAREHOUSE_RECEIVED.key:
