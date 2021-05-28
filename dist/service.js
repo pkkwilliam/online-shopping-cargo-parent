@@ -175,9 +175,10 @@ var GET_SHIP_TO_HOME_ALL = exports.GET_SHIP_TO_HOME_ALL = function GET_SHIP_TO_H
   };
 };
 
-var CREATE_SHIP_TO_HOME_ORDER = exports.CREATE_SHIP_TO_HOME_ORDER = function CREATE_SHIP_TO_HOME_ORDER() {
-  var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+var CREATE_SHIP_TO_HOME_ORDER = exports.CREATE_SHIP_TO_HOME_ORDER = function CREATE_SHIP_TO_HOME_ORDER(shipToHomeOrder) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
+    body: JSON.stringify(shipToHomeOrder),
     publicRequset: false,
     onSuceed: onSuceed,
     requestMapping: USER_SHIP_TO_HOME_SERVICE,

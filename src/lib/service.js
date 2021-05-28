@@ -139,7 +139,11 @@ export const GET_SHIP_TO_HOME_ALL = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const CREATE_SHIP_TO_HOME_ORDER = (onSuceed = null) => ({
+export const CREATE_SHIP_TO_HOME_ORDER = (
+  shipToHomeOrder,
+  onSuceed = null
+) => ({
+  body: JSON.stringify(shipToHomeOrder),
   publicRequset: false,
   onSuceed,
   requestMapping: USER_SHIP_TO_HOME_SERVICE,
