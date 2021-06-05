@@ -94,10 +94,14 @@ export const GET_PICKUP_QR_CODE = (onSuceed = null) => ({
   requestMethod: "GET",
 });
 
-export const MATCH_BAD_PARCEL = (originalTrackingNumber, onSuceed = null) => ({
+export const MATCH_BAD_PARCEL = (
+  originalTrackingNumber,
+  shopNumber,
+  onSuceed = null
+) => ({
   onSuceed,
   publicRequset: false,
-  requestMapping: `${PARCEL_SERVICE}/match_bad_parcel?originalTrackingNumber=${originalTrackingNumber}`,
+  requestMapping: `${PARCEL_SERVICE}/match_bad_parcel?originalTrackingNumber=${originalTrackingNumber}&shopNumber=${shopNumber}`,
   requestMethod: "PUT",
 });
 

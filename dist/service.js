@@ -119,12 +119,12 @@ var GET_PICKUP_QR_CODE = exports.GET_PICKUP_QR_CODE = function GET_PICKUP_QR_COD
   };
 };
 
-var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber) {
-  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber, shopNumber) {
+  var onSuceed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return {
     onSuceed: onSuceed,
     publicRequset: false,
-    requestMapping: PARCEL_SERVICE + "/match_bad_parcel?originalTrackingNumber=" + originalTrackingNumber,
+    requestMapping: PARCEL_SERVICE + "/match_bad_parcel?originalTrackingNumber=" + originalTrackingNumber + "&shopNumber=" + shopNumber,
     requestMethod: "PUT"
   };
 };
