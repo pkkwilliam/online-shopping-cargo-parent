@@ -96,6 +96,10 @@ export default class ApplicationComponent extends Component {
     });
   }
 
+  setModalLoading(modalLoading) {
+    this.setState({ modalLoading });
+  }
+
   setToast(toast) {
     this.setState({
       toast,
