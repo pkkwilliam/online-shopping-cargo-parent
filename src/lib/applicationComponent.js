@@ -11,6 +11,7 @@ export default class ApplicationComponent extends Component {
   state = {
     countrySelected: COUNTRY_CODE_LIST[0],
     modal: { body: "", header: "", show: false },
+    modalLoading: { serviceRequestText: "", show: false },
     smsNumber: "",
     toast: { body: "", show: false },
   };
@@ -93,6 +94,10 @@ export default class ApplicationComponent extends Component {
     this.setState({
       modal,
     });
+  }
+
+  setModalLoading(modalLoading) {
+    this.setState({ modalLoading });
   }
 
   setToast(toast) {

@@ -47,6 +47,7 @@ var ApplicationComponent = function (_Component) {
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ApplicationComponent.__proto__ || Object.getPrototypeOf(ApplicationComponent)).call.apply(_ref, [this].concat(args))), _this), _this._applicationContext = new _applicationContext2.default(), _this._storage = new _storage2.default(), _this.state = {
       countrySelected: _applicationPhoneNumberTextField.COUNTRY_CODE_LIST[0],
       modal: { body: "", header: "", show: false },
+      modalLoading: { serviceRequestText: "", show: false },
       smsNumber: "",
       toast: { body: "", show: false }
     }, _this.onChangeCountryCode = function (countryUpdate) {
@@ -95,6 +96,11 @@ var ApplicationComponent = function (_Component) {
       this.setState({
         modal: modal
       });
+    }
+  }, {
+    key: "setModalLoading",
+    value: function setModalLoading(modalLoading) {
+      this.setState({ modalLoading: modalLoading });
     }
   }, {
     key: "setToast",

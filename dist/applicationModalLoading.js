@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = ApplicationModal;
-exports.ServiceRequestLoadingSpinner = ServiceRequestLoadingSpinner;
+exports.TextSection = TextSection;
 
 var _react = require("react");
 
@@ -30,8 +30,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function ApplicationModal(props) {
   var children = props.children,
-      serviceRequestText = props.serviceRequestText,
-      show = props.show;
+      show = props.show,
+      text = props.text;
 
   return _react2.default.createElement(
     _Modal2.default,
@@ -42,17 +42,15 @@ function ApplicationModal(props) {
       _react2.default.createElement(
         _view2.default,
         { style: { alignItems: "center", justifyContent: "center" } },
-        _react2.default.createElement(ServiceRequestLoadingSpinner, {
-          serviceRequestText: serviceRequestText
-        }),
+        _react2.default.createElement(TextSection, { text: text }),
         children
       )
     )
   );
 }
 
-function ServiceRequestLoadingSpinner(_ref) {
-  var serviceRequestText = _ref.serviceRequestText;
+function TextSection(_ref) {
+  var text = _ref.text;
 
   return _react2.default.createElement(
     _view2.default,
@@ -60,7 +58,7 @@ function ServiceRequestLoadingSpinner(_ref) {
     _react2.default.createElement(
       _paragraph2.default,
       null,
-      serviceRequestText
+      text
     ),
     _react2.default.createElement(_applicationSpinner2.default, { loading: true, style: { marginLeft: 8 }, variant: "warning" })
   );

@@ -17,6 +17,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ApplicationModal = _react2.default.lazy(function () {
   return import("./applicationModal");
 });
+var ApplicationModalLoading = _react2.default.lazy(function () {
+  return import("./applicationModalLoading");
+});
 var ApplicationToast = _react2.default.lazy(function () {
   return import("./applicationToast");
 });
@@ -24,6 +27,7 @@ var ApplicationToast = _react2.default.lazy(function () {
 function ApplicationComponentView(props) {
   var children = props.children,
       modal = props.modal,
+      modalLoading = props.modalLoading,
       onCloseModal = props.onCloseModal,
       onCloseToast = props.onCloseToast,
       toast = props.toast;
@@ -32,6 +36,7 @@ function ApplicationComponentView(props) {
     _react.Fragment,
     null,
     _react2.default.createElement(Modal, { onCloseModal: onCloseModal, modal: modal }),
+    _react2.default.createElement(ModalLoading, { modalLoading: modalLoading }),
     _react2.default.createElement(Toast, { onCloseToast: onCloseToast, toast: toast }),
     children
   );
@@ -44,9 +49,16 @@ function Modal(_ref) {
   return _react2.default.createElement(ApplicationModal, _extends({ onClose: onCloseModal }, modal));
 }
 
-function Toast(_ref2) {
-  var toast = _ref2.toast,
-      onCloseToast = _ref2.onCloseToast;
+function ModalLoading(_ref2) {
+  var show = _ref2.show,
+      text = _ref2.text;
+
+  return _react2.default.createElement(ApplicationModalLoading, { show: show, text: text });
+}
+
+function Toast(_ref3) {
+  var toast = _ref3.toast,
+      onCloseToast = _ref3.onCloseToast;
 
   return _react2.default.createElement(ApplicationToast, _extends({ onClose: onCloseToast }, toast));
 }
