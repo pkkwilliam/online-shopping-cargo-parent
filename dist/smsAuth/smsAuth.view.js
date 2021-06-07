@@ -145,15 +145,11 @@ var SmsAuthView = function (_ApplicationCompoentV) {
         {
           block: true,
           disabled: !codeRequested,
+          loading: loadingVerify,
           onClick: onClickVerify,
           style: { marginTop: 10 }
         },
-        _react2.default.createElement(
-          _view2.default,
-          { style: { alignItems: "center", justifyContent: "center" } },
-          "\u9A57\u8B49",
-          loadingVerify ? _react2.default.createElement(_applicationSpinner2.default, { style: { position: "absolute", right: 150 } }) : null
-        )
+        "\u9A57\u8B49"
       );
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }

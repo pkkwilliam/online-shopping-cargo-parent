@@ -18,12 +18,21 @@ var _Button2 = _interopRequireDefault(_Button);
 
 var _styleSchema = require("./styleSchema");
 
+var _view = require("./view");
+
+var _view2 = _interopRequireDefault(_view);
+
+var _applicationSpinner = require("./applicationSpinner");
+
+var _applicationSpinner2 = _interopRequireDefault(_applicationSpinner);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function ApplicationButton(props) {
   var block = props.block,
       children = props.children,
       disabled = props.disabled,
+      loading = props.loading,
       onClick = props.onClick,
       style = props.style,
       variant = props.variant;
@@ -32,11 +41,12 @@ function ApplicationButton(props) {
       primaryMedium = _styleSchema$color.primaryMedium,
       primaryLight = _styleSchema$color.primaryLight;
 
+  var Spinner = loading ? _react2.default.createElement(_applicationSpinner2.default, { style: { marginLeft: 5 } }) : null;
   return _react2.default.createElement(
     _Button2.default,
     _extends({}, props, {
       block: block,
-      disabled: disabled,
+      disabled: disabled || loading,
       onClick: onClick,
       style: _extends({
         background: block ? primaryMedium : primaryGradient,
@@ -46,6 +56,11 @@ function ApplicationButton(props) {
       }, style),
       variant: variant
     }),
-    children
+    _react2.default.createElement(
+      _view2.default,
+      { style: { alignItems: "center", justifyContent: "center" } },
+      children,
+      Spinner
+    )
   );
 }

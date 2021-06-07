@@ -6,6 +6,7 @@ import SmsAuth from "./lib/smsAuth/smsAuth";
 import ApplicationColumnTextField from "./lib/applicationColumnTextField";
 import Form from "react-bootstrap/esm/Form";
 import LineBreak from "./lib/lineBreak";
+import ApplicationButton from "./lib/applicationButton";
 
 export default class AppView extends ApplicationComponentView {
   render() {
@@ -21,6 +22,7 @@ export default class AppView extends ApplicationComponentView {
           />
           <LineBreak />
         </Form>
+        <ApplicationButton loading>whatup man</ApplicationButton>
       </this.Wrapper>
     );
   }

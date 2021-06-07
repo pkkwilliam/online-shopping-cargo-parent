@@ -110,15 +110,11 @@ export default class SmsAuthView extends ApplicationCompoentView {
       <ApplicationButton
         block
         disabled={!codeRequested}
+        loading={loadingVerify}
         onClick={onClickVerify}
         style={{ marginTop: 10 }}
       >
-        <View style={{ alignItems: "center", justifyContent: "center" }}>
-          驗證
-          {loadingVerify ? (
-            <ApplicationSpinner style={{ position: "absolute", right: 150 }} />
-          ) : null}
-        </View>
+        驗證
       </ApplicationButton>
     );
   };
