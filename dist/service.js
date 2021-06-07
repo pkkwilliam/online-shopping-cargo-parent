@@ -186,6 +186,17 @@ var CREATE_SHIP_TO_HOME_ORDER = exports.CREATE_SHIP_TO_HOME_ORDER = function CRE
   };
 };
 
+var REQUEST_SHIPMENT_ESTIMATE = exports.REQUEST_SHIPMENT_ESTIMATE = function REQUEST_SHIPMENT_ESTIMATE(parcels) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(parcels),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
+    requestMethod: "POST"
+  };
+};
+
 // third person
 var GET_THIRD_PERSONS = exports.GET_THIRD_PERSONS = function GET_THIRD_PERSONS() {
   var onSuceed = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;

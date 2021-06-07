@@ -154,6 +154,14 @@ export const CREATE_SHIP_TO_HOME_ORDER = (
   requestMethod: "POST",
 });
 
+export const REQUEST_SHIPMENT_ESTIMATE = (parcels, onSuceed = null) => ({
+  body: JSON.stringify(parcels),
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
+  requestMethod: "POST",
+});
+
 // third person
 export const GET_THIRD_PERSONS = (onSuceed = null) => ({
   publicRequset: false,
