@@ -24,7 +24,7 @@ export default class AppView extends ApplicationComponentView {
           <LineBreak />
         </Form>
         <ApplicationButton loading>whatup man</ApplicationButton>
-        <ApplicationModalLoading show serviceRequestText="訂單提交中" />
+        <ApplicationModalLoading show text="訂單提交中" />
       </this.Wrapper>
     );
   }

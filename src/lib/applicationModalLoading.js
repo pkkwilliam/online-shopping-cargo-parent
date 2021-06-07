@@ -20,7 +20,7 @@ export default function ApplicationModal(props) {
 
 export function TextSection({ text }) {
   return (
-    <View>
+    <View style={{ alignItems: "center", justifyContent: "center" }}>
       <P>{text}</P>
       <ApplicationSpinner loading style={{ marginLeft: 8 }} variant="warning" />
     </View>
