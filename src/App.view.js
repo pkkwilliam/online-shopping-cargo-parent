@@ -7,6 +7,7 @@ import ApplicationColumnTextField from "./lib/applicationColumnTextField";
 import Form from "react-bootstrap/esm/Form";
 import LineBreak from "./lib/lineBreak";
 import ApplicationButton from "./lib/applicationButton";
+import ApplicationModalLoading from "./lib/applicationModalLoading";
 
 export default class AppView extends ApplicationComponentView {
   render() {
@@ -23,6 +24,7 @@ export default class AppView extends ApplicationComponentView {
           <LineBreak />
         </Form>
         <ApplicationButton loading>whatup man</ApplicationButton>
+        <ApplicationModalLoading show serviceRequestText="訂單提交中" />
       </this.Wrapper>
     );
   }
