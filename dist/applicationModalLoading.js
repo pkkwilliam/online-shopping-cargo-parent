@@ -54,7 +54,7 @@ function TextSection(_ref) {
 
   return _react2.default.createElement(
     _view2.default,
-    null,
+    { style: { alignItems: "center", justifyContent: "center" } },
     _react2.default.createElement(
       _paragraph2.default,
       null,

@@ -98,11 +98,6 @@ var ApplicationComponent = function (_Component) {
       });
     }
   }, {
-    key: "setModalLoading",
-    value: function setModalLoading(modalLoading) {
-      this.setState({ modalLoading: modalLoading });
-    }
-  }, {
     key: "setToast",
     value: function setToast(toast) {
       this.setState({
