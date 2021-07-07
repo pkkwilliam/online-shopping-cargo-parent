@@ -22,6 +22,10 @@ export const WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
 export const VEHICLE = { key: "VEHICLE", label: "轉運車" };
 export const PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
 
+// parcel type
+export const BAD_PARCEL = { key: "BAD_PARCEL", label: "疑難包裹" };
+export const SHIP_TO_HOME = { key: "SHIP_TO_HOME", label: "送貨上門" };
+export const STORE_PICKUP = { key: "STORE_PICKUP", label: "門店自提" };
 export default class ParcelDisplayUtil {
   getParcelLocation(parcelLocation) {
     switch (parcelLocation) {

@@ -27,6 +27,11 @@ var WAREHOUSE = exports.WAREHOUSE = { key: "WAREHOUSE", label: "轉運倉" };
 var VEHICLE = exports.VEHICLE = { key: "VEHICLE", label: "轉運車" };
 var PARCEL_LOCATIONS = exports.PARCEL_LOCATIONS = [SHOP, WAREHOUSE, VEHICLE];
 
+// parcel type
+var BAD_PARCEL = exports.BAD_PARCEL = { key: "BAD_PARCEL", label: "疑難包裹" };
+var SHIP_TO_HOME = exports.SHIP_TO_HOME = { key: "SHIP_TO_HOME", label: "送貨上門" };
+var STORE_PICKUP = exports.STORE_PICKUP = { key: "STORE_PICKUP", label: "門店自提" };
+
 var ParcelDisplayUtil = function () {
   function ParcelDisplayUtil() {
     _classCallCheck(this, ParcelDisplayUtil);
