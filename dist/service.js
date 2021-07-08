@@ -119,6 +119,16 @@ var GET_PICKUP_QR_CODE = exports.GET_PICKUP_QR_CODE = function GET_PICKUP_QR_COD
   };
 };
 
+var CONFIRM_BAD_PARCEL_SHOP_NUMBER = exports.CONFIRM_BAD_PARCEL_SHOP_NUMBER = function CONFIRM_BAD_PARCEL_SHOP_NUMBER(parcelId, shopNumber) {
+  var onSuceed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  return {
+    onSuceed: onSuceed,
+    publicRequset: false,
+    requestMapping: PARCEL_SERVICE + "/confirm_bad_parcel_shop_number?parcelId=" + parcelId + "&shopNumber=" + shopNumber,
+    requestMethod: "PUT"
+  };
+};
+
 var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(originalTrackingNumber, shopNumber) {
   var onSuceed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
   return {
