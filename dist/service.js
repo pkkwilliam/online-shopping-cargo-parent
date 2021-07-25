@@ -196,13 +196,33 @@ var CREATE_SHIP_TO_HOME_ORDER = exports.CREATE_SHIP_TO_HOME_ORDER = function CRE
   };
 };
 
+var DELETE_SHIP_TO_HOME_ORDER = exports.DELETE_SHIP_TO_HOME_ORDER = function DELETE_SHIP_TO_HOME_ORDER(shipToHomeOrder) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(shipToHomeOrder),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE,
+    requestMethod: "DELETE"
+  };
+};
+
 var REQUEST_SHIPMENT_ESTIMATE = exports.REQUEST_SHIPMENT_ESTIMATE = function REQUEST_SHIPMENT_ESTIMATE(parcels) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     body: JSON.stringify(parcels),
     publicRequset: false,
     onSuceed: onSuceed,
-    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
+    requestMapping: +"/estimate_shipment_cost",
+    requestMethod: "POST"
+  };
+};
+
+var REQUEST_SHIP_TO_HOME_ONLINE_PAYMENT_FORM_PARAMS = function REQUEST_SHIP_TO_HOME_ONLINE_PAYMENT_FORM_PARAMS(shipToHome) {
+  return {
+    body: JSON.stringify(shipToHome),
+    publicRequset: false,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/request_mpay_form_data_params",
     requestMethod: "POST"
   };
 };

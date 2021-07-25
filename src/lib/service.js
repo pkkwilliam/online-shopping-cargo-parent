@@ -165,11 +165,29 @@ export const CREATE_SHIP_TO_HOME_ORDER = (
   requestMethod: "POST",
 });
 
+export const DELETE_SHIP_TO_HOME_ORDER = (
+  shipToHomeOrder,
+  onSuceed = null
+) => ({
+  body: JSON.stringify(shipToHomeOrder),
+  publicRequset: false,
+  onSuceed,
+  requestMapping: USER_SHIP_TO_HOME_SERVICE,
+  requestMethod: "DELETE",
+});
+
 export const REQUEST_SHIPMENT_ESTIMATE = (parcels, onSuceed = null) => ({
   body: JSON.stringify(parcels),
   publicRequset: false,
   onSuceed,
-  requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
+  requestMapping: +"/estimate_shipment_cost",
+  requestMethod: "POST",
+});
+
+const REQUEST_SHIP_TO_HOME_ONLINE_PAYMENT_FORM_PARAMS = (shipToHome) => ({
+  body: JSON.stringify(shipToHome),
+  publicRequset: false,
+  requestMapping: USER_SHIP_TO_HOME_SERVICE + "/request_mpay_form_data_params",
   requestMethod: "POST",
 });
 
