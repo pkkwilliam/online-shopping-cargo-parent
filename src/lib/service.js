@@ -180,7 +180,7 @@ export const REQUEST_SHIPMENT_ESTIMATE = (parcels, onSuceed = null) => ({
   body: JSON.stringify(parcels),
   publicRequset: false,
   onSuceed,
-  requestMapping: +"/estimate_shipment_cost",
+  requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
   requestMethod: "POST",
 });
 

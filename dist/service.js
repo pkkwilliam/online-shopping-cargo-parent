@@ -213,7 +213,7 @@ var REQUEST_SHIPMENT_ESTIMATE = exports.REQUEST_SHIPMENT_ESTIMATE = function REQ
     body: JSON.stringify(parcels),
     publicRequset: false,
     onSuceed: onSuceed,
-    requestMapping: +"/estimate_shipment_cost",
+    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/estimate_shipment_cost",
     requestMethod: "POST"
   };
 };
