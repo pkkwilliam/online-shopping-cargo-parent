@@ -184,7 +184,9 @@ export const REQUEST_SHIPMENT_ESTIMATE = (parcels, onSuceed = null) => ({
   requestMethod: "POST",
 });
 
-const REQUEST_SHIP_TO_HOME_ONLINE_PAYMENT_FORM_PARAMS = (shipToHome) => ({
+export const REQUEST_SHIP_TO_HOME_ONLINE_PAYMENT_FORM_PARAMS = (
+  shipToHome
+) => ({
   body: JSON.stringify(shipToHome),
   publicRequset: false,
   requestMapping: USER_SHIP_TO_HOME_SERVICE + "/request_mpay_form_data_params",
