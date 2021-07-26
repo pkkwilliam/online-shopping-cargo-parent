@@ -207,6 +207,17 @@ var DELETE_SHIP_TO_HOME_ORDER = exports.DELETE_SHIP_TO_HOME_ORDER = function DEL
   };
 };
 
+var MAKE_PAYMENT = exports.MAKE_PAYMENT = function MAKE_PAYMENT(parcels) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    body: JSON.stringify(parcels),
+    publicRequset: false,
+    onSuceed: onSuceed,
+    requestMapping: USER_SHIP_TO_HOME_SERVICE + "/make_payment",
+    requestMethod: "POST"
+  };
+};
+
 var REQUEST_SHIPMENT_ESTIMATE = exports.REQUEST_SHIPMENT_ESTIMATE = function REQUEST_SHIPMENT_ESTIMATE(parcels) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
