@@ -207,10 +207,15 @@ var DELETE_SHIP_TO_HOME_ORDER = exports.DELETE_SHIP_TO_HOME_ORDER = function DEL
   };
 };
 
-var MAKE_PAYMENT = exports.MAKE_PAYMENT = function MAKE_PAYMENT(parcels) {
+/**
+ * @param {*} shipToHomeOrder this has to include a valid order ID
+ * @param {*} onSuceed
+ * @returns
+ */
+var MAKE_SHIP_TO_HOME_PAYMENT = exports.MAKE_SHIP_TO_HOME_PAYMENT = function MAKE_SHIP_TO_HOME_PAYMENT(shipToHomeOrder) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
-    body: JSON.stringify(parcels),
+    body: JSON.stringify(shipToHomeOrder),
     publicRequset: false,
     onSuceed: onSuceed,
     requestMapping: USER_SHIP_TO_HOME_SERVICE + "/make_payment",

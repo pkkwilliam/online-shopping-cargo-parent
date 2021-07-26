@@ -176,8 +176,16 @@ export const DELETE_SHIP_TO_HOME_ORDER = (
   requestMethod: "DELETE",
 });
 
-export const MAKE_PAYMENT = (parcels, onSuceed = null) => ({
-  body: JSON.stringify(parcels),
+/**
+ * @param {*} shipToHomeOrder this has to include a valid order ID
+ * @param {*} onSuceed
+ * @returns
+ */
+export const MAKE_SHIP_TO_HOME_PAYMENT = (
+  shipToHomeOrder,
+  onSuceed = null
+) => ({
+  body: JSON.stringify(shipToHomeOrder),
   publicRequset: false,
   onSuceed,
   requestMapping: USER_SHIP_TO_HOME_SERVICE + "/make_payment",
