@@ -117,6 +117,13 @@ var ParcelDisplayUtil = function () {
 
       return trackingHistories[trackingHistories.length - 1].parcelStatus;
     }
+  }, {
+    key: "filterParcel",
+    value: function filterParcel(parcels, requireParcelStatus) {
+      return parcels.filter(function (parcel) {
+        return parcel.parcelStatus === requireParcelStatus.key;
+      });
+    }
   }]);
 
   return ParcelDisplayUtil;
