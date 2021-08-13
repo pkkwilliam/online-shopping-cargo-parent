@@ -106,10 +106,10 @@ export default class ParcelDisplayUtil {
     const { trackingHistories } = parcel;
     return trackingHistories[trackingHistories.length - 1].parcelStatus;
   }
+}
 
-  filterParcel(parcels, requireParcelStatus) {
-    return parcels.filter(
-      (parcel) => parcel.parcelStatus === requireParcelStatus.key
-    );
-  }
+export function filterParcel(parcels, requireParcelStatus) {
+  return parcels.filter(
+    (parcel) => parcel.parcelStatus === requireParcelStatus.key
+  );
 }
