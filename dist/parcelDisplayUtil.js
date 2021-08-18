@@ -101,7 +101,7 @@ var ParcelDisplayUtil = function () {
             label = predefinedParcelStatus.label,
             useCustomAreaShortName = predefinedParcelStatus.useCustomAreaShortName;
 
-        return useCustomAreaShortName ? areaShortName + " - " + label : defaultAreaShortName + " - " + label;
+        return useCustomAreaShortName ? (areaShortName ? areaShortName : defaultAreaShortName) + " - " + label : defaultAreaShortName + " - " + label;
       };
       switch (parcelStatus) {
         case COMBINED.key:

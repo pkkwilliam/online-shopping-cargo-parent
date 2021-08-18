@@ -85,7 +85,7 @@ export default class ParcelDisplayUtil {
       const { defaultAreaShortName, label, useCustomAreaShortName } =
         predefinedParcelStatus;
       return useCustomAreaShortName
-        ? `${areaShortName} - ${label}`
+        ? `${areaShortName ? areaShortName : defaultAreaShortName} - ${label}`
         : `${defaultAreaShortName} - ${label}`;
     };
     switch (parcelStatus) {
