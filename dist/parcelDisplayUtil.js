@@ -13,14 +13,54 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // parcel status
-var COMBINED = exports.COMBINED = { key: "COMBINED", label: "已合併" };
-var DELIVERED = exports.DELIVERED = { key: "DELIVERED", label: "已送達" };
-var EXCEPTION = exports.EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
-var IN_TRANSIT = exports.IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
-var PICKED_UP = exports.PICKED_UP = { key: "PICKED_UP", label: "已提" };
-var READY_FOR_COMBINE = exports.READY_FOR_COMBINE = { key: "READY_FOR_COMBINE", label: "待處理" };
-var READY_TO_PICKUP = exports.READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
-var WAREHOUSE_RECEIVED = exports.WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "入庫" };
+var COMBINED = exports.COMBINED = {
+  defaultAreaShortName: "澳門",
+  key: "COMBINED",
+  label: "已合併",
+  useCustomAreaShortName: false
+};
+var DELIVERED = exports.DELIVERED = {
+  defaultAreaShortName: "澳門",
+  key: "DELIVERED",
+  label: "已送達",
+  useCustomAreaShortName: false
+};
+var EXCEPTION = exports.EXCEPTION = {
+  defaultAreaShortName: "澳門",
+  key: "EXCEPTION",
+  label: "請致電客服",
+  useCustomAreaShortName: false
+};
+var IN_TRANSIT = exports.IN_TRANSIT = {
+  defaultAreaShortName: "澳門",
+  key: "IN_TRANSIT",
+  label: "運輸中",
+  useCustomAreaShortName: false
+};
+var PICKED_UP = exports.PICKED_UP = {
+  defaultAreaShortName: "澳門",
+  key: "PICKED_UP",
+  label: "已提",
+  useCustomAreaShortName: true
+};
+var READY_FOR_COMBINE = exports.READY_FOR_COMBINE = {
+  defaultAreaShortName: "澳門",
+  key: "READY_FOR_COMBINE",
+  label: "待處理",
+  useCustomAreaShortName: false
+};
+var READY_TO_PICKUP = exports.READY_TO_PICKUP = {
+  defaultAreaShortName: "澳門",
+  key: "READY_TO_PICKUP",
+  label: "可提",
+  useCustomAreaShortName: true
+};
+var WAREHOUSE_RECEIVED = exports.WAREHOUSE_RECEIVED = {
+  defaultAreaShortName: "珠海",
+  key: "WAREHOUSE_RECEIVED",
+  label: "入庫",
+  useCustomAreaShortName: false
+};
 var PARCEL_STATUS = exports.PARCEL_STATUS = [DELIVERED, EXCEPTION, IN_TRANSIT, PICKED_UP, READY_TO_PICKUP, WAREHOUSE_RECEIVED];
 
 // parcel location
@@ -55,24 +95,49 @@ var ParcelDisplayUtil = function () {
     }
   }, {
     key: "getParcelStatusBageAndLabel",
-    value: function getParcelStatusBageAndLabel(parcelStatus) {
+    value: function getParcelStatusBageAndLabel(parcelStatus, areaShortName) {
+      var concatCustomAreaShortName = function concatCustomAreaShortName(predefinedParcelStatus) {
+        var defaultAreaShortName = predefinedParcelStatus.defaultAreaShortName,
+            label = predefinedParcelStatus.label,
+            useCustomAreaShortName = predefinedParcelStatus.useCustomAreaShortName;
+
+        return useCustomAreaShortName ? areaShortName + " - " + label : defaultAreaShortName + " - " + label;
+      };
       switch (parcelStatus) {
         case COMBINED.key:
-          return { badge: "success", label: COMBINED.label };
+          return { badge: "success", label: concatCustomAreaShortName(COMBINED) };
         case DELIVERED.key:
-          return { badge: "secondary", label: DELIVERED.label };
+          return {
+            badge: "secondary",
+            label: concatCustomAreaShortName(DELIVERED)
+          };
         case EXCEPTION.key:
-          return { badge: "danger", label: EXCEPTION.label };
+          return { badge: "danger", label: concatCustomAreaShortName(EXCEPTION) };
         case IN_TRANSIT.key:
-          return { badge: "warning", label: IN_TRANSIT.label };
+          return {
+            badge: "warning",
+            label: concatCustomAreaShortName(IN_TRANSIT)
+          };
         case PICKED_UP.key:
-          return { badge: "secondary", label: PICKED_UP.label };
+          return {
+            badge: "secondary",
+            label: concatCustomAreaShortName(PICKED_UP)
+          };
         case READY_FOR_COMBINE.key:
-          return { badge: "warning", label: READY_FOR_COMBINE.label };
+          return {
+            badge: "warning",
+            label: concatCustomAreaShortName(READY_FOR_COMBINE)
+          };
         case READY_TO_PICKUP.key:
-          return { badge: "success", label: READY_TO_PICKUP.label };
+          return {
+            badge: "success",
+            label: concatCustomAreaShortName(READY_TO_PICKUP)
+          };
         case WAREHOUSE_RECEIVED.key:
-          return { badge: "warning", label: WAREHOUSE_RECEIVED.label };
+          return {
+            badge: "warning",
+            label: concatCustomAreaShortName(WAREHOUSE_RECEIVED)
+          };
         default:
           return { badge: "danger", label: "未知" };
       }

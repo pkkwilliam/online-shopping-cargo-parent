@@ -1,12 +1,52 @@
 // parcel status
-export const COMBINED = { key: "COMBINED", label: "已合併" };
-export const DELIVERED = { key: "DELIVERED", label: "已送達" };
-export const EXCEPTION = { key: "EXCEPTION", label: "請致電客服" };
-export const IN_TRANSIT = { key: "IN_TRANSIT", label: "運輸中" };
-export const PICKED_UP = { key: "PICKED_UP", label: "已提" };
-export const READY_FOR_COMBINE = { key: "READY_FOR_COMBINE", label: "待處理" };
-export const READY_TO_PICKUP = { key: "READY_TO_PICKUP", label: "可提" };
-export const WAREHOUSE_RECEIVED = { key: "WAREHOUSE_RECEIVED", label: "入庫" };
+export const COMBINED = {
+  defaultAreaShortName: "澳門",
+  key: "COMBINED",
+  label: "已合併",
+  useCustomAreaShortName: false,
+};
+export const DELIVERED = {
+  defaultAreaShortName: "澳門",
+  key: "DELIVERED",
+  label: "已送達",
+  useCustomAreaShortName: false,
+};
+export const EXCEPTION = {
+  defaultAreaShortName: "澳門",
+  key: "EXCEPTION",
+  label: "請致電客服",
+  useCustomAreaShortName: false,
+};
+export const IN_TRANSIT = {
+  defaultAreaShortName: "澳門",
+  key: "IN_TRANSIT",
+  label: "運輸中",
+  useCustomAreaShortName: false,
+};
+export const PICKED_UP = {
+  defaultAreaShortName: "澳門",
+  key: "PICKED_UP",
+  label: "已提",
+  useCustomAreaShortName: true,
+};
+export const READY_FOR_COMBINE = {
+  defaultAreaShortName: "澳門",
+  key: "READY_FOR_COMBINE",
+  label: "待處理",
+  useCustomAreaShortName: false,
+};
+export const READY_TO_PICKUP = {
+  defaultAreaShortName: "澳門",
+  key: "READY_TO_PICKUP",
+  label: "可提",
+  useCustomAreaShortName: true,
+};
+export const WAREHOUSE_RECEIVED = {
+  defaultAreaShortName: "珠海",
+  key: "WAREHOUSE_RECEIVED",
+  label: "入庫",
+  useCustomAreaShortName: false,
+};
 export const PARCEL_STATUS = [
   DELIVERED,
   EXCEPTION,
@@ -40,24 +80,49 @@ export default class ParcelDisplayUtil {
     }
   }
 
-  getParcelStatusBageAndLabel(parcelStatus) {
+  getParcelStatusBageAndLabel(parcelStatus, areaShortName) {
+    const concatCustomAreaShortName = (predefinedParcelStatus) => {
+      const { defaultAreaShortName, label, useCustomAreaShortName } =
+        predefinedParcelStatus;
+      return useCustomAreaShortName
+        ? `${areaShortName} - ${label}`
+        : `${defaultAreaShortName} - ${label}`;
+    };
     switch (parcelStatus) {
       case COMBINED.key:
-        return { badge: "success", label: COMBINED.label };
+        return { badge: "success", label: concatCustomAreaShortName(COMBINED) };
       case DELIVERED.key:
-        return { badge: "secondary", label: DELIVERED.label };
+        return {
+          badge: "secondary",
+          label: concatCustomAreaShortName(DELIVERED),
+        };
       case EXCEPTION.key:
-        return { badge: "danger", label: EXCEPTION.label };
+        return { badge: "danger", label: concatCustomAreaShortName(EXCEPTION) };
       case IN_TRANSIT.key:
-        return { badge: "warning", label: IN_TRANSIT.label };
+        return {
+          badge: "warning",
+          label: concatCustomAreaShortName(IN_TRANSIT),
+        };
       case PICKED_UP.key:
-        return { badge: "secondary", label: PICKED_UP.label };
+        return {
+          badge: "secondary",
+          label: concatCustomAreaShortName(PICKED_UP),
+        };
       case READY_FOR_COMBINE.key:
-        return { badge: "warning", label: READY_FOR_COMBINE.label };
+        return {
+          badge: "warning",
+          label: concatCustomAreaShortName(READY_FOR_COMBINE),
+        };
       case READY_TO_PICKUP.key:
-        return { badge: "success", label: READY_TO_PICKUP.label };
+        return {
+          badge: "success",
+          label: concatCustomAreaShortName(READY_TO_PICKUP),
+        };
       case WAREHOUSE_RECEIVED.key:
-        return { badge: "warning", label: WAREHOUSE_RECEIVED.label };
+        return {
+          badge: "warning",
+          label: concatCustomAreaShortName(WAREHOUSE_RECEIVED),
+        };
       default:
         return { badge: "danger", label: "未知" };
     }
