@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var GITHUB_CONTENT_URL = exports.GITHUB_CONTENT_URL = "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
-var SMS_LOGIN_SERVICE = "/login/sms";
+var LOGIN_SERVICE = "/login/v1";
 var PARCEL_SERVICE = "/api/v1/parcel";
 var PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
@@ -139,27 +139,48 @@ var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(orig
   };
 };
 
-var REQUEST_VERIFICATION = exports.REQUEST_VERIFICATION = function REQUEST_VERIFICATION(countryCode, smsNumber) {
-  var onSuceed = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  return {
-    publicRequset: true,
-    onSuceed: onSuceed,
-    requestMapping: SMS_LOGIN_SERVICE + "/request_verification",
-    requestMethod: "POST",
-    body: JSON.stringify({
-      countryCode: countryCode,
-      smsNumber: smsNumber
-    })
-  };
-};
-
-var VALIDATE_USER_TOKEN = exports.VALIDATE_USER_TOKEN = function VALIDATE_USER_TOKEN(userToken) {
+// Auth
+var SMS_NUMBER_PASSWORD_LOGIN = exports.SMS_NUMBER_PASSWORD_LOGIN = function SMS_NUMBER_PASSWORD_LOGIN(request) {
   var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: true,
     onSuceed: onSuceed,
-    requestMapping: SMS_LOGIN_SERVICE + "/validate_user_token?userToken=" + userToken,
-    requestMethod: "GET"
+    requestMapping: LOGIN_SERVICE + "/sms_number_password",
+    requestMethod: "POST",
+    body: JSON.stringify(request)
+  };
+};
+
+var FORGOT_PASSWORD_REQUEST_VERIFICATION = exports.FORGOT_PASSWORD_REQUEST_VERIFICATION = function FORGOT_PASSWORD_REQUEST_VERIFICATION(request) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: true,
+    onSuceed: onSuceed,
+    requestMapping: LOGIN_SERVICE + "/forgot_password_request",
+    requestMethod: "POST",
+    body: JSON.stringify(request)
+  };
+};
+
+var FORGOT_PASSWORD_VERIFY = exports.FORGOT_PASSWORD_VERIFY = function FORGOT_PASSWORD_VERIFY(request) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: true,
+    onSuceed: onSuceed,
+    requestMapping: LOGIN_SERVICE + "/forgot_password_verify",
+    requestMethod: "POST",
+    body: JSON.stringify(request)
+  };
+};
+
+var REQUEST_VERIFICATION = exports.REQUEST_VERIFICATION = function REQUEST_VERIFICATION(request) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: true,
+    onSuceed: onSuceed,
+    requestMapping: LOGIN_SERVICE + "/request_verification",
+    requestMethod: "POST",
+    body: JSON.stringify(request)
   };
 };
 
@@ -168,9 +189,19 @@ var VERIFY = exports.VERIFY = function VERIFY(request) {
   return {
     publicRequset: true,
     onSuceed: onSuceed,
-    requestMapping: SMS_LOGIN_SERVICE + "/verify",
+    requestMapping: LOGIN_SERVICE + "/verify",
     requestMethod: "POST",
     body: JSON.stringify(request)
+  };
+};
+
+var VALIDATE_USER_TOKEN = exports.VALIDATE_USER_TOKEN = function VALIDATE_USER_TOKEN(userToken) {
+  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return {
+    publicRequset: true,
+    onSuceed: onSuceed,
+    requestMapping: LOGIN_SERVICE + "/validate_user_token?userToken=" + userToken,
+    requestMethod: "GET"
   };
 };
 

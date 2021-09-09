@@ -1,6 +1,6 @@
 export const GITHUB_CONTENT_URL =
   "https://raw.githubusercontent.com/pkkwilliam/github.io-contents/master/oscm";
-const SMS_LOGIN_SERVICE = "/login/sms";
+const LOGIN_SERVICE = "/login/v1";
 const PARCEL_SERVICE = "/api/v1/parcel";
 const PUBLIC_PARCEL_SERVICE = "/public/v1/parcel";
 const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
@@ -116,34 +116,55 @@ export const MATCH_BAD_PARCEL = (
   requestMethod: "PUT",
 });
 
-export const REQUEST_VERIFICATION = (
-  countryCode,
-  smsNumber,
+// Auth
+export const SMS_NUMBER_PASSWORD_LOGIN = (request, onSuceed = null) => ({
+  publicRequset: true,
+  onSuceed,
+  requestMapping: LOGIN_SERVICE + "/sms_number_password",
+  requestMethod: "POST",
+  body: JSON.stringify(request),
+});
+
+export const FORGOT_PASSWORD_REQUEST_VERIFICATION = (
+  request,
   onSuceed = null
 ) => ({
   publicRequset: true,
   onSuceed,
-  requestMapping: SMS_LOGIN_SERVICE + "/request_verification",
+  requestMapping: LOGIN_SERVICE + "/forgot_password_request",
   requestMethod: "POST",
-  body: JSON.stringify({
-    countryCode,
-    smsNumber,
-  }),
+  body: JSON.stringify(request),
 });
 
-export const VALIDATE_USER_TOKEN = (userToken, onSuceed = null) => ({
+export const FORGOT_PASSWORD_VERIFY = (request, onSuceed = null) => ({
   publicRequset: true,
   onSuceed,
-  requestMapping: `${SMS_LOGIN_SERVICE}/validate_user_token?userToken=${userToken}`,
-  requestMethod: "GET",
+  requestMapping: LOGIN_SERVICE + "/forgot_password_verify",
+  requestMethod: "POST",
+  body: JSON.stringify(request),
+});
+
+export const REQUEST_VERIFICATION = (request, onSuceed = null) => ({
+  publicRequset: true,
+  onSuceed,
+  requestMapping: LOGIN_SERVICE + "/request_verification",
+  requestMethod: "POST",
+  body: JSON.stringify(request),
 });
 
 export const VERIFY = (request, onSuceed = null) => ({
   publicRequset: true,
   onSuceed,
-  requestMapping: SMS_LOGIN_SERVICE + "/verify",
+  requestMapping: LOGIN_SERVICE + "/verify",
   requestMethod: "POST",
   body: JSON.stringify(request),
+});
+
+export const VALIDATE_USER_TOKEN = (userToken, onSuceed = null) => ({
+  publicRequset: true,
+  onSuceed,
+  requestMapping: `${LOGIN_SERVICE}/validate_user_token?userToken=${userToken}`,
+  requestMethod: "GET",
 });
 
 // ship to home
