@@ -4,7 +4,6 @@ import LineBreak from "../lineBreak";
 import ApplicationButton from "../applicationButton";
 import ApplicationSpinner from "../applicationSpinner";
 import ApplicationTextButton from "../applicationTextButton";
-import View from "../view";
 import { Fragment } from "react";
 import ApplicationTextField from "../applicationTextField";
 import ApplicationPhoneNumberTextField from "../applicationPhoneNumberTextField";

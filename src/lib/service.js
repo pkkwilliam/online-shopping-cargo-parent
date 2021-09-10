@@ -117,9 +117,8 @@ export const MATCH_BAD_PARCEL = (
 });
 
 // Auth
-export const SMS_NUMBER_PASSWORD_LOGIN = (request, onSuceed = null) => ({
+export const SMS_NUMBER_PASSWORD_LOGIN = (request) => ({
   publicRequset: true,
-  onSuceed,
   requestMapping: LOGIN_SERVICE + "/sms_number_password",
   requestMethod: "POST",
   body: JSON.stringify(request),

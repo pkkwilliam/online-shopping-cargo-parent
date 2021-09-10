@@ -1,6 +1,6 @@
 import React from "react";
 import SmsAuthView from "./smsAuth.view";
-import { REQUEST_VERIFICATION, VERIFY } from "../service";
+import { REQUEST_VERIFICATION, SMS_NUMBER_PASSWORD_LOGIN } from "../service";
 import ApplicationComponent from "../applicationComponent";
 import { COUNTRY_CODE_LIST } from "../applicationPhoneNumberTextField";
 
@@ -99,7 +99,7 @@ export default class SmsAuth extends ApplicationComponent {
       ? this.getPasswordLoginRequestBody()
       : this.getSmsLoginRequestBody();
     this.getServiceExecutor()
-      .execute(VERIFY(requestBody, this.props.onSuceed))
+      .execute(SMS_NUMBER_PASSWORD_LOGIN(requestBody, this.props.onSuceed))
       .then(() => this.setState({ loadingVerify: false }))
       .catch((ex) => {
         this.getOnError(ex);

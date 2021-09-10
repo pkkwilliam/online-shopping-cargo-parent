@@ -13,7 +13,7 @@ export default class AppView extends ApplicationComponentView {
   render() {
     return (
       <this.Wrapper>
-        <SmsAuth mock />
+        <SmsAuth mock passwordLogin />
         <ApplicationTextField label="代收店號" placeHolder="1130" />
         <Register mock />
         <Form>
@@ -24,7 +24,7 @@ export default class AppView extends ApplicationComponentView {
           <LineBreak />
         </Form>
         <ApplicationButton loading>whatup man</ApplicationButton>
-        <ApplicationModalLoading show text="訂單提交中" />
+        {/* <ApplicationModalLoading show text="訂單提交中" /> */}
       </this.Wrapper>
     );
   }

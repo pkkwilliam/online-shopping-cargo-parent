@@ -1,5 +1,6 @@
 export default class ServiceExecutor {
   baseUrl;
+  exceptionCode;
   persistHeaderToken;
   removeHeaderToken;
   retrieveHeaderToken;
@@ -7,12 +8,14 @@ export default class ServiceExecutor {
 
   constructor(
     baseUrl,
+    exceptionCode,
     persistHeaderToken,
     removeHeaderToken,
     retrieveHeaderToken,
     onError
   ) {
     this.baseUrl = baseUrl;
+    this.exceptionCode = exceptionCode;
     this.persistHeaderToken = persistHeaderToken;
     this.removeHeaderToken = removeHeaderToken;
     this.retrieveHeaderToken = retrieveHeaderToken;
@@ -48,18 +51,29 @@ export default class ServiceExecutor {
           }
           if (result.status === 204) {
             return resolve();
-          } else if (result.status === 403) {
-            this.removeHeaderToken();
-            // window.location = "/";
-            this.onError();
           }
           return result
             .json()
             .then((json) => {
               if (result.status < 300) {
                 return resolve(json);
+              } else if (result.status === 403) {
+                // removing this since this gives hard error soemtimes
+                // this.removeHeaderToken();
+                // window.location = "/";
+                this.onError({
+                  message: this.getTranslatedException(
+                    json,
+                    this.exceptionCode
+                  ),
+                });
               } else {
-                this.onError(json);
+                this.onError({
+                  message: this.getTranslatedException(
+                    json,
+                    this.exceptionCode
+                  ),
+                });
                 return reject("failed");
               }
             })
@@ -102,5 +116,13 @@ export default class ServiceExecutor {
       };
     }
     return header;
+  }
+
+  getTranslatedException(requestExceptionCode, exceptionCode) {
+    if (exceptionCode[requestExceptionCode.errorCode]) {
+      return exceptionCode[requestExceptionCode.errorCode];
+    } else {
+      return requestExceptionCode.message;
+    }
   }
 }
