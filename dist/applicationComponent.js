@@ -22,6 +22,10 @@ var _storage2 = _interopRequireDefault(_storage);
 
 var _applicationPhoneNumberTextField = require("./applicationPhoneNumberTextField");
 
+var _exceptionCode = require("./exceptionCode.json");
+
+var _exceptionCode2 = _interopRequireDefault(_exceptionCode);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67,8 +71,8 @@ var ApplicationComponent = function (_Component) {
     }, _this.onError = function (exeception) {
       console.debug("default on error, show modal");
       _this.setError({
-        body: "\u975E\u5E38\u62B1\u6B49\uFF0C\u8ACB\u7A0D\u5019\u91CD\u8A66\n\u5FAE\u4FE1\u5BA2\u670D: PickTB\n\u539F\u56E0:" + exeception.message,
-        header: "AWS 伺服器出錯 🤕🤕",
+        body: exeception.message,
+        header: "出錯 🤕🤕",
         show: true
       });
     }, _this.setError = function (modal) {
@@ -118,7 +122,7 @@ var ApplicationComponent = function (_Component) {
     key: "serviceExecutor",
     get: function get() {
       if (!this._serviceExecutor) {
-        this._serviceExecutor = new _serviceExecutor2.default(this.applicationContext.serviceUrl, this.storage.saveUserToken, this.storage.removeUserToken, this.storage.getUserToken, this.onError);
+        this._serviceExecutor = new _serviceExecutor2.default(this.applicationContext.serviceUrl, _exceptionCode2.default, this.storage.saveUserToken, this.storage.removeUserToken, this.storage.getUserToken, this.onError);
       }
       return this._serviceExecutor;
     }

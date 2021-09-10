@@ -30,10 +30,6 @@ var _applicationTextButton = require("../applicationTextButton");
 
 var _applicationTextButton2 = _interopRequireDefault(_applicationTextButton);
 
-var _view = require("../view");
-
-var _view2 = _interopRequireDefault(_view);
-
 var _applicationTextField = require("../applicationTextField");
 
 var _applicationTextField2 = _interopRequireDefault(_applicationTextField);

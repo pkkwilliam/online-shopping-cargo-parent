@@ -86,7 +86,7 @@ var SmsAuth = function (_ApplicationComponent) {
     }, _this.onClickVerify = function () {
       _this.setState({ loadingVerify: true });
       var requestBody = _this.props.passwordLogin ? _this.getPasswordLoginRequestBody() : _this.getSmsLoginRequestBody();
-      _this.getServiceExecutor().execute((0, _service.VERIFY)(requestBody, _this.props.onSuceed)).then(function () {
+      _this.getServiceExecutor().execute((0, _service.SMS_NUMBER_PASSWORD_LOGIN)(requestBody, _this.props.onSuceed)).then(function () {
         return _this.setState({ loadingVerify: false });
       }).catch(function (ex) {
         _this.getOnError(ex);

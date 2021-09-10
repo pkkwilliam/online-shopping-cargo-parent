@@ -13,10 +13,11 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ServiceExecutor = function () {
-  function ServiceExecutor(baseUrl, persistHeaderToken, removeHeaderToken, retrieveHeaderToken, onError) {
+  function ServiceExecutor(baseUrl, exceptionCode, persistHeaderToken, removeHeaderToken, retrieveHeaderToken, onError) {
     _classCallCheck(this, ServiceExecutor);
 
     this.baseUrl = baseUrl;
+    this.exceptionCode = exceptionCode;
     this.persistHeaderToken = persistHeaderToken;
     this.removeHeaderToken = removeHeaderToken;
     this.retrieveHeaderToken = retrieveHeaderToken;
@@ -49,16 +50,21 @@ var ServiceExecutor = function () {
                     }
                     if (result.status === 204) {
                       return resolve();
-                    } else if (result.status === 403) {
-                      _this.removeHeaderToken();
-                      // window.location = "/";
-                      _this.onError();
                     }
                     return result.json().then(function (json) {
                       if (result.status < 300) {
                         return resolve(json);
+                      } else if (result.status === 403) {
+                        // removing this since this gives hard error soemtimes
+                        // this.removeHeaderToken();
+                        // window.location = "/";
+                        _this.onError({
+                          message: _this.getTranslatedException(json, _this.exceptionCode)
+                        });
                       } else {
-                        _this.onError(json);
+                        _this.onError({
+                          message: _this.getTranslatedException(json, _this.exceptionCode)
+                        });
                         return reject("failed");
                       }
                     }).catch(function (ex) {
@@ -109,6 +115,15 @@ var ServiceExecutor = function () {
         header = _extends({}, header, { Authorization: userToken });
       }
       return header;
+    }
+  }, {
+    key: "getTranslatedException",
+    value: function getTranslatedException(requestExceptionCode, exceptionCode) {
+      if (exceptionCode[requestExceptionCode.errorCode]) {
+        return exceptionCode[requestExceptionCode.errorCode];
+      } else {
+        return requestExceptionCode.message;
+      }
     }
   }]);
 

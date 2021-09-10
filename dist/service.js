@@ -141,10 +141,8 @@ var MATCH_BAD_PARCEL = exports.MATCH_BAD_PARCEL = function MATCH_BAD_PARCEL(orig
 
 // Auth
 var SMS_NUMBER_PASSWORD_LOGIN = exports.SMS_NUMBER_PASSWORD_LOGIN = function SMS_NUMBER_PASSWORD_LOGIN(request) {
-  var onSuceed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
   return {
     publicRequset: true,
-    onSuceed: onSuceed,
     requestMapping: LOGIN_SERVICE + "/sms_number_password",
     requestMethod: "POST",
     body: JSON.stringify(request)
