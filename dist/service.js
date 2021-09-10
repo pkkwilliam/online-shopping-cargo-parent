@@ -11,7 +11,7 @@ var PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 var THIRD_PERSON_SERVICE = "/api/v1/third_person";
 var USER_SHIP_TO_HOME_SERVICE = "/user/shipToHome/v1";
 var USER_ADDRESS_SERVICE = "/user/address/v1";
-var USER_PROFILE_SERVICE = "/api/v1/user_profile";
+var USER_PROFILE_SERVICE = "/user_profile/v1";
 
 // Address
 var GET_ALL_ADDRESS_BY_USER = exports.GET_ALL_ADDRESS_BY_USER = function GET_ALL_ADDRESS_BY_USER() {

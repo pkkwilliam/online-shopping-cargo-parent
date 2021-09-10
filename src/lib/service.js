@@ -7,7 +7,7 @@ const PUBLIC_SHOP_SERVICE = "/public/v1/shop";
 const THIRD_PERSON_SERVICE = "/api/v1/third_person";
 const USER_SHIP_TO_HOME_SERVICE = "/user/shipToHome/v1";
 const USER_ADDRESS_SERVICE = "/user/address/v1";
-const USER_PROFILE_SERVICE = "/api/v1/user_profile";
+const USER_PROFILE_SERVICE = "/user_profile/v1";
 
 // Address
 export const GET_ALL_ADDRESS_BY_USER = (onSuceed = null) => ({
